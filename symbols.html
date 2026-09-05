@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기기능사 빈출 기호 암기장 ⚡</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --accent: #f59e0b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 대시보드 및 컨트롤러 */
+        .controls {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            border: 1px solid var(--border);
+        }
+
+        /* 검색창 */
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-wrapper input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.8rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* 필터 및 암기 모드 컨트롤 */
+        .button-groups {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        /* 자가 진단 암기 모드 */
+        .study-mode-panel {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+
+        .study-mode-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .study-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .study-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .study-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+        }
+
+        /* 그리드 레이아웃 */
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* 카드 기본 스타일 */
+        .symbol-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .symbol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        /* 카드 상단 정보 */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .category-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* 카테고리 색상 */
+        .tag-passive { background-color: #f1f5f9; color: #475569; }
+        .tag-sequence { background-color: #fee2e2; color: #b91c1c; }
+        .tag-instrument { background-color: #ecfdf5; color: #047857; }
+        .tag-power { background-color: #fef3c7; color: #b45309; }
+
+        .symbol-abbreviation {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* 기호 그래픽 렌더링 영역 */
+        .symbol-graphic-box {
+            height: 140px;
+            background-color: #fafbfd;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .symbol-graphic-box svg {
+            max-width: 100%;
+            max-height: 110px;
+            fill: none;
+            stroke: #1e293b;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* 카드 텍스트 정보 */
+        .card-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+
+        .card-body .english-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+
+        .card-body p.description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.8rem;
+        }
+
+        .tip-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--accent);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.85rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        /* 자가학습 가리기 가상 오버레이 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .overlay span {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: white;
+            border: 2px solid var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            pointer-events: none;
+            margin-top: 0.5rem;
+        }
+
+        .overlay::before {
+            content: "❓";
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* 암기모드 활성화 시 클래스 주입 */
+        .hide-symbol .symbol-graphic-box .overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .hide-text .card-body-overlay {
+            position: relative;
+        }
+
+        .hide-text .card-body-overlay .overlay {
+            opacity: 1;
+            pointer-events: auto;
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+
+        /* 가려진 오버레이 개별 임시 통과 클래스 */
+        .reveal-temp {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* 푸터 */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* 미디어 쿼리 */
+        @media (max-width: 768px) {
+            body { padding: 1rem 0.5rem; }
+            header { padding: 2rem 1rem; margin-bottom: 1.5rem; }
+            header h1 { font-size: 1.8rem; }
+            .button-groups { flex-direction: column; align-items: stretch; }
+            .filter-tabs { justify-content: center; }
+            .study-mode-panel { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>전기기능사 필수 기호 암기장 ⚡</h1>
+        <p>전기이론, 전기설비, 시퀀스 회로도 판독을 위한 첫걸음! 실시간 검색과 인터랙티브 자가 테스트(Flashcard) 기능으로 기호를 완벽하게 암기해 보세요.</p>
+    </header>
+
+    <div class="controls">
+        <!-- 실시간 검색 -->
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="기호 약어(MC, THR..), 한글 명칭, 영문명, 설명 키워드를 검색하세요...">
+        </div>
+
+        <!-- 필터 및 암기 모드 -->
+        <div class="button-groups">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="tab-btn active" data-filter="all">전체보기</button>
+                <button class="tab-btn" data-filter="theory">핵심 이론/공식</button>
+                <button class="tab-btn" data-filter="power">전원 소자</button>
+                <button class="tab-btn" data-filter="passive">수동 소자</button>
+                <button class="tab-btn" data-filter="sequence">시퀀스/계전기</button>
+                <button class="tab-btn" data-filter="instrument">측정/부하</button>
+            </div>
+
+            <div class="study-mode-panel">
+                <span class="study-mode-title">자가 테스트 모드:</span>
+                <button class="study-btn" id="btnHideSymbol">👁️ 기호 가리기</button>
+                <button class="study-btn" id="btnHideText">📝 설명 가리기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 기호 그리드 영역 -->
+    <div class="symbols-grid" id="symbolsGrid">
+        <!-- [신규] 1. 원자 구조 -->
+        <div class="symbol-card" data-category="theory">
+            <div class="card-header">
+                <span class="category-tag" style="background-color: #ede9fe; color: #5b21b6;">이론</span>
+                <span class="symbol-abbreviation">e⁻ / p⁺</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <circle cx="50" cy="30" r="10" fill="#1e293b" />
+                    <circle cx="50" cy="30" r="2" fill="white" />
+                    <circle cx="70" cy="30" r="5" fill="#ef4444" />
+                    <circle cx="50" cy="10" r="3" fill="#3b82f6" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>원자의 구성</h3>
+                    <div class="english-name">Structure of Atom</div>
+                    <p class="description">중심의 원자핵(양성자+, 중성자)과 그 주변을 도는 전자(-)로 구성됩니다. 자유전자의 이동이 곧 전류입니다.</p>
+                    <div class="tip-box">💡 전자의 전하량: 약 -1.602 × 10⁻¹⁹ [C] 입니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- [신규] 2. 옴의 법칙 -->
+        <div class="symbol-card" data-category="theory">
+            <div class="card-header">
+                <span class="category-tag" style="background-color: #ede9fe; color: #5b21b6;">공식</span>
+                <span class="symbol-abbreviation">V=IR</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <text x="50" y="36" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">V = I × R</text>
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>옴의 법칙</h3>
+                    <div class="english-name">Ohm's Law</div>
+                    <p class="description">전압(V)은 전류(I)와 저항(R)의 곱입니다. 회로 해석의 가장 기초가 되는 절대 공식입니다.</p>
+                    <div class="tip-box">💡 전류 $I = V / R$, 저항 $R = V / I$ 로 변형하여 활용합니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- [신규] 3. 저항 직렬접속 -->
+        <div class="symbol-card" data-category="theory">
+            <div class="card-header">
+                <span class="category-tag" style="background-color: #ede9fe; color: #5b21b6;">공식</span>
+                <span class="symbol-abbreviation">Rser</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <path d="M 10 30 L 25 30 L 30 15 L 40 45 L 50 15 L 60 45 L 65 30 L 80 30" />
+                    <path d="M 80 30 L 95 30 L 100 15 L 110 45 L 120 15 L 130 45 L 135 30 L 150 30" style="display:none;" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>저항 직렬 접속</h3>
+                    <div class="english-name">Series Resistance</div>
+                    <p class="description">합성 저항($R_0$)은 각 저항의 합($R_1 + R_2 + ...$)입니다. 직렬일수록 저항은 커집니다.</p>
+                    <div class="tip-box">💡 직렬 회로에서는 전류가 일정하고 전압이 분배됩니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- [신규] 4. 키르히호프 -->
+        <div class="symbol-card" data-category="theory">
+            <div class="card-header">
+                <span class="category-tag" style="background-color: #ede9fe; color: #5b21b6;">이론</span>
+                <span class="symbol-abbreviation">KCL/KVL</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="50" y1="30" x2="20" y2="30" />
+                    <line x1="50" y1="30" x2="80" y2="30" />
+                    <line x1="50" y1="30" x2="50" y2="5" />
+                    <text x="50" y="45" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" stroke="none" fill="#1e293b">Node</text>
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>키르히호프 법칙</h3>
+                    <div class="english-name">Kirchhoff's Laws</div>
+                    <p class="description">KCL(전류 법칙, 전하량 보존)과 KVL(전압 법칙, 에너지 보존)로 회로를 해석합니다.</p>
+                    <div class="tip-box">💡 KCL: 들어온 전류 합 = 나간 전류 합. KVL: 전원 전압 합 = 전압 강하 합.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- [신규] 5. 단위 접두어 -->
+        <div class="symbol-card" data-category="theory">
+            <div class="card-header">
+                <span class="category-tag" style="background-color: #ede9fe; color: #5b21b6;">이론</span>
+                <span class="symbol-abbreviation">M / m</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <text x="30" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">M</text>
+                    <text x="70" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">m</text>
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>단위 접두어 (M/m)</h3>
+                    <div class="english-name">Unit Prefixes</div>
+                    <p class="description">대문자 M(Mega, 10⁶)과 소문자 m(milli, 10⁻³)은 10억 배 차이! 시험 시 대소문자 확인 필수입니다.</p>
+                    <div class="tip-box">💡 M은 '백만', m은 '천분의 일'. 절대 헷갈리면 안 돼요!</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- [신규] 6. 면적 단위 변환 -->
+        <div class="symbol-card" data-category="theory">
+            <div class="card-header">
+                <span class="category-tag" style="background-color: #ede9fe; color: #5b21b6;">공식</span>
+                <span class="symbol-abbreviation">mm² → m²</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <text x="50" y="36" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">1mm² = 10⁻⁶m²</text>
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>면적 단위 변환</h3>
+                    <div class="english-name">Area Conversion</div>
+                    <p class="description">전선 단면적 계산 시 mm²를 m²로 바꿀 때는 10⁻⁶을 곱합니다.</p>
+                    <div class="tip-box">💡 1m = 1000mm이므로, 1m² = 1,000,000mm²입니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 1. DC -->
+        <div class="symbol-card" data-category="power">
+            <div class="card-header">
+                <span class="category-tag tag-power">전원</span>
+                <span class="symbol-abbreviation">DC</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <!-- 직선 -->
+                    <line x1="15" y1="20" x2="85" y2="20" />
+                    <!-- 점선 -->
+                    <line x1="15" y1="35" x2="30" y2="35" stroke-dasharray="0" />
+                    <line x1="40" y1="35" x2="60" y2="35" stroke-dasharray="0" />
+                    <line x1="70" y1="35" x2="85" y2="35" stroke-dasharray="0" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>직류</h3>
+                    <div class="english-name">Direct Current</div>
+                    <p class="description">시간의 흐름에 따라 크기와 방향이 변하지 않고 일정한 극성(+, -)을 유지하는 전류 및 전압입니다.</p>
+                    <div class="tip-box">💡 시험 팁: 배터리(축전지) 및 정류기 출력 전원은 모두 직류입니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 2. AC -->
+        <div class="symbol-card" data-category="power">
+            <div class="card-header">
+                <span class="category-tag tag-power">전원</span>
+                <span class="symbol-abbreviation">AC</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <!-- AC 물결 (Sine wave) -->
+                    <path d="M 15 30 Q 32.5 10, 50 30 T 85 30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>교류</h3>
+                    <div class="english-name">Alternating Current</div>
+                    <p class="description">시간에 따라 크기와 방향(극성)이 주기적으로 변하는 전류 및 전압입니다. 물결 파형(정현파) 기호로 나타냅니다.</p>
+                    <div class="tip-box">💡 시험 팁: 우리나라 일반 상용 전원은 220V, 주파수 60Hz의 교류입니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 3. Ground -->
+        <div class="symbol-card" data-category="passive">
+            <div class="card-header">
+                <span class="category-tag tag-passive">수동소자</span>
+                <span class="symbol-abbreviation">E (G)</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="50" y1="10" x2="50" y2="35" />
+                    <line x1="20" y1="35" x2="80" y2="35" stroke-width="2.5" />
+                    <line x1="32" y1="43" x2="68" y2="43" stroke-width="2.5" />
+                    <line x1="44" y1="51" x2="56" y2="51" stroke-width="2.5" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>접지</h3>
+                    <div class="english-name">Earth / Ground</div>
+                    <p class="description">기기나 배선 계통의 일부를 대지(땅)와 전기적으로 연결하여 감전 사고 예방 및 전위 안정화를 도모하는 기초 장치입니다.</p>
+                    <div class="tip-box">💡 KEC 규정 변경: 보호도체(접지선)는 녹색-노란색 혼합 색상을 적용합니다!</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 4. Resistor -->
+        <div class="symbol-card" data-category="passive">
+            <div class="card-header">
+                <span class="category-tag tag-passive">수동소자</span>
+                <span class="symbol-abbreviation">R</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <path d="M 10 30 L 30 30 L 35 15 L 45 45 L 55 15 L 65 45 L 70 30 L 90 30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>저항 (레지스터)</h3>
+                    <div class="english-name">Resistor</div>
+                    <p class="description">회로 내에서 전류의 흐름을 제한하고 전압을 강하시키는 역할을 하는 소자입니다. 단위는 옴(Ω, Ohm)을 사용합니다.</p>
+                    <div class="tip-box">💡 계산 필수: 옴의 법칙 $I = V / R$ 공식의 기본이 되는 수동 소자입니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 5. Inductor -->
+        <div class="symbol-card" data-category="passive">
+            <div class="card-header">
+                <span class="category-tag tag-passive">수동소자</span>
+                <span class="symbol-abbreviation">L</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <path d="M 10 30 L 25 30 C 25 15, 37 15, 37 30 C 37 15, 49 15, 49 30 C 49 15, 61 15, 61 30 C 61 15, 73 15, 73 30 L 90 30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>인덕터 (코일)</h3>
+                    <div class="english-name">Inductor / Coil</div>
+                    <p class="description">전선을 둥글게 감아 만든 소자로, 전류가 흐를 때 에너지를 자기장 형태로 축적합니다. 단위는 헨리(H, Henry)를 사용합니다.</p>
+                    <div class="tip-box">💡 유도성 리액턴스: $X_L = 2\pi f L$ 로 계산하며 교류에서 흐름을 방해합니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 6. Capacitor -->
+        <div class="symbol-card" data-category="passive">
+            <div class="card-header">
+                <span class="category-tag tag-passive">수동소자</span>
+                <span class="symbol-abbreviation">C</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="10" y1="30" x2="42" y2="30" />
+                    <line x1="42" y1="15" x2="42" y2="45" stroke-width="3" />
+                    <line x1="58" y1="15" x2="58" y2="45" stroke-width="3" />
+                    <line x1="58" y1="30" x2="90" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>콘덴서 (커패시터)</h3>
+                    <div class="english-name">Capacitor / Condenser</div>
+                    <p class="description">두 개의 도체판 사이에 유전체를 끼워 넣어 전하를 일시적으로 축적(충전)하는 소자입니다. 단위는 패럿(F, Farad)을 사용합니다.</p>
+                    <div class="tip-box">💡 용량성 리액턴스: $X_C = \frac{1}{2\pi f C}$ 이며 교류 주파수가 높을수록 저항 성분이 작아집니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 7. a접점 -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">NO / a</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="15" y1="30" x2="40" y2="30" />
+                    <circle cx="40" cy="30" r="3" fill="#1e293b" />
+                    <circle cx="65" cy="30" r="3" fill="#1e293b" />
+                    <line x1="40" y1="29" x2="62" y2="12" />
+                    <line x1="65" y1="30" x2="90" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>a접점 (메이크 접점)</h3>
+                    <div class="english-name">Normally Open Contact (NO)</div>
+                    <p class="description">평상시(외력이 가해지지 않은 상태)에는 접점이 떨어져(열려) 있다가, 조작전류나 외력이 입력되면 붙는(닫히는) 접점입니다.</p>
+                    <div class="tip-box">💡 암기 요령: 수직 도면에서는 오른쪽에, 수평 도면에서는 위쪽에 그립니다!</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 8. b접점 -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">NC / b</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="15" y1="30" x2="40" y2="30" />
+                    <circle cx="40" cy="30" r="3" fill="#1e293b" />
+                    <circle cx="65" cy="30" r="3" fill="#1e293b" />
+                    <!-- 이미 닿아있는 사선 접점 -->
+                    <line x1="38" y1="18" x2="65" y2="18" />
+                    <line x1="38" y1="18" x2="38" y2="30" />
+                    <line x1="65" y1="30" x2="90" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>b접점 (브레이크 접점)</h3>
+                    <div class="english-name">Normally Closed Contact (NC)</div>
+                    <p class="description">평상시에는 접점이 붙어(닫혀) 전류를 통하다가, 조작전류나 외력이 입력되면 벌어져 회로를 차단하는 접점입니다.</p>
+                    <div class="tip-box">💡 암기 요령: 수직 도면에서는 왼쪽에, 수평 도면에서는 아래쪽에 그립니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 9. PB Switch -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">PB</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="15" y1="30" x2="40" y2="30" />
+                    <circle cx="40" cy="30" r="3" fill="#1e293b" />
+                    <circle cx="65" cy="30" r="3" fill="#1e293b" />
+                    <!-- PB 작동 핀 모양 -->
+                    <line x1="35" y1="16" x2="70" y2="16" stroke-width="2.5" />
+                    <line x1="52.5" y1="16" x2="52.5" y2="6" />
+                    <line x1="45" y1="6" x2="60" y2="6" />
+                    <line x1="65" y1="30" x2="90" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>푸시 버튼 스위치 (a접점식)</h3>
+                    <div class="english-name">Push Button Switch</div>
+                    <p class="description">사람의 손으로 누르고 있는 동안에만 접점 상태가 변화(ON)하고, 손을 떼면 내부 스프링에 의해 원래 오프(OFF) 상태로 돌아가는 순시 접점 스위치입니다.</p>
+                    <div class="tip-box">💡 실기 단골: 기구 배치 및 시퀀스 실습 시 수동 기동 스위치로 무조건 출제됩니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 10. MC -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">MC</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <!-- MC 코일 또는 접촉기 심볼 (동그라미에 MC) -->
+                    <circle cx="50" cy="30" r="18" />
+                    <text x="50" y="36" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">MC</text>
+                    <line x1="15" y1="30" x2="32" y2="30" />
+                    <line x1="68" y1="30" x2="85" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>전자 접촉기 (코일부)</h3>
+                    <div class="english-name">Magnetic Contactor</div>
+                    <p class="description">제어 회로의 전기 신호(조작 코일 여자)에 의해 주회로의 접점을 개폐하여 전동기 같은 대용량 부하 장치에 전원을 공급하거나 차단하는 기기입니다.</p>
+                    <div class="tip-box">💡 시험 팁: 주접점(모터 전원용) 3개와 제어 회로용 보조접점(a, b접점)을 여러 개 가지고 있습니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 11. Relay -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">R (X)</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <!-- 계전기 코일 사각형 기호 -->
+                    <rect x="35" y="15" width="30" height="30" />
+                    <line x1="15" y1="30" x2="35" y2="30" />
+                    <line x1="65" y1="30" x2="85" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>전자 계전기 (릴레이 코일)</h3>
+                    <div class="english-name">Electromagnetic Relay</div>
+                    <p class="description">조작 코일에 전류가 흐르면 생기는 자력으로 접점을 개폐하는 부품입니다. 소용량 신호 전달 및 자기유지 회로 등에 광범위하게 활용됩니다.</p>
+                    <div class="tip-box">💡 핵심 용어: 코일에 전류가 흐르는 것을 '여자(Excitation)', 차단되는 것을 '소자(Demagnetization)'라고 합니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 12. THR -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">THR</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <!-- 열동 과부하 열선 심볼 -->
+                    <path d="M 15 30 L 35 30 L 40 18 L 47 42 L 53 18 L 60 30 L 85 30" />
+                    <rect x="35" y="14" width="30" height="32" stroke-dasharray="3,3" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>열동 계전기 (과부하 계전기)</h3>
+                    <div class="english-name">Thermal Overload Relay</div>
+                    <p class="description">전동기에 가해진 과부하 전류(과전류)에 의해 발생한 열을 감지하여 바이메탈이 구부러지는 작용으로 접점을 열어 모터를 보호합니다.</p>
+                    <div class="tip-box">💡 실무 팁: 회로 오작동이나 과부하 상황 발생 시 노란색 램프(YL)나 부저(BZ)로 에러 경보를 보냅니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 13. On-Delay Timer -->
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">T (a접점)</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <line x1="15" y1="30" x2="40" y2="30" />
+                    <circle cx="40" cy="30" r="3" fill="#1e293b" />
+                    <circle cx="65" cy="30" r="3" fill="#1e293b" />
+                    <!-- 타이머 한시 a접점 (대각선에 고깔 씌워진 모형) -->
+                    <line x1="40" y1="29" x2="62" y2="12" />
+                    <path d="M 52.5 19.5 C 50 15, 57 11, 57 11 C 57 11, 62 16, 56 19.5" fill="none" />
+                    <line x1="65" y1="30" x2="90" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>한시 동작 순시 복귀 a접점</h3>
+                    <div class="english-name">On-Delay Timer NO Contact</div>
+                    <p class="description">타이머 코일 통전 시 설정된 시간이 경과한 후(한시) 접점이 닫히고, 코일 전원이 차단되면 즉시(순시) 원래 상태로 복귀하는 접점입니다.</p>
+                    <div class="tip-box">💡 시험 암기: 접점에 달린 우산/고깔 모양 삼각 기호의 방향이 오른쪽을 향하면 온딜레이(On-Delay)입니다!</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 14. Voltmeter -->
+        <div class="symbol-card" data-category="instrument">
+            <div class="card-header">
+                <span class="category-tag tag-instrument">측정</span>
+                <span class="symbol-abbreviation">V</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <circle cx="50" cy="30" r="18" />
+                    <text x="50" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">V</text>
+                    <line x1="15" y1="30" x2="32" y2="30" />
+                    <line x1="68" y1="30" x2="85" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>전압계</h3>
+                    <div class="english-name">Voltmeter</div>
+                    <p class="description">회로상의 두 지점 간 전위차(전압)의 크기를 측정하는 계측기입니다. 내부 저항이 매우 커야 정상 계측이 가능합니다.</p>
+                    <div class="tip-box">💡 시험 단골: 측정하고자 하는 부하(회로)와 반드시 "병렬"로 연결하여 사용합니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 15. Ammeter -->
+        <div class="symbol-card" data-category="instrument">
+            <div class="card-header">
+                <span class="category-tag tag-instrument">측정</span>
+                <span class="symbol-abbreviation">A</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <circle cx="50" cy="30" r="18" />
+                    <text x="50" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">A</text>
+                    <line x1="15" y1="30" x2="32" y2="30" />
+                    <line x1="68" y1="30" x2="85" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>전류계</h3>
+                    <div class="english-name">Ammeter</div>
+                    <p class="description">회로에 흐르는 전류의 강도를 직접 측정하는 계측기입니다. 내부 저항이 매우 작아야 손실 없이 측정이 가능합니다.</p>
+                    <div class="tip-box">💡 시험 단골: 측정하고자 하는 전선(선로)의 회로를 끊고 반드시 "직렬"로 삽입해 연결합니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 16. Motor -->
+        <div class="symbol-card" data-category="instrument">
+            <div class="card-header">
+                <span class="category-tag tag-instrument">부하</span>
+                <span class="symbol-abbreviation">M</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <circle cx="50" cy="30" r="18" />
+                    <text x="50" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" stroke="none" fill="#1e293b">M</text>
+                    <line x1="15" y1="30" x2="32" y2="30" />
+                    <line x1="68" y1="30" x2="85" y2="30" />
+                    <!-- 축 표시 -->
+                    <rect x="46" y="6" width="8" height="6" fill="#1e293b" stroke="none" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>전동기 (모터)</h3>
+                    <div class="english-name">Electric Motor</div>
+                    <p class="description">전기 에너지를 받아서 전자기력에 의해 축을 회전시켜 기계적 동력(회전력)을 발생시키는 장치입니다.</p>
+                    <div class="tip-box">💡 플레밍의 법칙: 전동기는 "플레밍의 왼손 법칙"에 의거하여 회전 방향과 동작이 결정됩니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 17. Lamp -->
+        <div class="symbol-card" data-category="instrument">
+            <div class="card-header">
+                <span class="category-tag tag-instrument">부하</span>
+                <span class="symbol-abbreviation">RL, GL, YL</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <circle cx="50" cy="30" r="18" />
+                    <!-- 표시등 X 형태 사선 교차 심볼 -->
+                    <line x1="37" y1="17" x2="63" y2="43" />
+                    <line x1="63" y1="17" x2="37" y2="43" />
+                    <line x1="15" y1="30" x2="32" y2="30" />
+                    <line x1="68" y1="30" x2="85" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>표시등 (램프)</h3>
+                    <div class="english-name">Pilot / Signal Lamp</div>
+                    <p class="description">기기의 운전 상태나 경보 상황 등을 작업자에게 불빛으로 시각화하여 전달하는 출력 표시 장치입니다.</p>
+                    <div class="tip-box">💡 색상 규칙: RL(Red - 정지/경고), GL(Green - 정상 운전), YL(Yellow - 이상 발생/THR 동작)이 빈출됩니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <!-- 18. Buzzer -->
+        <div class="symbol-card" data-category="instrument">
+            <div class="card-header">
+                <span class="category-tag tag-instrument">부하</span>
+                <span class="symbol-abbreviation">BZ</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60">
+                    <!-- 부저 버섯모양/반원 심볼 -->
+                    <path d="M 30 20 L 70 20 L 70 26 Q 70 42, 50 42 Q 30 42, 30 26 Z" />
+                    <line x1="50" y1="42" x2="50" y2="52" />
+                    <line x1="35" y1="52" x2="65" y2="52" />
+                    <line x1="15" y1="30" x2="30" y2="30" />
+                    <line x1="70" y1="30" x2="85" y2="30" />
+                </svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>부저 (경보 장치)</h3>
+                    <div class="english-name">Buzzer</div>
+                    <p class="description">전기 신호를 받아 소리(음향)로 변환하여 기기 장치의 과부하 에러나 동작 경보를 청각적으로 알려주는 부하 부품입니다.</p>
+                    <div class="tip-box">💡 실기 팁: 주로 열동계전기(THR) 동작 시 전류가 흐르도록 회로가 구성됩니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Haengdo Brain Wiki. 전기기능사 기호 자가 훈련 시스템. 응원합니다! ✊</p>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("searchInput");
+        const filterTabs = document.getElementById("filterTabs");
+        const symbolsGrid = document.getElementById("symbolsGrid");
+        const cards = Array.from(symbolsGrid.getElementsByClassName("symbol-card"));
+        
+        const btnHideSymbol = document.getElementById("btnHideSymbol");
+        const btnHideText = document.getElementById("btnHideText");
+
+        let activeFilter = "all";
+        let isSymbolHidden = false;
+        let isTextHidden = false;
+
+        // 실시간 검색 & 카테고리 필터링 통합 함수
+        function filterSymbols() {
+            const query = searchInput.value.toLowerCase().trim();
+            
+            cards.forEach(card => {
+                const category = card.dataset.category;
+                
+                // 텍스트 매칭 검사
+                const title = card.querySelector("h3").textContent.toLowerCase();
+                const english = card.querySelector(".english-name").textContent.toLowerCase();
+                const description = card.querySelector(".description").textContent.toLowerCase();
+                const symbolAbbrev = card.querySelector(".symbol-abbreviation").textContent.toLowerCase();
+                
+                const matchesSearch = title.includes(query) || 
+                                      english.includes(query) || 
+                                      description.includes(query) || 
+                                      symbolAbbrev.includes(query);
+                                      
+                const matchesCategory = (activeFilter === "all") || (category === activeFilter);
+                
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // 검색어 입력 이벤트
+        searchInput.addEventListener("input", filterSymbols);
+
+        // 카테고리 탭 클릭 이벤트
+        filterTabs.addEventListener("click", (e) => {
+            const btn = e.target.closest(".tab-btn");
+            if (!btn) return;
+
+            filterTabs.querySelector(".tab-btn.active").classList.remove("active");
+            btn.classList.add("active");
+
+            activeFilter = btn.dataset.filter;
+            filterSymbols();
+        });
+
+        // 자가 진단: 기호 가리기 토글
+        btnHideSymbol.addEventListener("click", () => {
+            isSymbolHidden = !isSymbolHidden;
+            btnHideSymbol.classList.toggle("active", isSymbolHidden);
+            
+            cards.forEach(card => {
+                card.classList.toggle("hide-symbol", isSymbolHidden);
+                // 모드 전환 시 기존 개별 껍질(revel-temp) 초기화
+                card.querySelector(".symbol-graphic-box .overlay").classList.remove("reveal-temp");
+            });
+        });
+
+        // 자가 진단: 설명 가리기 토글
+        btnHideText.addEventListener("click", () => {
+            isTextHidden = !isTextHidden;
+            btnHideText.classList.toggle("active", isTextHidden);
+            
+            cards.forEach(card => {
+                card.classList.toggle("hide-text", isTextHidden);
+                card.querySelector(".card-body-overlay .overlay").classList.remove("reveal-temp");
+            });
+        });
+
+        // 개별 가림판 해제 (클릭 이벤트 위임)
+        symbolsGrid.addEventListener("click", (e) => {
+            const overlay = e.target.closest(".overlay");
+            if (!overlay) return;
+            
+            // 클릭된 오버레이를 일시적으로 감춤
+            overlay.classList.add("reveal-temp");
+        });
+    });
+</script>
+
+</body>
+</html>
