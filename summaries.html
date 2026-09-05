@@ -628,6 +628,21 @@ html{scroll-behavior:smooth;}
 <blockquote>
 <p><strong>비교해서 외우기</strong> — 콘덴서 에너지 <span class="math"><span class="frac"><span class="num">1</span><span class="den">2</span></span><i>CV</i><sup>2</sup></span> 은 <strong>전압</strong>, 코일 에너지 <span class="math"><span class="frac"><span class="num">1</span><span class="den">2</span></span><i>LI</i><sup>2</sup></span> 은 <strong>전류</strong>로 쓴다.</p>
 </blockquote>
+<h3>⏱ RL · RC 회로의 시정수 (<span class="star">★</span>자주 — CBT 단골)</h3>
+<p>직류를 갑자기 걸었을 때(과도현상), 전류·전압이 <strong>정상 상태의 약 63.2 %</strong></p>
+<p>(<span class="math">1 <span class="op">-</span> 1/<i>e</i></span>)에 도달하는 데 걸리는 시간이 시정수 <span class="math"><span class="op">τ</span></span> 다.</p>
+<p class="display"><span class="math math-inline-block"><span class="op">τ</span><sub><i>RL</i></sub> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i></span><span class="den"><i>R</i></span></span> <span class="txt"> [sec]</span> <span class="sp-qq"></span> <span class="op">τ</span><sub><i>RC</i></sub> <span class="op">=</span> <i>RC</i> <span class="txt"> [sec]</span></span></p>
+<ul>
+<li>
+<strong>시정수가 클수록 정상 상태에 도달하는 시간이 길어진다(느리다).</strong>
+<br><span class="math"><i>L</i></span> 이 크거나 <span class="math"><i>R</i></span> 이 작을수록(RL), <span class="math"><i>R</i></span> 이나 <span class="math"><i>C</i></span> 가 클수록(RC) 천천히 반응한다.
+</li><li>
+<strong>RL 은 나눗셈, RC 는 곱셈</strong> — 둘을 바꿔 외우기 쉬우니 짝을 맞춰 기억한다.
+<br>(<span class="math"><i>R</i></span> 이 분모에 있는 쪽이 <span class="math"><i>L</i></span>, 분모가 없는 쪽이 <span class="math"><i>C</i></span>)
+</li></ul>
+<blockquote>
+<p><strong>예제</strong> — <span class="math"><i>L</i><span class="op">=</span>2</span>H, <span class="math"><i>R</i><span class="op">=</span>4<span class="op">Ω</span></span> 인 RL 직렬회로의 시정수는? <span class="math"><span class="op">τ</span> <span class="op">=</span> 2/4 <span class="op">=</span> 0.5</span> [sec].</p>
+</blockquote>
 </section>
 <section class="card" id="k1-s10"><h2>10. 교류의 표시</h2>
 <h3>〰️ 사인파 교류</h3>
@@ -781,6 +796,8 @@ html{scroll-behavior:smooth;}
 </li><li>
 배율기는 <strong>직렬</strong> <span class="math"><i>R</i><sub><i>v</i></sub>(<i>m</i><span class="op">-</span>1)</span>, 분류기는 <strong>병렬</strong> <span class="math"><i>R</i><sub><i>a</i></sub>/(<i>m</i><span class="op">-</span>1)</span>
 </li><li>
+시정수 <strong>RL은 <span class="math"><i>L</i>/<i>R</i></span>(나눗셈), RC는 <span class="math"><i>RC</i></span>(곱셈)</strong> — 클수록 정상상태 도달이 느리다
+</li><li>
 <strong>M 과 m 은 10억 배</strong>, <span class="math">1<span class="sp-t"></span><span class="txt">mm</span><sup>2</sup> <span class="op">=</span> 10<sup><span class="op">-</span>6</sup><span class="sp-t"></span><span class="txt">m</span><sup>2</sup></span>
 </li></ol>
 </section></div><div class="panel" id="panel2" role="tabpanel" aria-labelledby="tab2" hidden><nav class="chips" aria-label="전기기기 섹션"><a class="chip" href="#k2-s1">직류기</a><a class="chip" href="#k2-s2">동기기</a><a class="chip" href="#k2-s3">변압기</a><a class="chip" href="#k2-s4">유도기</a><a class="chip" href="#k2-s5">정류기 · 전력변환</a><a class="chip" href="#k2-s6">✅ 시험 직전 30초 체크리스트</a></nav><p>직류기 · 동기기 · 변압기 · 유도기 · 정류기 다섯 덩어리다. <strong>1과목이 회로라면 2과목은 기계</strong>로,</p>
@@ -930,13 +947,18 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k2-s3"><h2>3. 변압기 (Transformer)</h2>
 <h3>📐 권수비 (<span class="star">★</span>계산 단골)</h3>
-<p class="display"><span class="math math-inline-block"><i>a</i> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i><sub>1</sub></span><span class="den"><i>N</i><sub>2</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sub>1</sub></span><span class="den"><i>V</i><sub>2</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>I</i><sub>2</sub></span><span class="den"><i>I</i><sub>1</sub></span></span> <span class="op">=</span> <span class="sqrt"><span class="frac"><span class="num"><i>Z</i><sub>1</sub></span><span class="den"><i>Z</i><sub>2</sub></span></span></span></span></p>
+<p class="display"><span class="math math-inline-block"><i>a</i> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i><sub>1</sub></span><span class="den"><i>N</i><sub>2</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sub>1</sub></span><span class="den"><i>V</i><sub>2</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>I</i><sub>2</sub></span><span class="den"><i>I</i><sub>1</sub></span></span> <span class="op">=</span> <span class="sqrt"><span class="frac"><span class="num"><i>R</i><sub>1</sub></span><span class="den"><i>R</i><sub>2</sub></span></span></span> <span class="op">=</span> <span class="sqrt"><span class="frac"><span class="num"><i>Z</i><sub>1</sub></span><span class="den"><i>Z</i><sub>2</sub></span></span></span></span></p>
 <ul>
 <li>
 <strong>유기기전력</strong>: <span class="math math-inline-block"><i>E</i> <span class="op">=</span> 4.44 <i>f</i> <i>N</i> <span class="op">Φ</span><sub><i>m</i></sub> <span class="txt"> [V]</span></span> → <strong>주파수와 자속에 비례</strong>
 </li><li>
 <strong>전류는 권수비에 반비례</strong>한다. (전압이 올라가면 전류는 내려간다 — 전력은 보존)
 </li></ul>
+<blockquote>
+<p><strong>함정 — 전류만 분모·분자가 반대, 저항/임피던스만 루트가 붙는다.</strong></p>
+<p><span class="math"><i>N</i>,<i>V</i></span> 는 그대로 비례, <span class="math"><i>I</i></span> 는 뒤집혀서 반비례, <span class="math"><i>R</i>,<i>Z</i></span> 는 <strong>제곱으로 반영되니 루트</strong>를</p>
+<p>씌워야 <span class="math"><i>a</i></span> 가 나온다. 넷 다 같은 식처럼 보이지만 붙는 게 다르다.</p>
+</blockquote>
 <blockquote>
 <p><strong>예제</strong> — 1차 3300 V, 2차 220 V 변압기의 권수비는? <span class="math"><i>a</i> <span class="op">=</span> 3300/220 <span class="op">=</span> 15</span>.</p>
 <p>2차 전류가 30 A 면 1차 전류는 <span class="math">30/15 <span class="op">=</span> 2</span> [A].</p>
