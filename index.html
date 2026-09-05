@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전기기능사 필기 학습실</title>
+<style>
+  :root{color-scheme:light dark;}
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:#FAF9F7; color:#1B1E24;
+    font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,-apple-system,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){ body{ background:#14171C; color:#E7E4DE; } }
+  .wrap{max-width:26rem; padding:2rem 1.25rem; text-align:center;}
+  h1{font-size:1.4rem; margin:0 0 .5rem;}
+  p{color:#5F6570; font-size:.9rem; margin:0 0 1.75rem;}
+  .links{display:flex; flex-direction:column; gap:.75rem;}
+  a.card{
+    display:block; padding:1rem 1.1rem; border-radius:.75rem; text-decoration:none;
+    border:1px solid #E3DFD8; background:#FFFFFF; color:inherit;
+    font-weight:700; font-size:1rem;
+  }
+  @media (prefers-color-scheme: dark){ a.card{ background:#1B1F26; border-color:#2C323B; } }
+  a.card small{display:block; font-weight:500; color:#5F6570; font-size:.8rem; margin-top:.25rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>전기기능사 필기 학습실 ⚡</h1>
+  <p>필기 3과목 요약, 기호 암기 도구, D-16 학습계획.</p>
+  <div class="links">
+    <a class="card" href="./summaries.html">3과목 통합 요약집<small>전기이론·전기기기·전기설비 + 학습계획 탭</small></a>
+    <a class="card" href="./symbols.html">기호 암기 도구<small>검색 및 자가 테스트</small></a>
+  </div>
+</div>
+</body>
+</html>
