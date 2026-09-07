@@ -138,6 +138,28 @@ blockquote{
 blockquote p{margin:.2rem 0;}
 .star{color:var(--pe); font-weight:700;}
 
+/* --- 접이식 상세 설명(::: 블록) --- */
+.why{
+  margin:.5rem 0 1rem; border:1px solid var(--line);
+  border-radius:.6rem; background:var(--bg); overflow:hidden;
+}
+.why > summary{
+  cursor:pointer; list-style:none; padding:.55rem .8rem;
+  font-size:.86rem; font-weight:700; color:var(--muted);
+  display:flex; align-items:center; gap:.4rem; min-height:44px;
+  -webkit-tap-highlight-color:transparent;
+}
+.why > summary::-webkit-details-marker{display:none;}
+.why > summary::before{content:"＋"; font-weight:800; color:var(--accent);}
+.why[open] > summary::before{content:"－";}
+.why[open] > summary{border-bottom:1px solid var(--line); color:var(--ink);}
+.why > summary:active{background:var(--line-soft);}
+.why-body{padding:.75rem .9rem .9rem; font-size:.92rem; line-height:1.75;}
+.why-body p{margin:0 0 .6rem;}
+.why-body p:last-child, .why-body ul:last-child{margin-bottom:0;}
+.why-body ul{margin:0 0 .6rem; padding-left:1.15rem;}
+.why-body li{margin:.2rem 0;}
+
 /* 체크리스트 카드 */
 .card-check{border-color:var(--pe); background:var(--pe-bg);}
 .card-check h2{border-bottom-color:var(--pe);}
@@ -487,17 +509,25 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k1-s5"><h2>5. 옴의 법칙 · 전력 · 열량</h2>
 <h3>📈 옴의 법칙 (<span class="star">★</span>자주)</h3>
-<p class="display"><span class="math math-inline-block"><i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>R</i></span></span> <span class="sp-q"></span> <span class="op">⟺</span> <span class="sp-q"></span> <i>V</i> <span class="op">=</span> <i>I</i> <i>R</i> <span class="sp-q"></span> <span class="op">⟺</span> <span class="sp-q"></span> <i>R</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>I</i></span></span></span></p>
+<p class="display"><span class="math math-inline-block"><i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>R</i></span></span></span></p>
+<p class="display"><span class="math math-inline-block"><i>V</i> <span class="op">=</span> <i>I</i> <i>R</i></span></p>
+<p class="display"><span class="math math-inline-block"><i>R</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>I</i></span></span></span></p>
+<details class="why"><summary>왜 이 식인가 — 말로 풀어보기</summary><div class="why-body"><p><strong>전압은 미는 힘, 저항은 막는 힘, 전류는 그 결과다.</strong></p><p>물이 흐르는 관을 떠올리면 된다 — 펌프를 세게 돌릴수록(전압↑) 물이 많이 흐르고,</p><p>관이 좁을수록(저항↑) 물이 덜 흐른다.</p><p>그래서 전류는 <strong>미는 힘에 비례하고 막는 힘에 반비례</strong>한다. 그걸 그대로 쓴 것이</p><p><span class="math"><i>I</i> <span class="op">=</span> <i>V</i>/<i>R</i></span> 이다.</p><ul><li>전압을 2배로 올리면 → 전류도 2배</li><li>저항을 2배로 키우면 → 전류는 절반</li></ul><p><strong>세 식은 다른 법칙이 아니라 같은 식을 옮겨 쓴 것뿐이다.</strong></p><p><span class="math"><i>I</i> <span class="op">=</span> <i>V</i>/<i>R</i></span> 의 양변에 <span class="math"><i>R</i></span> 을 곱하면 <span class="math"><i>IR</i> <span class="op">=</span> <i>V</i></span>, 즉 <span class="math"><i>V</i> <span class="op">=</span> <i>IR</i></span> 이 된다.</p><p>다시 양변을 <span class="math"><i>I</i></span> 로 나누면 <span class="math"><i>R</i> <span class="op">=</span> <i>V</i>/<i>I</i></span> 다. <strong>새로 외울 것이 아니라 이항일 뿐이다.</strong></p><p><strong>외우는 손잡이 — <span class="math"><i>V</i></span> 를 맨 위에 둔 삼각형.</strong></p><p>위에 <span class="math"><i>V</i></span>, 아래 왼쪽에 <span class="math"><i>I</i></span>, 아래 오른쪽에 <span class="math"><i>R</i></span> 을 그린다.</p><p>구하려는 것을 손으로 가리면 남은 모양이 답이다 — <span class="math"><i>V</i></span> 를 가리면 아래 둘이 나란히</p><p>남으니 <span class="math"><i>I</i> <span class="op">×</span> <i>R</i></span>, <span class="math"><i>I</i></span> 를 가리면 <span class="math"><i>V</i></span> 가 <span class="math"><i>R</i></span> 위에 있으니 <span class="math"><i>V</i>/<i>R</i></span>.</p></div></details>
 <h3>🔌 전력과 전력량 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>P</i> <span class="op">=</span> <i>V</i> <i>I</i> <span class="op">=</span> <i>I</i><sup>2</sup> <i>R</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sup>2</sup></span><span class="den"><i>R</i></span></span> <span class="txt"> [W]</span></span></p>
-<p class="display"><span class="math math-inline-block"><i>W</i> <span class="op">=</span> <i>P</i> <i>t</i> <span class="txt"> [Wh]</span>, <span class="sp-qq"></span> 1 <span class="txt"> [kWh]</span> <span class="op">=</span> 1000 <span class="txt"> [Wh]</span></span></p>
+<details class="why"><summary>왜 세 가지 모양이 다 나오나</summary><div class="why-body"><p><strong>출발은 <span class="math"><i>P</i> <span class="op">=</span> <i>VI</i></span> 하나뿐이다.</strong> 전압은 &quot;전하 하나를 옮길 때 주는 에너지&quot;,</p><p>전류는 &quot;1초에 지나가는 전하의 양&quot;이다. 둘을 곱하면 <strong>1초에 주는 에너지</strong>,</p><p>곧 전력이 된다.</p><p>나머지 둘은 여기에 <strong>옴의 법칙을 대입한 것</strong>이다.</p><ul><li><span class="math"><i>V</i></span> 를 <span class="math"><i>IR</i></span> 로 바꾸면 → <span class="math"><i>P</i> <span class="op">=</span> (<i>IR</i>) <span class="op">·</span> <i>I</i> <span class="op">=</span> <i>I</i><sup>2</sup> <i>R</i></span></li><li><span class="math"><i>I</i></span> 를 <span class="math"><i>V</i>/<i>R</i></span> 로 바꾸면 → <span class="math"><i>P</i> <span class="op">=</span> <i>V</i> <span class="op">·</span> (<i>V</i>/<i>R</i>) <span class="op">=</span> <i>V</i><sup>2</sup>/<i>R</i></span></li></ul><p><strong>즉 외울 것은 <span class="math"><i>P</i> <span class="op">=</span> <i>VI</i></span> 하나고, 나머지는 그 자리에서 만들어 쓰면 된다.</strong></p><p><strong>어느 것을 쓸지는 &quot;주어진 값&quot;이 정한다.</strong> 문제가 전류를 줬으면 <span class="math"><i>I</i><sup>2</sup><i>R</i></span>,</p><p>전압을 줬으면 <span class="math"><i>V</i><sup>2</sup>/<i>R</i></span> 을 쓴다. 굳이 옴의 법칙으로 나머지 하나를 구해서</p><p><span class="math"><i>P</i><span class="op">=</span><i>VI</i></span> 에 넣을 필요가 없다 — 한 단계 아낀다.</p></div></details>
+<p class="display"><span class="math math-inline-block"><i>W</i> <span class="op">=</span> <i>P</i> <i>t</i> <span class="txt"> [Wh]</span></span></p>
+<p class="display"><span class="math math-inline-block">1 <span class="txt"> [kWh]</span> <span class="op">=</span> 1000 <span class="txt"> [Wh]</span></span></p>
 <blockquote>
 <p><strong>어느 식을 쓸까</strong> — 전류가 주어지면 <span class="math"><i>I</i><sup>2</sup><i>R</i></span>, 전압이 주어지면 <span class="math"><i>V</i><sup>2</sup>/<i>R</i></span>.</p>
 <p><strong>직렬</strong>은 전류가 같으니 <span class="math"><i>I</i><sup>2</sup><i>R</i></span> → <strong>저항이 큰 쪽이 더 뜨겁다.</strong></p>
 <p><strong>병렬</strong>은 전압이 같으니 <span class="math"><i>V</i><sup>2</sup>/<i>R</i></span> → <strong>저항이 작은 쪽이 더 뜨겁다.</strong> (<span class="star">★</span>단골 함정)</p>
 </blockquote>
 <h3>🔥 줄의 법칙 (<span class="star">★</span>자주)</h3>
-<p class="display"><span class="math math-inline-block"><i>H</i> <span class="op">=</span> 0.24 <span class="sp-t"></span> <i>I</i><sup>2</sup> <i>R</i> <i>t</i> <span class="txt"> [cal]</span> <span class="sp-qq"></span> (1 <span class="txt"> [J]</span> <span class="op">=</span> 0.24 <span class="txt"> [cal]</span>, <span class="sp-t"></span> 1 <span class="txt"> [cal]</span> <span class="op">=</span> 4.186 <span class="txt"> [J]</span>)</span></p>
+<p class="display"><span class="math math-inline-block"><i>H</i> <span class="op">=</span> 0.24 <span class="sp-t"></span> <i>I</i><sup>2</sup> <i>R</i> <i>t</i> <span class="txt"> [cal]</span></span></p>
+<p class="display"><span class="math math-inline-block">1 <span class="txt"> [J]</span> <span class="op">=</span> 0.24 <span class="txt"> [cal]</span></span></p>
+<p class="display"><span class="math math-inline-block">1 <span class="txt"> [cal]</span> <span class="op">=</span> 4.186 <span class="txt"> [J]</span></span></p>
+<details class="why"><summary>왜 이 식인가 — 0.24 는 어디서 왔나</summary><div class="why-body"><p><strong>앞의 <span class="math"><i>I</i><sup>2</sup> <i>R</i> <i>t</i></span> 는 그냥 에너지다.</strong> <span class="math"><i>I</i><sup>2</sup><i>R</i></span> 이 전력[W]이고, 거기에 시간을</p><p>곱하면 그동안 쓴 에너지[J]가 된다. 즉 <span class="math"><i>I</i><sup>2</sup> <i>R</i> <i>t</i></span> = 줄[J] 단위의 열이다.</p><p><strong>0.24 는 단위를 바꾸는 환산 계수일 뿐이다.</strong> 답을 칼로리[cal]로 내놓으라니까</p><p>줄을 칼로리로 바꾸는 것이고, 그 비율이 <span class="math">1 <span class="txt"> J</span> <span class="op">=</span> 0.24 <span class="txt"> cal</span></span> 이다.</p><p>거꾸로 <span class="math">1<span class="txt"> cal</span> <span class="op">=</span> 4.186<span class="txt"> J</span></span> 인데, <span class="math">1/4.186 <span class="op">≈</span> 0.24</span> 로 서로 역수다.</p><p><strong>그래서 답의 단위가 [J] 면 0.24 를 곱하지 않는다.</strong> 문제가 칼로리를 물을</p><p>때만 붙인다 — 습관적으로 곱하다 틀리는 자리다.</p><p><strong>손잡이 — &quot;칼로리를 물으면 0.24&quot;.</strong> 단위만 보고 붙일지 말지 정한다.</p></div></details>
 <blockquote>
 <p><strong>시간 <span class="math"><i>t</i></span> 의 단위는 이 공식에서 무조건 초(sec)다.</strong> 문제가 &quot;분&quot; 이나 &quot;시간&quot; 으로 주면</p>
 <p>대입하기 전에 초로 바꿔야 한다. (전열기 효율 계산의 <span class="math"><i>t</i></span>[h]·860 kcal 식과 헷갈리지 말 것 —</p>
@@ -515,6 +545,7 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k1-s6"><h2>6. 저항의 접속과 회로 해석</h2>
 <h3>🔗 직렬 vs 병렬 (<span class="star">★</span>자주)</h3>
+<details class="why"><summary>왜 직렬은 더하고 병렬은 분수인가</summary><div class="why-body"><p><strong>직렬은 길이 늘어난 것과 같다.</strong> 전류가 지나갈 길이 하나뿐이라 저항을 차례로</p><p>다 통과해야 한다. 막는 것이 줄줄이 이어지니 <strong>그냥 더한다.</strong></p><p><strong>병렬은 길이 넓어진 것과 같다.</strong> 갈 수 있는 길이 여러 개가 되니 전체로 보면</p><p>더 잘 흐른다 — 그래서 <strong>합성저항은 가장 작은 저항보다도 작아진다.</strong></p><p>잘 흐르는 정도(컨덕턴스, 저항의 역수)로 보면 병렬도 그냥 더하기다.</p><p><span class="math">1/<i>R</i><sub>0</sub> <span class="op">=</span> 1/<i>R</i><sub>1</sub> <span class="op">+</span> 1/<i>R</i><sub>2</sub></span> 가 그 뜻이고, 이걸 <span class="math"><i>R</i><sub>0</sub></span> 에 대해 풀면 흔히 쓰는</p><p><span class="math"><i>R</i><sub>0</sub> <span class="op">=</span> <i>R</i><sub>1</sub><i>R</i><sub>2</sub>/(<i>R</i><sub>1</sub><span class="op">+</span><i>R</i><sub>2</sub>)</span> 곱분의합 꼴이 나온다.</p><p><strong>검산 손잡이 — 병렬 답이 가장 작은 저항보다 크면 무조건 틀린 것이다.</strong></p><p>같은 값 두 개를 병렬로 하면 정확히 절반(<span class="math"><i>R</i>/2</span>), 세 개면 <span class="math"><i>R</i>/3</span> 이다.</p></div></details>
 <div class="scroller"><table><thead><tr><th>구분</th><th>직렬</th><th>병렬</th></tr></thead><tbody><tr><td><strong>합성저항</strong></td><td><span class="math math-inline-block"><i>R</i><sub>0</sub> <span class="op">=</span> <i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub> <span class="op">+</span> <i>R</i><sub>3</sub></span></td><td><span class="math math-inline-block"><i>R</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub>1</sub> <i>R</i><sub>2</sub></span><span class="den"><i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub></span></span></span> (합분의 곱)</td></tr><tr><td><strong>전류</strong></td><td>모두 같다 (<span class="math"><i>I</i> <span class="op">=</span> <i>I</i><sub>1</sub> <span class="op">=</span> <i>I</i><sub>2</sub></span>)</td><td>저항에 반비례해 나뉜다</td></tr><tr><td><strong>전압</strong></td><td>저항에 비례해 나뉜다</td><td>모두 같다</td></tr><tr><td><strong>저항 추가하면</strong></td><td>합성저항 <strong>증가</strong></td><td>합성저항 <strong>감소</strong></td></tr></tbody></table></div>
 <ul>
 <li>
@@ -526,6 +557,7 @@ html{scroll-behavior:smooth;}
 <p>(값이 다른 저항이어도 똑같이 성립한다 — 순서를 바꿔 묶어도 결과는 같다.)</p>
 </blockquote>
 <h3>⚡ 분배 법칙 (<span class="star">★</span>암기)</h3>
+<details class="why"><summary>왜 전압은 자기 것, 전류는 상대 것을 곱하나</summary><div class="why-body"><p><strong>분배 법칙은 두 개가 서로 반대로 생겼다.</strong> 이게 헷갈리는 이유이자 함정이다.</p><p><strong>전압 분배(직렬)</strong> — 직렬은 전류가 같다. 그러니 전압은 저항에 비례해서 나뉜다.</p><p><strong>저항이 큰 쪽이 전압을 많이 먹는다.</strong> 그래서 분자에 <strong>자기 저항</strong>이 온다.</p><p><strong>전류 분배(병렬)</strong> — 병렬은 전압이 같다. 그러니 전류는 저항에 반비례해서 나뉜다.</p><p><strong>저항이 작은 쪽으로 많이 흐른다.</strong> 그래서 분자에 <strong>상대편 저항</strong>이 온다.</p><p><strong>손잡이 — &quot;전압은 자기 것, 전류는 남의 것&quot;.</strong></p><p>분자에 자기 저항이 오면 전압, 상대 저항이 오면 전류다.</p><p><strong>계산 없이 답 고르기</strong> — 어느 쪽이 크냐만 물으면 식을 쓸 것도 없다.</p><p>직렬에서는 큰 저항에 큰 전압, 병렬에서는 작은 저항에 큰 전류다.</p></div></details>
 <ul>
 <li>
 <strong>직렬 전압 분배</strong>: <span class="math math-inline-block"><i>V</i><sub>1</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub>1</sub></span><span class="den"><i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub></span></span> <i>V</i>, <span class="sp-qq"></span> <i>V</i><sub>2</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub>2</sub></span><span class="den"><i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub></span></span> <i>V</i></span>
@@ -585,7 +617,8 @@ html{scroll-behavior:smooth;}
 </blockquote>
 <h3>🔁 자기회로 (전기회로와 판박이) (<span class="star">★</span>자주)</h3>
 <div class="scroller"><table><thead><tr><th>전기회로</th><th>자기회로</th></tr></thead><tbody><tr><td>기전력 <span class="math"><i>E</i></span> [V]</td><td><strong>기자력 <span class="math"><i>F</i> <span class="op">=</span> <i>N</i> <i>I</i></span> [AT]</strong></td></tr><tr><td>전류 <span class="math"><i>I</i></span> [A]</td><td><strong>자속 <span class="math"><span class="op">Φ</span></span> [Wb]</strong></td></tr><tr><td>저항 <span class="math"><i>R</i> <span class="op">=</span> <span class="op">ρ</span> <span class="op">ℓ</span> / <i>A</i></span></td><td><strong>자기저항 <span class="math"><i>R</i><sub><i>m</i></sub> <span class="op">=</span> <span class="op">ℓ</span> / <span class="op">μ</span> <i>A</i></span> [AT/Wb]</strong></td></tr></tbody></table></div>
-<p class="display"><span class="math math-inline-block"><span class="op">Φ</span> <span class="op">=</span> <span class="frac"><span class="num"><i>F</i></span><span class="den"><i>R</i><sub><i>m</i></sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i> <i>I</i></span><span class="den"><span class="op">ℓ</span> / <span class="op">μ</span> <i>A</i></span></span> <span class="sp-q"></span> (<span class="txt">자기회로의 옴의 법칙</span>)</span></p>
+<p class="display"><span class="math math-inline-block"><span class="op">Φ</span> <span class="op">=</span> <span class="frac"><span class="num"><i>F</i></span><span class="den"><i>R</i><sub><i>m</i></sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i> <i>I</i></span><span class="den"><span class="op">ℓ</span> / <span class="op">μ</span> <i>A</i></span></span></span></p>
+<p><strong>자기회로의 옴의 법칙</strong>이다.</p>
 <h3>📉 히스테리시스 곡선 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
@@ -663,7 +696,9 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k1-s10"><h2>10. 교류의 표시</h2>
 <h3>〰️ 사인파 교류</h3>
-<p class="display"><span class="math math-inline-block"><i>v</i> <span class="op">=</span> <i>V</i><sub><i>m</i></sub> <span class="txt">sin</span>(<span class="op">ω</span> <i>t</i> <span class="op">+</span> <span class="op">θ</span>) <span class="sp-qq"></span> <span class="op">ω</span> <span class="op">=</span> 2<span class="op">π</span> <i>f</i> <span class="txt"> [rad/s]</span>, <span class="sp-q"></span> <i>T</i> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den"><i>f</i></span></span> <span class="txt"> [s]</span></span></p>
+<p class="display"><span class="math math-inline-block"><i>v</i> <span class="op">=</span> <i>V</i><sub><i>m</i></sub> <span class="txt">sin</span>(<span class="op">ω</span> <i>t</i> <span class="op">+</span> <span class="op">θ</span>)</span></p>
+<p class="display"><span class="math math-inline-block"><span class="op">ω</span> <span class="op">=</span> 2<span class="op">π</span> <i>f</i> <span class="txt"> [rad/s]</span></span></p>
+<p class="display"><span class="math math-inline-block"><i>T</i> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den"><i>f</i></span></span> <span class="txt"> [s]</span></span></p>
 <h3>📊 실효값 · 평균값 (<span class="star">★</span>매회)</h3>
 <div class="scroller"><table><thead><tr><th>값</th><th>사인파에서</th></tr></thead><tbody><tr><td><strong>실효값 <span class="math"><i>V</i></span></strong></td><td><span class="math math-inline-block"><i>V</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sub><i>m</i></sub></span><span class="den"><span class="sqrt">2</span></span></span> <span class="op">=</span> 0.707 <i>V</i><sub><i>m</i></sub></span></td></tr><tr><td><strong>평균값 <span class="math"><i>V</i><sub><i>a</i></sub></span></strong></td><td><span class="math math-inline-block"><i>V</i><sub><i>a</i></sub> <span class="op">=</span> <span class="frac"><span class="num">2 <i>V</i><sub><i>m</i></sub></span><span class="den"><span class="op">π</span></span></span> <span class="op">=</span> 0.637 <i>V</i><sub><i>m</i></sub></span></td></tr><tr><td><strong>파형률</strong></td><td>실효값 / 평균값 = <strong>1.11</strong></td></tr><tr><td><strong>파고율</strong></td><td>최대값 / 실효값 = <strong>1.414</strong></td></tr></tbody></table></div>
 <blockquote>
@@ -686,7 +721,9 @@ html{scroll-behavior:smooth;}
 <p>주파수가 오르면 <span class="math"><i>X</i><sub><i>L</i></sub></span> 은 커지고 <span class="math"><i>X</i><sub><i>C</i></sub></span> 는 작아진다는 것도 같이 묻는다.</p>
 </blockquote>
 <h3>🧮 R-L-C 직렬 회로 (<span class="star">★</span>자주)</h3>
-<p class="display"><span class="math math-inline-block"><i>Z</i> <span class="op">=</span> <span class="sqrt"><i>R</i><sup>2</sup> <span class="op">+</span> (<i>X</i><sub><i>L</i></sub> <span class="op">-</span> <i>X</i><sub><i>C</i></sub>)<sup>2</sup></span> <span class="txt"> [</span><span class="op">Ω</span><span class="txt">]</span>, <span class="sp-qq"></span> <i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>Z</i></span></span>, <span class="sp-qq"></span> <span class="op">θ</span> <span class="op">=</span> <span class="txt">tan</span><sup><span class="op">-</span>1</sup><span class="frac"><span class="num"><i>X</i><sub><i>L</i></sub> <span class="op">-</span> <i>X</i><sub><i>C</i></sub></span><span class="den"><i>R</i></span></span></span></p>
+<p class="display"><span class="math math-inline-block"><i>Z</i> <span class="op">=</span> <span class="sqrt"><i>R</i><sup>2</sup> <span class="op">+</span> (<i>X</i><sub><i>L</i></sub> <span class="op">-</span> <i>X</i><sub><i>C</i></sub>)<sup>2</sup></span> <span class="txt"> [</span><span class="op">Ω</span><span class="txt">]</span></span></p>
+<p class="display"><span class="math math-inline-block"><i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>Z</i></span></span></span></p>
+<p class="display"><span class="math math-inline-block"><span class="op">θ</span> <span class="op">=</span> <span class="txt">tan</span><sup><span class="op">-</span>1</sup><span class="frac"><span class="num"><i>X</i><sub><i>L</i></sub> <span class="op">-</span> <i>X</i><sub><i>C</i></sub></span><span class="den"><i>R</i></span></span></span></p>
 <ul>
 <li>
 <span class="math"><i>X</i><sub><i>L</i></sub> <span class="op">&gt;</span> <i>X</i><sub><i>C</i></sub></span> → <strong>유도성</strong>(전류 지상) / <span class="math"><i>X</i><sub><i>L</i></sub> <span class="op">&lt;</span> <i>X</i><sub><i>C</i></sub></span> → <strong>용량성</strong>(전류 진상)
@@ -774,7 +811,8 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k1-s14"><h2>14. 비사인파(왜형파) 교류 (☆가끔)</h2>
 <p>실제 파형은 사인파가 아니다. <strong>직류분 + 기본파 + 고조파</strong>의 합으로 본다.</p>
-<p class="display"><span class="math math-inline-block"><i>V</i> <span class="op">=</span> <span class="sqrt"><i>V</i><sub>0</sub><sup>2</sup> <span class="op">+</span> <i>V</i><sub>1</sub><sup>2</sup> <span class="op">+</span> <i>V</i><sub>3</sub><sup>2</sup> <span class="op">+</span> <span class="op">⋯</span></span> <span class="sp-q"></span> (<span class="txt">각 성분 실효값의 제곱합의 제곱근</span>)</span></p>
+<p class="display"><span class="math math-inline-block"><i>V</i> <span class="op">=</span> <span class="sqrt"><i>V</i><sub>0</sub><sup>2</sup> <span class="op">+</span> <i>V</i><sub>1</sub><sup>2</sup> <span class="op">+</span> <i>V</i><sub>3</sub><sup>2</sup> <span class="op">+</span> <span class="op">⋯</span></span></span></p>
+<p>각 성분 실효값의 <strong>제곱합의 제곱근</strong>이다.</p>
 <ul>
 <li>
 <strong>왜형률</strong> <span class="math"><span class="op">=</span> <span class="frac"><span class="num"><span class="txt">전 고조파의 실효값</span></span><span class="den"><span class="txt">기본파의 실효값</span></span></span></span>
@@ -799,7 +837,8 @@ html{scroll-behavior:smooth;}
 <p><strong>위 짝이면 숫자만 곱하면 된다.</strong></p>
 </blockquote>
 <h3>📏 면적 단위</h3>
-<p class="display"><span class="math math-inline-block">1 <span class="txt"> [m</span><sup>2</sup>] <span class="op">=</span> 10<sup>6</sup> <span class="txt"> [mm</span><sup>2</sup>] <span class="sp-q"></span> <span class="op">⟺</span> <span class="sp-q"></span> 1 <span class="txt"> [mm</span><sup>2</sup>] <span class="op">=</span> 10<sup><span class="op">-</span>6</sup> <span class="txt"> [m</span><sup>2</sup>]</span></p>
+<p class="display"><span class="math math-inline-block">1 <span class="txt"> [m</span><sup>2</sup>] <span class="op">=</span> 10<sup>6</sup> <span class="txt"> [mm</span><sup>2</sup>]</span></p>
+<p class="display"><span class="math math-inline-block">1 <span class="txt"> [mm</span><sup>2</sup>] <span class="op">=</span> 10<sup><span class="op">-</span>6</sup> <span class="txt"> [m</span><sup>2</sup>]</span></p>
 <h3>🧾 단위 모아보기</h3>
 <div class="scroller"><table><thead><tr><th>양</th><th>기호</th><th>단위</th><th>비고</th></tr></thead><tbody><tr><td>전하량</td><td><span class="math"><i>Q</i></span></td><td>[C] 쿨롱</td><td>—</td></tr><tr><td>정전용량</td><td><span class="math"><i>C</i></span></td><td>[F] 패럿</td><td>콘덴서의 능력치</td></tr><tr><td>자속</td><td><span class="math"><span class="op">Φ</span></span></td><td>[Wb] 웨버</td><td>자기력선의 묶음</td></tr><tr><td>자속밀도</td><td><span class="math"><i>B</i></span></td><td>[T] 테슬라 = [Wb/m²]</td><td>면적당 자속 (<span class="math"><i>B</i><span class="op">=</span><span class="op">Φ</span>/<i>A</i></span>)</td></tr><tr><td>자계의 세기</td><td><span class="math"><i>H</i></span></td><td>[AT/m]</td><td>—</td></tr><tr><td>기자력</td><td><span class="math"><i>F</i></span></td><td>[AT]</td><td>—</td></tr><tr><td><strong>자기저항</strong></td><td><span class="math"><i>R</i><sub><i>m</i></sub></span></td><td><strong>[AT/Wb]</strong></td><td><strong>옴[<span class="math"><span class="op">Ω</span></span>] 아니다</strong> — 전기저항과 헷갈리기 쉽다</td></tr><tr><td>인덕턴스</td><td><span class="math"><i>L</i></span></td><td>[H] 헨리</td><td>코일의 능력치</td></tr><tr><td>컨덕턴스</td><td><span class="math"><i>G</i></span></td><td>[S] 지멘스</td><td>저항의 역수</td></tr><tr><td>무효전력</td><td><span class="math"><i>Q</i></span></td><td>[Var]</td><td>—</td></tr><tr><td>피상전력</td><td><span class="math"><i>P</i><sub><i>a</i></sub></span></td><td>[VA]</td><td>—</td></tr></tbody></table></div>
 </section>

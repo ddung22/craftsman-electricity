@@ -234,6 +234,45 @@ def render(md: str, prefix: str) -> tuple[str, list[tuple[str, str]], str]:
             i += 1
             continue
 
+        # 접이식 상세 설명 —  ::: 제목  ...  :::
+        # 공식만 있고 "왜 그런지"가 없으면 외워도 문제 앞에서 못 꺼낸다.
+        # 그렇다고 본문에 길게 풀어 쓰면 시험 직전에 훑기 나빠진다 —
+        # 그래서 접어 둔다(기본은 닫힘, 궁금할 때만 편다).
+        if line.startswith(":::"):
+            close_lists()
+            close_quote()
+            summary = line[3:].strip() or "왜 이 식인가"
+            i += 1
+            buf: list[str] = []
+            while i < len(lines) and lines[i].strip() != ":::":
+                buf.append(lines[i])
+                i += 1
+            i += 1  # 닫는 ::: 를 건너뛴다
+            inner: list[str] = []
+            bullets: list[str] = []
+
+            def flush_bullets() -> None:
+                if bullets:
+                    inner.append("<ul>" + "".join(f"<li>{inline(b)}</li>" for b in bullets) + "</ul>")
+                    bullets.clear()
+
+            for b in buf:
+                t = b.strip()
+                if not t:
+                    flush_bullets()
+                    continue
+                if t.startswith(("* ", "- ")):
+                    bullets.append(t[2:].strip())
+                else:
+                    flush_bullets()
+                    inner.append(f"<p>{inline(t)}</p>")
+            flush_bullets()
+            out.append(
+                f'<details class="why"><summary>{inline(summary)}</summary>'
+                f'<div class="why-body">{"".join(inner)}</div></details>'
+            )
+            continue
+
         # 표 — 목록 안에 들여쓴 것도 표로 본다
         if line.startswith("|") and i + 1 < len(lines) and re.match(r"^\|[\s:|-]+\|$", lines[i + 1].strip()):
             close_lists()
@@ -463,6 +502,28 @@ blockquote{
 }
 blockquote p{margin:.2rem 0;}
 .star{color:var(--pe); font-weight:700;}
+
+/* --- 접이식 상세 설명(::: 블록) --- */
+.why{
+  margin:.5rem 0 1rem; border:1px solid var(--line);
+  border-radius:.6rem; background:var(--bg); overflow:hidden;
+}
+.why > summary{
+  cursor:pointer; list-style:none; padding:.55rem .8rem;
+  font-size:.86rem; font-weight:700; color:var(--muted);
+  display:flex; align-items:center; gap:.4rem; min-height:44px;
+  -webkit-tap-highlight-color:transparent;
+}
+.why > summary::-webkit-details-marker{display:none;}
+.why > summary::before{content:"＋"; font-weight:800; color:var(--accent);}
+.why[open] > summary::before{content:"－";}
+.why[open] > summary{border-bottom:1px solid var(--line); color:var(--ink);}
+.why > summary:active{background:var(--line-soft);}
+.why-body{padding:.75rem .9rem .9rem; font-size:.92rem; line-height:1.75;}
+.why-body p{margin:0 0 .6rem;}
+.why-body p:last-child, .why-body ul:last-child{margin-bottom:0;}
+.why-body ul{margin:0 0 .6rem; padding-left:1.15rem;}
+.why-body li{margin:.2rem 0;}
 
 /* 체크리스트 카드 */
 .card-check{border-color:var(--pe); background:var(--pe-bg);}
