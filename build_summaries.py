@@ -258,28 +258,14 @@ def render(md: str, prefix: str) -> tuple[str, list[tuple[str, str]], str]:
                 buf.append(lines[i])
                 i += 1
             i += 1  # 닫는 ::: 를 건너뛴다
-            inner: list[str] = []
-            bullets: list[str] = []
-
-            def flush_bullets() -> None:
-                if bullets:
-                    inner.append("<ul>" + "".join(f"<li>{inline(b)}</li>" for b in bullets) + "</ul>")
-                    bullets.clear()
-
-            for b in buf:
-                t = b.strip()
-                if not t:
-                    flush_bullets()
-                    continue
-                if t.startswith(("* ", "- ")):
-                    bullets.append(t[2:].strip())
-                else:
-                    flush_bullets()
-                    inner.append(f"<p>{inline(t)}</p>")
-            flush_bullets()
+            # 접이식 안쪽도 본문과 똑같은 규칙으로 그린다 (표·인용·목록·수식 전부).
+            # 전에는 문단과 목록만 처리해서, 안에 넣은 표가 화면에
+            # "| 글자 | 뜻 |" 파이프 글자 그대로 보였다 — 표인 줄도 모른다.
+            # 안쪽에는 ## 를 쓰지 않는다(목차 앵커가 바깥과 겹친다).
+            inner_html, _, _ = render("\n".join(buf), prefix)
             out.append(
                 f'<details class="why"><summary>{inline(summary)}</summary>'
-                f'<div class="why-body">{"".join(inner)}</div></details>'
+                f'<div class="why-body">{inner_html}</div></details>'
             )
             continue
 
@@ -534,6 +520,10 @@ blockquote p{margin:.2rem 0;}
 .why-body p:last-child, .why-body ul:last-child{margin-bottom:0;}
 .why-body ul{margin:0 0 .6rem; padding-left:1.15rem;}
 .why-body li{margin:.2rem 0;}
+/* 접이식 안의 표·인용도 본문과 같게 보이되, 마지막 여백만 없앤다 */
+.why-body .scroller{margin:.6rem 0;}
+.why-body blockquote{margin:.6rem 0;}
+.why-body > :last-child{margin-bottom:0;}
 
 /* 체크리스트 카드 */
 .card-check{border-color:var(--pe); background:var(--pe-bg);}
