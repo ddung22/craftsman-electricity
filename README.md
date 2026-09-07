@@ -25,8 +25,9 @@
 | **제2과목 전기기기** | 직류기·동기기·변압기·유도기·정류기의 구조·특성·계산 예제 | Markdown | [`Machinery_Summary.md`](./Machinery_Summary.md) |
 | **전기기기 확장 (기사 대비)** | 기능사 범위 밖 — 자기여자 현상, 변압기 전압변동률 상세식, 부하율별 최적효율·전일효율 | Markdown | [`Machinery_Extra_전기기사대비.md`](./Machinery_Extra_전기기사대비.md) |
 | **제3과목 전기설비** | KEC 기준 전압·전선 식별/약호·배선공사 규격·접지·보호장치·설계 계산·시퀀스·심벌 | Markdown | [`Facility_Summary.md`](./Facility_Summary.md) |
+| **공식 사용처 (색인)** | 공식을 어디에 쓰는지 — 문제의 말 → 꺼낼 식 → 넣을 값. 단위 역추적·함정 갈림길·검산 범위 | Markdown | [`공식_사용처.md`](./공식_사용처.md) |
 | **오답 체크리스트** | 문제 풀다 틀린 것을 쌓아 시험 직전에 훑는다 (채우는 중) | Markdown | [`오답_체크리스트.md`](./오답_체크리스트.md) |
-| **3과목 통합 요약집 (폰용)** | 요약집 3개를 과목 탭 한 페이지로. 수식·표가 제대로 나온다 | HTML | [`summaries.html`](./summaries.html) |
+| **3과목 통합 요약집 (폰용)** | 요약집 3개 + 학습계획 + 공식 사용처를 탭 5개 한 페이지로. 수식·표가 제대로 나온다 | HTML | [`summaries.html`](./summaries.html) |
 
 
 세 문서는 **개념 → 공식 → 왜 그런가 → 계산 예제 → 기출 함정** 순으로 쓰여 있다.
@@ -34,10 +35,10 @@
 
 ### `summaries.html` 은 손으로 고치지 않는다
 
-마크다운 3개(`Theory_Summary.md` · `Machinery_Summary.md` · `Facility_Summary.md`)가
-원본이고, HTML 은 **스크립트가 만든다.** `Theory_Extra_전기기사대비.md` 처럼 그 3개에
+마크다운 5개(`Theory_Summary.md` · `Machinery_Summary.md` · `Facility_Summary.md` ·
+`학습계획.md` · `공식_사용처.md`)가 원본이고, HTML 은 **스크립트가 만든다.** `Theory_Extra_전기기사대비.md` 처럼 그 3개에
 안 든 문서는 요약집에 반영되지 않는다 — 기능사 범위 밖 참고 자료라 일부러 뺐다.
-셋 중 하나를 고쳤으면 다시 돌린다:
+하나라도 고쳤으면 다시 돌린다:
 
 ```bash
 python build_summaries.py

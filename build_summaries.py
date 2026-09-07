@@ -1,4 +1,4 @@
-"""요약집 마크다운 3개 + 학습계획을 한 페이지 HTML 로 묶는다.
+"""요약집 마크다운 3개 + 학습계획 + 공식 사용처를 한 페이지 HTML 로 묶는다.
 
 원본은 항상 마크다운이다. HTML 을 손으로 고치지 말 것 — 여기서 다시 만든다.
 
@@ -335,7 +335,7 @@ CSS = """
   --bg:#FAF9F7; --surface:#FFFFFF; --ink:#1B1E24; --muted:#5F6570;
   --line:#E3DFD8; --line-soft:#EFEBE4; --code:#F2EFE9;
   --accent:#1F5FA8; --pe:#5F7F33; --pe-bg:#F0F3E4;
-  --s1:#8A5533; --s2:#4F6572; --s3:#1F5FA8; --danger:#B84B2A;
+  --s1:#8A5533; --s2:#4F6572; --s3:#1F5FA8; --fx:#2B2B2B; --danger:#B84B2A;
   --shadow:0 1px 2px rgba(27,30,36,.05), 0 8px 24px -16px rgba(27,30,36,.28);
 }
 @media (prefers-color-scheme: dark){
@@ -343,7 +343,7 @@ CSS = """
     --bg:#14171C; --surface:#1B1F26; --ink:#E7E4DE; --muted:#9AA3AF;
     --line:#2C323B; --line-soft:#232830; --code:#232830;
     --accent:#7FAEE8; --pe:#A9C46C; --pe-bg:#1F2519;
-    --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --danger:#E38564;
+    --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --fx:#D5D5D5; --danger:#E38564;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
   }
 }
@@ -351,7 +351,7 @@ CSS = """
   --bg:#14171C; --surface:#1B1F26; --ink:#E7E4DE; --muted:#9AA3AF;
   --line:#2C323B; --line-soft:#232830; --code:#232830;
   --accent:#7FAEE8; --pe:#A9C46C; --pe-bg:#1F2519;
-  --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --danger:#E38564;
+  --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --fx:#D5D5D5; --danger:#E38564;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
 }
 
@@ -693,11 +693,26 @@ def build() -> str:
         f'{PLAN_WIDGET}{plan_body}</div>'
     )
 
+    # 5번째 탭 — 공식 사용처 (과목을 가로지르는 색인. 위젯 없이 마크다운 그대로)
+    fx_md = (HERE / "공식_사용처.md").read_text(encoding="utf-8")
+    fx_body, fx_toc, _ = render(fx_md, "k5")
+    fx_chips = "".join(f'<a class="chip" href="#{a}">{html.escape(t)}</a>' for a, t in fx_toc)
+    tabs.append(
+        '<button class="tab" role="tab" id="tab5" aria-controls="panel5" '
+        'aria-selected="false" tabindex="-1" style="--tab:var(--fx)" '
+        'data-accent="var(--fx)"><small>색인</small>공식 사용처</button>'
+    )
+    panels.append(
+        '<div class="panel" id="panel5" role="tabpanel" aria-labelledby="tab5" hidden>'
+        f'<nav class="chips" aria-label="공식 사용처 섹션">{fx_chips}</nav>{fx_body}</div>'
+    )
+
     legend = "".join(
         f'<span><i style="background:var(--s{n})"></i>{name}</span>'
         for n, (_, name, _, _, _) in enumerate(SUBJECTS, start=1)
     )
     legend += '<span><i style="background:var(--pe)"></i>학습계획</span>'
+    legend += '<span><i style="background:var(--fx)"></i>공식 사용처</span>'
 
     head = f"<title>전기기능사 필기 요약집</title>\n<style>{CSS}</style>"
     body = f"""<div class="wrap">
@@ -707,12 +722,12 @@ def build() -> str:
     <p>시험 직전에 폰으로 훑어보는 판. 탭을 눌러 옮겨 다니고, 칩을 눌러 단원으로 바로 간다.
        각 과목 맨 끝에 <strong>시험 직전 30초 체크리스트</strong>가 있다.</p>
     <p class="legend">{legend}
-      <span>탭 색은 KEC 전선 식별 색상(갈·회·청·녹)에서 가져왔다</span>
+      <span>탭 색은 KEC 전선 식별 색상(갈·회·청·녹·흑)에서 가져왔다</span>
     </p>
   </header>
   <div class="tabs" role="tablist" aria-label="과목">{''.join(tabs)}</div>
   {''.join(panels)}
-  <p class="foot">원본은 저장소의 마크다운 4개다. 이 페이지는 <code>build_summaries.py</code> 가 만든다 —
+  <p class="foot">원본은 저장소의 마크다운 5개다. 이 페이지는 <code>build_summaries.py</code> 가 만든다 —
      내용을 고칠 때는 마크다운을 고치고 다시 돌린다.</p>
 </div>
 <button class="totop" type="button">맨 위로</button>
