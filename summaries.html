@@ -80,17 +80,28 @@ body{
 
 /* --- 섹션 칩 --- */
 .chips{
-  position:sticky; top:3.55rem; z-index:20; background:var(--bg);
+  /* ⚠ 예전엔 top:3.55rem 고정이었다. 탭이 4개일 땐 맞았지만 5번째 탭
+     ("공식 사용처")이 두 줄로 접히면서 탭 바가 90px 로 높아지자, 칩 바가
+     탭 바 뒤에 숨어버렸다(z-index 도 탭이 위라 반쯤 잘려 보였다).
+     이제 JS 가 실제 높이를 재서 --tabs-h 에 넣는다. 아래 값은 JS 가 아직
+     안 돌았을 때의 대비책일 뿐이다. */
+  position:sticky; top:var(--tabs-h, 3.55rem); z-index:20; background:var(--bg);
   display:flex; gap:.35rem; overflow-x:auto; padding:.55rem 0;
   border-bottom:1px solid var(--line-soft); scrollbar-width:none;
 }
 .chips::-webkit-scrollbar{display:none;}
 .chip{
+  /* 폰에서 누를 것이라 손가락 크기를 먼저 맞춘다 — 예전엔 높이가 33px 라
+     애플 권장 최소 터치 영역(44px)에 못 미쳐 누르기 불편했다.
+     min-height 로 44px 를 보장하고, 세로 가운데 정렬로 글자를 맞춘다. */
   flex:0 0 auto; text-decoration:none; white-space:nowrap;
-  font-size:.78rem; font-weight:600; color:var(--muted);
-  border:1px solid var(--line); border-radius:999px; padding:.28rem .7rem;
+  display:inline-flex; align-items:center; min-height:44px;
+  font-size:.82rem; font-weight:600; color:var(--muted);
+  border:1px solid var(--line); border-radius:999px; padding:0 .85rem;
   background:var(--surface);
+  -webkit-tap-highlight-color:transparent;
 }
+.chip:active{background:var(--line-soft); color:var(--ink);}
 .chip:hover{color:var(--accent); border-color:var(--accent);}
 
 /* --- 본문 --- */
@@ -100,7 +111,9 @@ body{
 .card{
   background:var(--surface); border:1px solid var(--line); border-radius:.75rem;
   padding:1.1rem 1.1rem 1.25rem; margin:0 0 1rem; box-shadow:var(--shadow);
-  scroll-margin-top:7rem;
+  /* 스티키 두 줄(탭+칩) 높이만큼 띄운다. 7rem 고정이던 것을 실측으로 바꿨다 —
+     탭이 두 줄로 접히면 7rem 으로는 모자라 제목이 가려졌다. */
+  scroll-margin-top:calc(var(--tabs-h, 3.55rem) + var(--chips-h, 3.2rem) + .6rem);
 }
 .card h2{
   margin:0 0 .85rem; font-size:1.12rem; font-weight:800; letter-spacing:-.01em;
@@ -1614,6 +1627,7 @@ html{scroll-behavior:smooth;}
     });
     panels.forEach(function(p,i){ p.hidden = i!==idx; });
     document.documentElement.style.setProperty('--accent', tabs[idx].dataset.accent);
+    if(window.__measureSticky) window.__measureSticky();
     if(focus) tabs[idx].focus();
     try{ localStorage.setItem('haengdo.craft.tab', String(idx)); }catch(e){}
   }
@@ -1652,6 +1666,25 @@ html{scroll-behavior:smooth;}
   top.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 })();
 
+/* 스티키 바(탭·칩)의 실제 높이를 재서 CSS 변수로 넣는다.
+   고정값으로 두면 글꼴·화면폭·탭 개수가 바뀔 때마다 어긋난다 — 실제로
+   탭을 5개로 늘리자 탭 라벨이 두 줄로 접히며 어긋났다. */
+(function(){
+  var root = document.documentElement;
+  function measure(){
+    var tabs = document.querySelector('.tabs');
+    if(tabs) root.style.setProperty('--tabs-h', tabs.getBoundingClientRect().height + 'px');
+    /* 칩 바는 패널마다 따로 있으니 지금 보이는 것을 잰다. */
+    var chips = document.querySelector('.panel:not([hidden]) .chips');
+    if(chips) root.style.setProperty('--chips-h', chips.getBoundingClientRect().height + 'px');
+  }
+  window.__measureSticky = measure;
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('orientationchange', measure);
+  /* 웹폰트가 늦게 오면 높이가 달라진다 — 폰트 로딩 후 한 번 더 잰다. */
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+})();
 (function(){
   var railEl = document.getElementById('planRail');
   if(!railEl) return;
