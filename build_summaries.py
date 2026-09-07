@@ -126,7 +126,7 @@ def tex(s: str) -> str:
             elif name == "sqrt":
                 arg, j = _read_group(s, j)
                 out.append(f'<span class="sqrt">{tex(arg)}</span>')
-            elif name == "text":
+            elif name in ("text", "mathrm"):
                 arg, j = _read_group(s, j)
                 out.append(f'<span class="txt">{html.escape(arg)}</span>')
             elif name == "mathbf":
