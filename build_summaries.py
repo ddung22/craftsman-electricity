@@ -17,7 +17,17 @@ from __future__ import annotations
 import argparse
 import html
 import re
+import sys
 from pathlib import Path
+
+# 이 스크립트의 경고문에는 ⚠·— 같은 글자가 있는데, 윈도우 기본 콘솔(cp949)
+# 에서는 그걸 찍다가 UnicodeEncodeError 로 죽는다. 경고가 안 보이면 요약집이
+# 조용히 깨진 채로 배포된다 — 경고보다 더 나쁜 일이라 출력을 UTF-8 로 고정한다.
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 HERE = Path(__file__).resolve().parent
 
@@ -33,7 +43,7 @@ SUBJECTS = [
 
 SYMBOLS = {
     "times": "×", "cdot": "·", "approx": "≈", "neq": "≠", "le": "≤", "ge": "≥",
-    "propto": "∝", "iff": "⟺", "implies": "⟹", "Rightarrow": "⇒",
+    "propto": "∝", "sim": "~", "iff": "⟺", "implies": "⟹", "Rightarrow": "⇒",
     "leftrightarrow": "↔", "sum": "Σ", "pi": "π", "mu": "μ", "eta": "η",
     "theta": "θ", "rho": "ρ", "varepsilon": "ε", "Phi": "Φ", "Omega": "Ω",
     "ell": "ℓ", "alpha": "α", "beta": "β", "lambda": "λ", "omega": "ω",
