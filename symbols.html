@@ -251,6 +251,8 @@
         .tag-sequence { background-color: #fee2e2; color: #b91c1c; }
         .tag-instrument { background-color: #ecfdf5; color: #047857; }
         .tag-power { background-color: #fef3c7; color: #b45309; }
+        .tag-wiring { background-color: #e0f2fe; color: #0369a1; }
+        .tag-cable { background-color: #fae8ff; color: #86198f; }
 
         .symbol-abbreviation {
             font-family: "Courier New", Courier, monospace;
@@ -427,6 +429,8 @@
                 <button class="tab-btn" data-filter="passive">수동 소자</button>
                 <button class="tab-btn" data-filter="sequence">시퀀스/계전기</button>
                 <button class="tab-btn" data-filter="instrument">측정/부하</button>
+                <button class="tab-btn" data-filter="wiring">배선 도면 심벌</button>
+                <button class="tab-btn" data-filter="cable">전선 약호</button>
             </div>
 
             <div class="study-mode-panel">
@@ -1059,6 +1063,425 @@
                     <div class="english-name">Buzzer</div>
                     <p class="description">전기 신호를 받아 소리(음향)로 변환하여 기기 장치의 과부하 에러나 동작 경보를 청각적으로 알려주는 부하 부품입니다.</p>
                     <div class="tip-box">💡 실기 팁: 주로 열동계전기(THR) 동작 시 전류가 흐르도록 회로가 구성됩니다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">●</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="50" cy="30" r="11" fill="#1e293b"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>점멸기 (스위치)</h3>
+                    <div class="english-name">Switch</div>
+                    <p class="description">옥내 배선 도면에서 등을 켜고 끄는 일반 점멸기를 나타냅니다. 속을 채운 검은 원으로 그립니다.</p>
+                    <div class="tip-box">💡 오른쪽 아래 첨자로 종류가 갈린다 — ₃(3로) ₄(4로) ₚ(풀) ₕ(자동점멸기), 20A 는 용량 표기.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">●₃</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="45" cy="30" r="11" fill="#1e293b"/><text x="66" y="46" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="22" font-weight="700">3</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>3로 스위치</h3>
+                    <div class="english-name">3-way Switch</div>
+                    <p class="description">한 등을 서로 다른 두 곳에서 켜고 끌 때 쓰는 스위치입니다. 계단의 위·아래처럼 두 지점 제어에 씁니다.</p>
+                    <div class="tip-box">💡 두 곳이면 3로 2개. 세 곳이면 3로 2개 + 4로 1개 — 이 조합을 그대로 외운다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">●₄</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="45" cy="30" r="11" fill="#1e293b"/><text x="66" y="46" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="22" font-weight="700">4</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>4로 스위치</h3>
+                    <div class="english-name">4-way Switch</div>
+                    <p class="description">세 곳 이상에서 한 등을 제어할 때 3로 스위치 사이에 끼워 넣는 스위치입니다.</p>
+                    <div class="tip-box">💡 4로는 혼자 못 쓴다 — 반드시 3로 2개 사이에 들어간다. 네 곳이면 3로 2개 + 4로 2개.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">⊗</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="50" cy="30" r="16"/><line x1="39" y1="19" x2="61" y2="41"/><line x1="61" y1="19" x2="39" y2="41"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>백열등</h3>
+                    <div class="english-name">Incandescent Lamp</div>
+                    <p class="description">옥내 배선 도면에서 백열등(일반 전구)을 나타냅니다. 원 안에 ×를 그립니다.</p>
+                    <div class="tip-box">💡 원에 ×면 백열등, 길쭉한 네모면 형광등 — 모양이 곧 등의 생김새다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">▭</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><rect x="20" y="22" width="60" height="16" rx="2"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>형광등</h3>
+                    <div class="english-name">Fluorescent Lamp</div>
+                    <p class="description">옥내 배선 도면에서 형광등을 나타냅니다. 관 모양을 본떠 길쭉한 직사각형으로 그립니다.</p>
+                    <div class="tip-box">💡 형광등은 관이 길어서 네모가 길쭉하다. 백열등(⊗)과 헷갈리지 않는다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">⊙</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="50" cy="30" r="16"/><circle cx="50" cy="30" r="5" fill="#1e293b"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>콘센트</h3>
+                    <div class="english-name">Outlet / Receptacle</div>
+                    <p class="description">전기 기기를 꽂아 쓰는 콘센트를 나타냅니다.</p>
+                    <div class="tip-box">💡 첨자 E 가 붙으면 접지극붙이 콘센트다. 물기 있는 곳 콘센트는 누전차단기 15 mA.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">⊙ₑ</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="44" cy="30" r="15"/><circle cx="44" cy="30" r="5" fill="#1e293b"/><text x="72" y="44" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="20" font-weight="700">E</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>접지극붙이 콘센트</h3>
+                    <div class="english-name">Grounding Outlet</div>
+                    <p class="description">접지극이 함께 있는 콘센트입니다. 감전 위험이 큰 장소에 씁니다.</p>
+                    <div class="tip-box">💡 접지 = 보호도체 = 녹색-노란색 혼합(KEC). 색과 이 심벌을 같이 외운다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">▬</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><rect x="18" y="22" width="64" height="16" fill="#1e293b"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>분전반</h3>
+                    <div class="english-name">Distribution Board</div>
+                    <p class="description">간선에서 각 분기회로로 전기를 나눠주는 분전반입니다. 속을 채운 막대로 그립니다.</p>
+                    <div class="tip-box">💡 속이 꽉 찬 막대는 분(分)전반, 칸이 나뉜 것은 배(配)전반 — 채움 여부로 갈린다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">▤</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><rect x="18" y="22" width="64" height="16"/><line x1="30" y1="22" x2="30" y2="38"/><line x1="42" y1="22" x2="42" y2="38"/><line x1="54" y1="22" x2="54" y2="38"/><line x1="66" y1="22" x2="66" y2="38"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>배전반</h3>
+                    <div class="english-name">Switchboard</div>
+                    <p class="description">수전 설비에서 전력을 받아 각 분전반으로 배분하는 배전반입니다. 칸을 넣어 그립니다.</p>
+                    <div class="tip-box">💡 분전반(채움) vs 배전반(칸). 배전반이 상위, 분전반이 하위다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="wiring">
+            <div class="card-header">
+                <span class="category-tag tag-wiring">배선심벌</span>
+                <span class="symbol-abbreviation">⏛</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><circle cx="40" cy="30" r="14"/><circle cx="60" cy="30" r="14"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>변압기</h3>
+                    <div class="english-name">Transformer</div>
+                    <p class="description">전압을 올리거나 내리는 변압기입니다. 두 권선이 자기적으로 결합된 모습을 겹친 두 원으로 그립니다.</p>
+                    <div class="tip-box">💡 원 두 개 = 1차·2차 권선. 권수비 a = N₁/N₂ = V₁/V₂ = I₂/I₁ 을 같이 떠올린다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">IV</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">IV</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>600 V 비닐절연전선</h3>
+                    <div class="english-name">Indoor Vinyl</div>
+                    <p class="description">옥내 배선에 가장 널리 쓰는 기본 절연전선입니다.</p>
+                    <div class="tip-box">💡 V = 비닐(Vinyl). 약호에 V 가 든 것은 전부 비닐 계열이라고 보면 된다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">HIV</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">HIV</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>600 V 2종 비닐절연전선 (내열)</h3>
+                    <div class="english-name">Heat-resistant IV</div>
+                    <p class="description">IV 에 내열성을 더한 전선입니다.</p>
+                    <div class="tip-box">💡 H = Heat(열). IV 앞에 H 가 붙으면 '열에 견디는 IV'.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">OW</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">OW</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>옥외용 비닐절연전선</h3>
+                    <div class="english-name">Outdoor Weatherproof</div>
+                    <p class="description">옥외 가공전선로에 쓰는 절연전선입니다.</p>
+                    <div class="tip-box">💡 O = Outdoor(옥외), W = Weatherproof(날씨). 'O 는 바깥'.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">DV</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">DV</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>인입용 비닐절연전선</h3>
+                    <div class="english-name">Drop Vinyl</div>
+                    <p class="description">전주에서 건물로 끌어들이는 인입선에 쓰는 전선입니다.</p>
+                    <div class="tip-box">💡 D = Drop(끌어내림). 전주에서 집으로 떨어뜨리는 선이 인입선이다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">CV</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">CV</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>가교폴리에틸렌 절연 비닐시스 케이블</h3>
+                    <div class="english-name">XLPE Insulated PVC Sheathed</div>
+                    <p class="description">가교폴리에틸렌으로 절연하고 비닐로 외피(시스)를 씌운 케이블입니다.</p>
+                    <div class="tip-box">💡 C = Cross-linked(가교), V = 비닐 시스. 앞 글자가 절연, 뒷 글자가 외피 순서다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">VCT</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">VCT</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>비닐 캡타이어 케이블</h3>
+                    <div class="english-name">Vinyl Cabtyre</div>
+                    <p class="description">이동용 기기에 쓰는 유연한 캡타이어 케이블입니다.</p>
+                    <div class="tip-box">💡 CT = CabTyre(캡타이어). 움직이는 기기에 쓰니 유연하다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="cable">
+            <div class="card-header">
+                <span class="category-tag tag-cable">전선약호</span>
+                <span class="symbol-abbreviation">NR</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><text x="50" y="38" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="30" font-weight="700">NR</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>450/750 V 일반용 단심 비닐절연전선</h3>
+                    <div class="english-name">Normal, single-core</div>
+                    <p class="description">일반용 단심 비닐절연전선입니다.</p>
+                    <div class="tip-box">💡 N = Normal(일반용). 전압 표기가 450/750 V 인 것이 IV(600 V)와 다르다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">MCCB</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><line x1="15" y1="30" x2="32" y2="30"/><rect x="32" y="16" width="36" height="28" rx="3"/><line x1="68" y1="30" x2="85" y2="30"/><line x1="40" y1="38" x2="60" y2="22"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>배선용 차단기</h3>
+                    <div class="english-name">Molded Case Circuit Breaker</div>
+                    <p class="description">과부하와 단락 전류로부터 배선을 보호하는 차단기입니다. 퓨즈와 달리 동작 후 다시 올려 쓸 수 있습니다.</p>
+                    <div class="tip-box">💡 MCCB 는 과전류·단락 보호, ELB 는 여기에 누전 보호까지 — 'L(Leakage)이 있으면 누전'.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">ELB</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><line x1="15" y1="30" x2="30" y2="30"/><rect x="30" y="14" width="40" height="32" rx="3"/><line x1="70" y1="30" x2="85" y2="30"/><line x1="38" y1="40" x2="56" y2="22"/><text x="60" y="42" text-anchor="middle" fill="#1e293b" stroke="none" font-family="Courier New, monospace" font-size="16" font-weight="700">L</text></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>누전차단기</h3>
+                    <div class="english-name">Earth Leakage Breaker</div>
+                    <p class="description">지락(누전)이 생기면 전로를 차단해 감전을 막는 차단기입니다.</p>
+                    <div class="tip-box">💡 정격감도전류 — 일반 30 mA, 물기 있는 곳 콘센트 15 mA. 둘 다 동작시간 0.03초.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">F</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><line x1="15" y1="30" x2="32" y2="30"/><rect x="32" y="22" width="36" height="16"/><line x1="32" y1="30" x2="68" y2="30"/><line x1="68" y1="30" x2="85" y2="30"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>퓨즈</h3>
+                    <div class="english-name">Fuse</div>
+                    <p class="description">과전류가 흐르면 내부 가용체가 녹아 회로를 끊는 보호 장치입니다.</p>
+                    <div class="tip-box">💡 퓨즈는 한 번 끊기면 교체, 차단기(MCCB)는 다시 올려 쓴다 — 이 차이를 묻는다.</div>
+                </div>
+                <div class="overlay"><span>정보 확인하기</span></div>
+            </div>
+        </div>
+
+        <div class="symbol-card" data-category="sequence">
+            <div class="card-header">
+                <span class="category-tag tag-sequence">시퀀스</span>
+                <span class="symbol-abbreviation">c접점</span>
+            </div>
+            <div class="symbol-graphic-box">
+                <svg viewBox="0 0 100 60"><line x1="15" y1="30" x2="35" y2="30"/><circle cx="35" cy="30" r="2.5" fill="#1e293b"/><line x1="35" y1="30" x2="62" y2="16"/><line x1="62" y1="16" x2="85" y2="16"/><line x1="62" y1="44" x2="85" y2="44"/><circle cx="62" cy="16" r="2.5" fill="#1e293b"/><circle cx="62" cy="44" r="2.5" fill="#1e293b"/></svg>
+                <div class="overlay"><span>기호 확인하기</span></div>
+            </div>
+            <div class="card-body-overlay">
+                <div class="card-body">
+                    <h3>c접점 (전환 접점)</h3>
+                    <div class="english-name">Changeover Contact</div>
+                    <p class="description">a접점과 b접점을 한 몸에 가진 전환 접점입니다. 공통 단자 하나가 두 접점 중 하나로 옮겨 붙습니다.</p>
+                    <div class="tip-box">💡 a(NO 평상시 열림) · b(NC 평상시 닫힘) · c(전환) 가 한 세트. c 는 a+b 라고 외운다.</div>
                 </div>
                 <div class="overlay"><span>정보 확인하기</span></div>
             </div>
