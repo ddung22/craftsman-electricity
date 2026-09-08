@@ -1,4 +1,4 @@
-"""요약집 마크다운 3개 + 학습계획 + 공식 사용처를 한 페이지 HTML 로 묶는다.
+"""핵심 + 요약집 마크다운 3개 + 학습계획 + 공식 사용처를 한 페이지 HTML 로 묶는다.
 
 원본은 항상 마크다운이다. HTML 을 손으로 고치지 말 것 — 여기서 다시 만든다.
 
@@ -244,6 +244,25 @@ def render(md: str, prefix: str) -> tuple[str, list[tuple[str, str]], str]:
             i += 1
             continue
 
+        # 그림 —  :::: 설명글  <svg>...</svg>  ::::
+        # 본문 마크다운은 html.escape 를 거치므로 SVG 를 그냥 쓰면 글자로 나온다.
+        # 처음 공부하는 사람은 "자속·기자력" 같은 말이 글로만은 안 그려진다고 해서,
+        # 그림을 넣을 통로를 하나 텄다. 안쪽은 손으로 쓴 SVG 를 그대로 통과시킨다.
+        # ⚠ ::: 보다 먼저 검사한다 — 3콜론 규칙이 4콜론을 먼저 먹으면 안 된다.
+        if line.startswith("::::"):
+            close_lists()
+            close_quote()
+            caption = line[4:].strip()
+            i += 1
+            raw_svg: list[str] = []
+            while i < len(lines) and lines[i].strip() != "::::":
+                raw_svg.append(lines[i])
+                i += 1
+            i += 1
+            cap = f'<figcaption>{inline(caption)}</figcaption>' if caption else ""
+            out.append(f'<figure class="fig">{"".join(raw_svg)}{cap}</figure>')
+            continue
+
         # 접이식 상세 설명 —  ::: 제목  ...  :::
         # 공식만 있고 "왜 그런지"가 없으면 외워도 문제 앞에서 못 꺼낸다.
         # 그렇다고 본문에 길게 풀어 쓰면 시험 직전에 훑기 나빠진다 —
@@ -370,7 +389,7 @@ CSS = """
   --bg:#FAF9F7; --surface:#FFFFFF; --ink:#1B1E24; --muted:#5F6570;
   --line:#E3DFD8; --line-soft:#EFEBE4; --code:#F2EFE9;
   --accent:#1F5FA8; --pe:#5F7F33; --pe-bg:#F0F3E4;
-  --s1:#8A5533; --s2:#4F6572; --s3:#1F5FA8; --fx:#2B2B2B; --danger:#B84B2A;
+  --s1:#8A5533; --s2:#4F6572; --s3:#1F5FA8; --fx:#2B2B2B; --core:#B4553A; --danger:#B84B2A;
   --shadow:0 1px 2px rgba(27,30,36,.05), 0 8px 24px -16px rgba(27,30,36,.28);
 }
 @media (prefers-color-scheme: dark){
@@ -378,7 +397,7 @@ CSS = """
     --bg:#14171C; --surface:#1B1F26; --ink:#E7E4DE; --muted:#9AA3AF;
     --line:#2C323B; --line-soft:#232830; --code:#232830;
     --accent:#7FAEE8; --pe:#A9C46C; --pe-bg:#1F2519;
-    --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --fx:#D5D5D5; --danger:#E38564;
+    --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --fx:#D5D5D5; --core:#E89478; --danger:#E38564;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
   }
 }
@@ -386,7 +405,7 @@ CSS = """
   --bg:#14171C; --surface:#1B1F26; --ink:#E7E4DE; --muted:#9AA3AF;
   --line:#2C323B; --line-soft:#232830; --code:#232830;
   --accent:#7FAEE8; --pe:#A9C46C; --pe-bg:#1F2519;
-  --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --fx:#D5D5D5; --danger:#E38564;
+  --s1:#D0996B; --s2:#9DB6C4; --s3:#7FAEE8; --fx:#D5D5D5; --core:#E89478; --danger:#E38564;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
 }
 
@@ -500,6 +519,23 @@ blockquote p{margin:.2rem 0;}
 .star{color:var(--pe); font-weight:700;}
 
 /* --- 접이식 상세 설명(::: 블록) --- */
+.fig{
+  margin:1rem 0 1.25rem; padding:1rem .75rem .6rem;
+  border:1px solid var(--line); border-radius:.7rem;
+  background:var(--surface); text-align:center;
+}
+.fig svg{max-width:100%; height:auto; overflow:visible;}
+.fig svg text{fill:var(--ink); font-family:inherit;}
+.fig svg .lbl{font-size:11px; font-weight:700;}
+.fig svg .sub{font-size:9.5px; fill:var(--muted);}
+.fig svg .ln{stroke:var(--ink); stroke-width:2; fill:none; stroke-linecap:round;}
+.fig svg .ln2{stroke:var(--muted); stroke-width:1.4; fill:none; stroke-dasharray:4 3;}
+.fig svg .acc{stroke:var(--accent); stroke-width:2.6; fill:none; stroke-linecap:round;}
+.fig svg .fill{fill:var(--accent); opacity:.16;}
+.fig figcaption{
+  margin-top:.6rem; font-size:.86rem; color:var(--muted); line-height:1.6;
+  text-align:left; word-break:keep-all;
+}
 .why{
   margin:.5rem 0 1rem; border:1px solid var(--line);
   border-radius:.6rem; background:var(--bg); overflow:hidden;
@@ -757,6 +793,21 @@ JS = """
 
 def build() -> str:
     tabs, panels = [], []
+
+    # 0번째 탭 — 핵심. 처음 공부하는 사람이 열자마자 보는 자리라 맨 앞에 둔다.
+    # (요약집 3과목이 A4 50쪽이 넘어 "어디부터"가 첫 관문이다.)
+    core_md = (HERE / "핵심.md").read_text(encoding="utf-8")
+    core_body, core_toc, _ = render(core_md, "k0")
+    core_chips = "".join(f'<a class="chip" href="#{a}">{html.escape(t)}</a>' for a, t in core_toc)
+    tabs.append(
+        '<button class="tab" role="tab" id="tab0" aria-controls="panel0" '
+        'aria-selected="false" tabindex="-1" style="--tab:var(--core)" '
+        'data-accent="var(--core)"><small>먼저</small>핵심</button>'
+    )
+    panels.append(
+        '<div class="panel" id="panel0" role="tabpanel" aria-labelledby="tab0" hidden>'
+        f'<nav class="chips" aria-label="핵심 섹션">{core_chips}</nav>{core_body}</div>'
+    )
     for n, (fname, name, no, light, dark) in enumerate(SUBJECTS, start=1):
         md = (HERE / fname).read_text(encoding="utf-8")
         body, toc, _ = render(md, f"k{n}")
@@ -801,7 +852,7 @@ def build() -> str:
         f'<nav class="chips" aria-label="공식 사용처 섹션">{fx_chips}</nav>{fx_body}</div>'
     )
 
-    legend = "".join(
+    legend = '<span><i style="background:var(--core)"></i>핵심</span>' + "".join(
         f'<span><i style="background:var(--s{n})"></i>{name}</span>'
         for n, (_, name, _, _, _) in enumerate(SUBJECTS, start=1)
     )
@@ -821,7 +872,7 @@ def build() -> str:
   </header>
   <div class="tabs" role="tablist" aria-label="과목">{''.join(tabs)}</div>
   {''.join(panels)}
-  <p class="foot">원본은 저장소의 마크다운 5개다. 이 페이지는 <code>build_summaries.py</code> 가 만든다 —
+  <p class="foot">원본은 저장소의 마크다운 6개다. 이 페이지는 <code>build_summaries.py</code> 가 만든다 —
      내용을 고칠 때는 마크다운을 고치고 다시 돌린다.</p>
 </div>
 <button class="totop" type="button">맨 위로</button>
