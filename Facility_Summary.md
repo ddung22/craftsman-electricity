@@ -372,7 +372,7 @@ $U$ 는 나누고 $D$ 는 곱한다.
 ### 🔀 3로 · 4로 스위치 — 두 곳에서 켜고 끄기
 
 :::: **3로 스위치 2개**로 한 등을 두 곳에서 켜고 끈다(계단 위·아래). 세 곳이면 **3로 2개 사이에 4로 1개**를 끼운다.
-<svg viewBox="0 0 320 150" role="img" aria-label="3로 스위치 두 개로 한 등을 제어하는 결선">
+<svg viewBox="0 0 320 156" role="img" aria-label="3로 스위치 두 개로 한 등을 제어하는 결선">
   <text x="10" y="16" class="lbl">두 곳에서 — 3로 2개</text>
   <path d="M14 46 H46" class="ln"/>
   <text x="14" y="38" class="sub">전원</text>
@@ -381,7 +381,7 @@ $U$ 는 나누고 $D$ 는 곱한다.
   <path d="M52 46 L88 60" class="ln2"/>
   <text x="60" y="76" class="sub">3로 ①</text>
   <path d="M88 32 H196 M88 60 H196" class="ln"/>
-  <text x="132" y="26" class="sub">중간 2가닥(전선 3가닥 필요)</text>
+  <text x="142" y="26" text-anchor="middle" class="sub">중간 2가닥</text>
   <circle cx="196" cy="32" r="3.5" class="ln" fill="var(--ink)"/>
   <circle cx="196" cy="60" r="3.5" class="ln" fill="var(--ink)"/>
   <path d="M196 32 L232 46" class="acc"/>
@@ -393,7 +393,8 @@ $U$ 는 나누고 $D$ 는 곱한다.
   <text x="280" y="76" text-anchor="middle" class="sub">등</text>
   <path d="M10 96 H310" class="ln2"/>
   <text x="10" y="118" class="lbl">세 곳에서 — 3로 2개 + 4로 1개</text>
-  <text x="10" y="138" class="sub">3로 ① — 4로 — 3로 ② 순서로 잇는다. 4로는 혼자 못 쓰고 반드시 3로 사이에 들어간다.</text>
+  <text x="10" y="134" class="sub">3로 ① — 4로 — 3로 ② 순서로 잇는다.</text>
+  <text x="10" y="147" class="sub">4로는 혼자 못 쓰고 반드시 3로 사이에 들어간다.</text>
 </svg>
 ::::
 
