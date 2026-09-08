@@ -1512,6 +1512,117 @@ $2\,\mathrm{mm}^2$ 를 그대로 넣으면 $0.00000085\,\Omega$ 이 나온다 �
 
 ---
 
+## 🖼 그림으로 보기
+
+**계산이 몰린 과목이라, 식이 무엇을 재는 것인지 그림으로 잡아두면 대입이 쉬워진다.**
+(전압·전류·저항, 직렬·병렬, 자기회로, 코일·콘덴서 위상, 전력 3형제, Y/Δ 는
+**핵심 탭**에 그려 뒀다.)
+
+### 🎯 가우스 법칙 — 모양마다 거리가 다르게 들어간다
+
+:::: 법칙은 하나인데 **전하를 감싸는 면의 넓이가 모양마다 달라서** 식이 갈린다. 그 넓이가 그대로 분모가 된다.
+<svg viewBox="0 0 320 140" role="img" aria-label="점전하 무한직선 무한평면의 전계">
+  <text x="10" y="16" class="lbl">점전하 · 구</text>
+  <circle cx="52" cy="72" r="5" fill="var(--accent)"/>
+  <circle cx="52" cy="72" r="24" class="ln2"/>
+  <path d="M52 72 L52 48 M52 72 L76 72 M52 72 L52 96 M52 72 L28 72" class="acc"/>
+  <text x="52" y="118" text-anchor="middle" class="sub">겉넓이 4πr²</text>
+  <text x="52" y="132" text-anchor="middle" class="lbl">E ∝ 1/r²</text>
+  <path d="M108 26 V128" class="ln2"/>
+  <text x="122" y="16" class="lbl">무한 직선</text>
+  <path d="M150 40 V104" class="ln" stroke-width="3"/>
+  <ellipse cx="150" cy="72" rx="26" ry="9" class="ln2"/>
+  <path d="M150 72 L176 72 M150 72 L124 72" class="acc"/>
+  <text x="150" y="118" text-anchor="middle" class="sub">둘레 2πr</text>
+  <text x="150" y="132" text-anchor="middle" class="lbl">E ∝ 1/r</text>
+  <path d="M206 26 V128" class="ln2"/>
+  <text x="222" y="16" class="lbl">무한 평면</text>
+  <path d="M240 38 V106" class="ln" stroke-width="3"/>
+  <path d="M240 56 H278 M240 72 H278 M240 88 H278" class="acc"/>
+  <path d="M240 56 H202 M240 72 H202 M240 88 H202" class="acc"/>
+  <text x="240" y="118" text-anchor="middle" class="sub">넓어지지 않는다</text>
+  <text x="240" y="132" text-anchor="middle" class="lbl">거리 무관</text>
+</svg>
+::::
+
+> **손잡이 — "거리가 식에 들어가는지"로 모양을 되짚는다.**
+> $r^2$ 이면 점·구, $r$ 이면 무한 직선, **거리가 없으면 무한 평면**이다.
+
+### 🌀 전류가 만드는 자계 4종 — 무엇을 모으느냐
+
+:::: 같은 이야기인데 **자계를 얼마나 잘 모으느냐**에 따라 분모가 달라진다. 잘 모을수록 분모가 단순해진다.
+<svg viewBox="0 0 320 150" role="img" aria-label="직선 원형 솔레노이드 환상 솔레노이드의 자계">
+  <text x="8" y="16" class="lbl">① 직선</text>
+  <path d="M38 34 V96" class="ln" stroke-width="3"/>
+  <ellipse cx="38" cy="65" rx="22" ry="8" class="acc"/>
+  <text x="38" y="116" text-anchor="middle" class="sub">I / 2πr</text>
+  <path d="M78 26 V138" class="ln2"/>
+  <text x="88" y="16" class="lbl">② 원형</text>
+  <ellipse cx="118" cy="65" rx="26" ry="26" class="ln"/>
+  <path d="M118 65 h20" class="acc"/>
+  <path d="M132 60 l8 5 -8 5" class="acc"/>
+  <text x="118" y="116" text-anchor="middle" class="sub">NI / 2r</text>
+  <path d="M158 26 V138" class="ln2"/>
+  <text x="168" y="16" class="lbl">③ 솔레노이드</text>
+  <path d="M172 50 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0" class="ln"/>
+  <path d="M172 80 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0" class="ln"/>
+  <path d="M176 65 h56" class="acc"/>
+  <path d="M226 60 l8 5 -8 5" class="acc"/>
+  <text x="204" y="116" text-anchor="middle" class="sub">NI / ℓ = n₀I</text>
+  <path d="M244 26 V138" class="ln2"/>
+  <text x="252" y="16" class="lbl">④ 환상</text>
+  <circle cx="282" cy="65" r="26" class="ln"/>
+  <circle cx="282" cy="65" r="13" class="ln"/>
+  <path d="M282 39 A26 26 0 0 1 308 65" class="acc"/>
+  <text x="282" y="116" text-anchor="middle" class="sub">NI / 2πr</text>
+  <text x="8" y="140" class="sub">잘 모을수록 분모가 단순해진다 · ④ 는 외부 자계 0, μ 와 무관</text>
+</svg>
+::::
+
+> **⚠ $N$ 과 $n_0$ 을 구분한다.** $N$ 은 **총 권수**, $n_0$ 은 **1 m 당 권수**($=N/\ell$).
+> ③에서 두 표기는 같은 식이다.
+
+### 📐 R-L-C 임피던스 — 직각으로 더한다
+
+:::: 저항과 리액턴스는 **방향이 90° 다르다.** 그래서 그냥 더하지 못하고 **피타고라스로** 더한다. $\cos\theta = R/Z$ 가 역률이다.
+<svg viewBox="0 0 320 140" role="img" aria-label="임피던스 삼각형">
+  <path d="M60 106 H210" class="ln"/>
+  <path d="M210 106 V46" class="ln"/>
+  <path d="M60 106 L210 46" class="acc"/>
+  <path d="M198 106 V94 H210" class="ln2"/>
+  <text x="135" y="124" text-anchor="middle" class="lbl">R</text>
+  <text x="224" y="80" class="lbl">X_L − X_C</text>
+  <text x="126" y="66" text-anchor="middle" class="lbl">Z</text>
+  <text x="76" y="100" class="sub">θ</text>
+  <text x="250" y="118" class="sub">cosθ = R/Z</text>
+  <text x="60" y="30" class="sub">R = 3, X = 4 면 Z = 5 — 제곱할 것 없다(3-4-5)</text>
+</svg>
+::::
+
+> **손잡이 — 3-4-5 를 노린다.** $R,X$ 가 3·4(또는 6·8)면 $Z$ 는 5(또는 10).
+> 시험은 대개 이렇게 깔끔한 값으로 낸다.
+
+### 📊 실효값 · 평균값 — 어느 것이 위인가
+
+:::: **실효값 0.707 · 평균값 0.637** — 실효가 항상 위다. 우리가 쓰는 220 V 가 실효값이고, 최댓값은 311 V 다.
+<svg viewBox="0 0 320 140" role="img" aria-label="최댓값 실효값 평균값의 크기 비교">
+  <path d="M20 106 H300" class="ln2"/>
+  <path d="M20 106 q35 -76 70 0 t70 0 t70 0 t70 0" class="ln"/>
+  <path d="M20 34 H300" class="ln2"/>
+  <text x="304" y="38" text-anchor="end" class="sub">최댓값 Vm (1.0)</text>
+  <path d="M20 55 H300" class="acc"/>
+  <text x="304" y="52" text-anchor="end" class="sub">실효값 0.707</text>
+  <path d="M20 65 H300" class="ln2"/>
+  <text x="304" y="78" text-anchor="end" class="sub">평균값 0.637</text>
+  <text x="20" y="128" class="sub">파형률 = 실효/평균 ≈ 1.11 · 파고율 = 최대/실효 ≈ 1.414</text>
+</svg>
+::::
+
+> **검산 — 실효값이 최댓값보다 크면 무조건 틀린 것이다.**
+> 평균값이 실효값보다 커도 틀렸다.
+
+---
+
 ## ✅ 시험 직전 30초 체크리스트
 
 1. 실효값 $= V_m/\sqrt2$, 평균값 $= 2V_m/\pi$, **파형률 1.11 / 파고율 1.414**

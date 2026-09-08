@@ -472,6 +472,104 @@ $0.9^2 = 0.81$ 이라 19 % 감소다.
 
 ---
 
+## 🖼 그림으로 보기
+
+**기기는 "무엇이 돌고 무엇이 멈춰 있나"만 잡으면 절반이 풀린다.**
+
+### 🔄 동기속도 — 극수가 많으면 왜 느린가
+
+:::: 극이 많으면 **한 바퀴 도는 동안 N·S 를 여러 번 지나므로**, 천천히 돌아도 같은 주파수가 나온다. 그래서 $N_s = 120f/P$ 에서 극수가 분모다.
+<svg viewBox="0 0 320 140" role="img" aria-label="2극과 4극의 동기속도 비교">
+  <text x="12" y="16" class="lbl">2극 — 3600 rpm</text>
+  <circle cx="72" cy="72" r="40" class="ln"/>
+  <path d="M72 32 A40 40 0 0 1 72 112 Z" class="fill"/>
+  <text x="88" y="56" class="sub">N</text>
+  <text x="48" y="96" class="sub">S</text>
+  <path d="M72 72 L72 40" class="acc"/>
+  <text x="72" y="130" text-anchor="middle" class="sub">7200 ÷ 2</text>
+  <path d="M160 20 V128" class="ln2"/>
+  <text x="196" y="16" class="lbl">4극 — 1800 rpm</text>
+  <circle cx="248" cy="72" r="40" class="ln"/>
+  <path d="M248 32 A40 40 0 0 1 288 72 Z" class="fill"/>
+  <path d="M248 112 A40 40 0 0 1 208 72 Z" class="fill"/>
+  <text x="264" y="52" class="sub">N</text>
+  <text x="224" y="52" class="sub">S</text>
+  <text x="264" y="98" class="sub">S</text>
+  <text x="224" y="98" class="sub">N</text>
+  <path d="M248 72 L248 40" class="acc"/>
+  <text x="248" y="130" text-anchor="middle" class="sub">7200 ÷ 4</text>
+</svg>
+::::
+
+> **손잡이 — 60 Hz 는 7200 만 외운다.** 극수로 나누기만 하면 된다.
+> 2극 3600 · 4극 1800 · 6극 1200 · 8극 900.
+
+### 🔃 슬립 — 왜 동기속도에 못 닿나
+
+:::: 회전자계와 회전자 사이에 **속도 차이가 있어야** 자속을 끊고, 끊어야 전류가 생기고, 전류가 있어야 힘이 난다. 같은 속도가 되면 **끊을 게 없어 토크가 0** 이라 곧 느려진다.
+<svg viewBox="0 0 320 130" role="img" aria-label="회전자계와 회전자의 속도 차이가 슬립">
+  <path d="M20 44 H300" class="ln2"/>
+  <path d="M20 44 H272" class="acc"/>
+  <path d="M266 39 l8 5 -8 5" class="acc"/>
+  <text x="20" y="34" class="lbl">회전자계 Ns (동기속도)</text>
+  <path d="M20 86 H300" class="ln2"/>
+  <path d="M20 86 H236" class="ln"/>
+  <path d="M230 81 l8 5 -8 5" class="ln"/>
+  <text x="20" y="76" class="lbl">회전자 N (실제 회전)</text>
+  <path d="M236 96 H272" class="ln2"/>
+  <path d="M236 92 V100 M272 92 V100" class="ln"/>
+  <text x="254" y="116" text-anchor="middle" class="lbl">이 차이 = 슬립</text>
+  <text x="20" y="116" class="sub">전부하 s = 0.03~0.05 · 정지 s = 1</text>
+</svg>
+::::
+
+> **손잡이 — "슬립은 버리는 비율".** $s = 0.05$ 면 5 %를 열로 버리고 95 %가 출력.
+> $P_2 : P_{c2} : P_0 = 1 : s : (1-s)$ 가 그 이야기다.
+
+### 📐 변압기 권수비 — 전압과 전류가 반대로 간다
+
+:::: **에너지를 만들지 않는다**($V_1I_1 = V_2I_2$). 전압이 $a$ 배 오르면 전류는 $1/a$ 로 줄어야 한다 — 그래서 첨자 순서가 반대로 적힌다.
+<svg viewBox="0 0 320 140" role="img" aria-label="변압기 권수비에서 전압과 전류의 관계">
+  <path d="M148 26 V116 M172 26 V116" class="ln"/>
+  <path d="M120 40 q-12 8 0 16 M120 56 q-12 8 0 16 M120 72 q-12 8 0 16" class="acc"/>
+  <path d="M200 44 q12 8 0 16 M200 60 q12 8 0 16" class="acc"/>
+  <text x="104" y="34" text-anchor="middle" class="lbl">1차 N₁</text>
+  <text x="216" y="34" text-anchor="middle" class="lbl">2차 N₂</text>
+  <path d="M60 44 H120 M60 84 H120 M60 44 V84" class="ln"/>
+  <text x="46" y="68" text-anchor="middle" class="sub">V₁</text>
+  <path d="M200 52 H260 M200 76 H260 M260 52 V76" class="ln"/>
+  <text x="276" y="68" text-anchor="middle" class="sub">V₂</text>
+  <text x="160" y="132" text-anchor="middle" class="lbl">a = N₁/N₂ = V₁/V₂ = I₂/I₁</text>
+  <text x="88" y="104" text-anchor="middle" class="sub">I₁ 작다</text>
+  <text x="232" y="100" text-anchor="middle" class="sub">I₂ 크다</text>
+</svg>
+::::
+
+> **손잡이 — "전압은 그대로, 전류는 뒤집어, 임피던스는 제곱".**
+> $V$ 는 $V_1/V_2$ 인데 $I$ 는 $I_2/I_1$ 로 **첨자가 반대**다.
+
+### 🚀 Y-Δ 기동 — 왜 기동전류가 1/3 이 되나
+
+:::: 기동할 때 **Y로 걸면 각 상에 걸리는 전압이 $1/\sqrt3$** 로 줄어, **전류와 토크가 1/3** 이 된다. 속도가 붙으면 Δ 로 바꿔 정상 운전한다.
+<svg viewBox="0 0 320 140" role="img" aria-label="Y 기동에서 델타 운전으로 전환">
+  <text x="12" y="16" class="lbl">기동 — Y</text>
+  <path d="M62 76 V38 M62 76 L32 106 M62 76 L92 106" class="ln"/>
+  <circle cx="62" cy="76" r="3.5" class="ln" fill="var(--ink)"/>
+  <text x="62" y="128" text-anchor="middle" class="sub">전압 1/√3 → 전류·토크 1/3</text>
+  <path d="M132 70 h48" class="acc"/>
+  <path d="M174 64 l8 6 -8 6" class="acc"/>
+  <text x="156" y="58" text-anchor="middle" class="sub">타이머</text>
+  <text x="216" y="16" class="lbl">운전 — Δ</text>
+  <path d="M252 40 L216 104 H288 Z" class="ln"/>
+  <text x="252" y="128" text-anchor="middle" class="sub">전압 그대로 → 정상 토크</text>
+</svg>
+::::
+
+> **⚠ MC-Y 와 MC-Δ 사이에는 반드시 인터록**이 있어야 한다.
+> 둘이 동시에 투입되면 **단락 사고**다.
+
+---
+
 ## ✅ 시험 직전 30초 체크리스트
 
 1. $N_s = 120f/P$ · $E = PZ\Phi N/60a$ · $E = 4.44 f N \Phi_m$ — 세 공식은 손으로 쓸 것

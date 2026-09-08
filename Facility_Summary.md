@@ -364,6 +364,123 @@ $U$ 는 나누고 $D$ 는 곱한다.
 
 ---
 
+## 🖼 그림으로 보기
+
+**설비는 그림으로 외우면 훨씬 빨리 붙는다.** 아래 넷은 글로 읽으면 안 그려지는데
+그림 한 장이면 끝나는 것들이다.
+
+### 🔀 3로 · 4로 스위치 — 두 곳에서 켜고 끄기
+
+:::: **3로 스위치 2개**로 한 등을 두 곳에서 켜고 끈다(계단 위·아래). 세 곳이면 **3로 2개 사이에 4로 1개**를 끼운다.
+<svg viewBox="0 0 320 150" role="img" aria-label="3로 스위치 두 개로 한 등을 제어하는 결선">
+  <text x="10" y="16" class="lbl">두 곳에서 — 3로 2개</text>
+  <path d="M14 46 H46" class="ln"/>
+  <text x="14" y="38" class="sub">전원</text>
+  <circle cx="52" cy="46" r="4" class="ln" fill="var(--ink)"/>
+  <path d="M52 46 L88 32" class="acc"/>
+  <path d="M52 46 L88 60" class="ln2"/>
+  <text x="60" y="76" class="sub">3로 ①</text>
+  <path d="M88 32 H196 M88 60 H196" class="ln"/>
+  <text x="132" y="26" class="sub">중간 2가닥(전선 3가닥 필요)</text>
+  <circle cx="196" cy="32" r="3.5" class="ln" fill="var(--ink)"/>
+  <circle cx="196" cy="60" r="3.5" class="ln" fill="var(--ink)"/>
+  <path d="M196 32 L232 46" class="acc"/>
+  <text x="204" y="76" class="sub">3로 ②</text>
+  <circle cx="238" cy="46" r="4" class="ln" fill="var(--ink)"/>
+  <path d="M242 46 H266" class="ln"/>
+  <circle cx="280" cy="46" r="13" class="ln"/>
+  <path d="M271 37 L289 55 M289 37 L271 55" class="ln"/>
+  <text x="280" y="76" text-anchor="middle" class="sub">등</text>
+  <path d="M10 96 H310" class="ln2"/>
+  <text x="10" y="118" class="lbl">세 곳에서 — 3로 2개 + 4로 1개</text>
+  <text x="10" y="138" class="sub">3로 ① — 4로 — 3로 ② 순서로 잇는다. 4로는 혼자 못 쓰고 반드시 3로 사이에 들어간다.</text>
+</svg>
+::::
+
+> **손잡이 — "곳의 수 = 3로 2개 + 4로 (곳−2)개".**
+> 두 곳이면 4로 0개, 세 곳이면 1개, 네 곳이면 2개다.
+
+### 🎨 전선 색상 (KEC) — 매회 나온다
+
+:::: **갈 · 흑 · 회 · 청**, 그리고 보호도체(접지)만 **녹색-노란색 혼합**이다. 색을 바꿔 내는 함정이 자주 나온다.
+<svg viewBox="0 0 320 118" role="img" aria-label="KEC 전선 식별 색상">
+  <rect x="16" y="26" width="46" height="30" rx="4" fill="#8A5533"/>
+  <text x="39" y="46" text-anchor="middle" class="lbl" fill="#fff">L1</text>
+  <text x="39" y="72" text-anchor="middle" class="sub">갈색</text>
+  <rect x="72" y="26" width="46" height="30" rx="4" fill="#232323"/>
+  <text x="95" y="46" text-anchor="middle" class="lbl" fill="#fff">L2</text>
+  <text x="95" y="72" text-anchor="middle" class="sub">흑색</text>
+  <rect x="128" y="26" width="46" height="30" rx="4" fill="#8C8C8C"/>
+  <text x="151" y="46" text-anchor="middle" class="lbl" fill="#fff">L3</text>
+  <text x="151" y="72" text-anchor="middle" class="sub">회색</text>
+  <rect x="184" y="26" width="46" height="30" rx="4" fill="#2F6FB5"/>
+  <text x="207" y="46" text-anchor="middle" class="lbl" fill="#fff">N</text>
+  <text x="207" y="72" text-anchor="middle" class="sub">청색</text>
+  <rect x="240" y="26" width="60" height="30" rx="4" fill="#4C9A2A"/>
+  <path d="M240 26 h60 v30 h-60 Z" fill="none"/>
+  <path d="M244 56 L300 26" stroke="#E8D64A" stroke-width="9"/>
+  <text x="270" y="46" text-anchor="middle" class="lbl" fill="#fff">PE</text>
+  <text x="270" y="72" text-anchor="middle" class="sub">녹-황 혼합</text>
+  <text x="16" y="98" class="sub">L1·L2·L3 = 상(전압선), N = 중성선, PE = 보호도체(접지)</text>
+  <text x="16" y="112" class="sub">⚠ 접지에 녹색만 쓰지 않는다 — 반드시 녹색-노란색 혼합이다.</text>
+</svg>
+::::
+
+> **손잡이 — "갈흑회청, 접지는 녹황".** 상 3개를 순서대로 외우고 중성선이 청색.
+
+### 🗼 가공전선로 높이 — 숫자만 묻는다
+
+:::: 계산이 없다. **숫자만 외우면 바로 점수**다. 가공인입선은 한 단계씩 완화된다.
+<svg viewBox="0 0 320 150" role="img" aria-label="가공전선로 최소 높이">
+  <path d="M28 22 V128" class="ln"/>
+  <path d="M20 128 H308" class="ln"/>
+  <path d="M28 34 H300" class="acc"/>
+  <text x="34" y="28" class="sub">전선</text>
+  <path d="M92 34 V128" class="ln2"/>
+  <text x="92" y="146" text-anchor="middle" class="lbl">도로</text>
+  <text x="92" y="86" text-anchor="middle" class="lbl">6 m</text>
+  <path d="M170 34 V128" class="ln2"/>
+  <text x="170" y="146" text-anchor="middle" class="lbl">철도</text>
+  <text x="170" y="86" text-anchor="middle" class="lbl">6.5 m</text>
+  <path d="M248 34 V128" class="ln2"/>
+  <text x="248" y="146" text-anchor="middle" class="lbl">보도</text>
+  <text x="248" y="86" text-anchor="middle" class="lbl">3.5 m</text>
+</svg>
+::::
+
+> **손잡이 — "철도는 육오(6.5)"**. 다른 숫자보다 훨씬 자주 나오는 단골이다.
+> **가공인입선은 한 단계 완화** — 도로 5 m, 보도 3 m.
+
+### 📏 지지점 간격 — 관 종류마다 다르다
+
+:::: 관이 **약할수록 자주 잡아줘야** 한다. 합성수지관이 제일 약해 1.5 m, 금속덕트가 제일 튼튼해 3 m 다.
+<svg viewBox="0 0 320 150" role="img" aria-label="공사 방법별 지지점 간격">
+  <text x="10" y="18" class="sub">간격이 짧을수록 자주 잡아준다 = 약한 관</text>
+  <text x="12" y="42" class="lbl">가요전선관</text>
+  <rect x="112" y="30" width="40" height="14" rx="3" class="fill"/>
+  <rect x="112" y="30" width="40" height="14" rx="3" class="ln"/>
+  <text x="292" y="42" text-anchor="end" class="lbl">1 m</text>
+  <text x="12" y="68" class="lbl">합성수지관</text>
+  <rect x="112" y="56" width="60" height="14" rx="3" class="fill"/>
+  <rect x="112" y="56" width="60" height="14" rx="3" class="ln"/>
+  <text x="292" y="68" text-anchor="end" class="lbl">1.5 m</text>
+  <text x="12" y="94" class="lbl">금속관 · 케이블</text>
+  <rect x="112" y="82" width="80" height="14" rx="3" class="fill"/>
+  <rect x="112" y="82" width="80" height="14" rx="3" class="ln"/>
+  <text x="292" y="94" text-anchor="end" class="lbl">2 m</text>
+  <text x="12" y="120" class="lbl">금속덕트</text>
+  <rect x="112" y="108" width="120" height="14" rx="3" class="fill"/>
+  <rect x="112" y="108" width="120" height="14" rx="3" class="ln"/>
+  <text x="292" y="120" text-anchor="end" class="lbl">3 m</text>
+  <text x="12" y="142" class="sub">가요 1 → 합성수지 1.5 → 금속관·케이블 2 → 금속덕트 3</text>
+</svg>
+::::
+
+> **손잡이 — "1 · 1.5 · 2 · 3"** 네 숫자만 순서대로 외운다.
+> 약한 것부터 튼튼한 것 순이다.
+
+---
+
 ## ✅ 시험 직전 30초 체크리스트
 
 1. **저압 = AC 1 kV / DC 1.5 kV 이하**, 전선 색상 **갈·흑·회·청 + 녹황(PE)**
