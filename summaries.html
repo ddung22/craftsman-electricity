@@ -138,6 +138,14 @@ blockquote{
 blockquote p{margin:.2rem 0;}
 .star{color:var(--pe); font-weight:700;}
 
+/* --- ▽ 후순위 — 시간이 없으면 여기부터 버린다 --- */
+h3.low{opacity:.55;}
+h3.low::after{
+  content:"후순위"; margin-left:.45rem; padding:.1rem .4rem;
+  border:1px solid var(--line); border-radius:.35rem;
+  font-size:.68rem; font-weight:700; color:var(--muted); vertical-align:middle;
+}
+
 /* --- 접이식 상세 설명(::: 블록) --- */
 .fig{
   margin:1rem 0 1.25rem; padding:1rem .75rem .6rem;
@@ -309,35 +317,35 @@ html{scroll-behavior:smooth;}
 <section class="card" id="k0-s2"><h2>2. 그림으로 잡는 개념 6가지</h2>
 <p><strong>글로 읽어도 안 그려지는 것들만 모았다.</strong> 이 여섯 개가 머릿속에 그림으로</p>
 <p>남으면 계산 문제의 절반은 무엇을 묻는지 바로 보인다.</p>
-<h3>💧 ① 전압 · 전류 · 저항 — 물이 흐르는 관</h3>
+<h3 class="h3">💧 ① 전압 · 전류 · 저항 — 물이 흐르는 관</h3>
 <figure class="fig"><svg viewBox="0 0 320 130" role="img" aria-label="물관 비유로 본 전압 전류 저항">  <rect x="18" y="52" width="34" height="34" rx="4" class="ln"/>  <text x="35" y="74" text-anchor="middle" class="lbl">펌프</text>  <text x="35" y="104" text-anchor="middle" class="sub">전압 V</text>  <path d="M52 60 H150" class="ln"/>  <path d="M52 78 H150" class="ln"/>  <path d="M150 60 L150 48 M150 78 L150 90" class="ln"/>  <path d="M150 48 H196 M150 90 H196" class="ln"/>  <rect x="150" y="48" width="46" height="42" class="fill"/>  <text x="173" y="34" text-anchor="middle" class="sub">넓은 관 = 저항 작음</text>  <path d="M196 48 L196 62 M196 90 L196 76" class="ln"/>  <path d="M196 62 H262 M196 76 H262" class="ln"/>  <rect x="196" y="62" width="66" height="14" class="fill"/>  <text x="229" y="106" text-anchor="middle" class="sub">좁은 관 = 저항 큼</text>  <path d="M70 69 h22 M100 69 h22" class="acc"/>  <path d="M118 64 l8 5 -8 5" class="acc"/>  <text x="96" y="118" text-anchor="middle" class="sub">물살 = 전류 I</text>  <path d="M282 69 h18" class="acc"/>  <path d="M296 64 l8 5 -8 5" class="acc"/></svg><figcaption><strong>펌프가 세면(전압↑) 물이 많이 흐르고, 관이 좁으면(저항↑) 덜 흐른다.</strong> 옴의 법칙 <span class="math"><i>I</i> <span class="op">=</span> <i>V</i>/<i>R</i></span> 이 이 그림 그대로다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — <span class="math"><i>V</i></span> 를 맨 위에 둔 삼각형.</strong> 위에 <span class="math"><i>V</i></span>, 아래에 <span class="math"><i>I</i></span> 와 <span class="math"><i>R</i></span>.</p>
 <p>구하려는 것을 손으로 가리면 남은 모양이 답이다.</p>
 </blockquote>
-<h3>🔗 ② 직렬 vs 병렬 — 길어지느냐 넓어지느냐</h3>
+<h3 class="h3">🔗 ② 직렬 vs 병렬 — 길어지느냐 넓어지느냐</h3>
 <figure class="fig"><svg viewBox="0 0 320 150" role="img" aria-label="직렬과 병렬 비교">  <text x="14" y="20" class="lbl">직렬</text>  <path d="M14 46 H60" class="ln"/>  <rect x="60" y="36" width="42" height="20" rx="3" class="ln"/>  <text x="81" y="50" text-anchor="middle" class="sub">R₁</text>  <path d="M102 46 H130" class="ln"/>  <rect x="130" y="36" width="42" height="20" rx="3" class="ln"/>  <text x="151" y="50" text-anchor="middle" class="sub">R₂</text>  <path d="M172 46 H210" class="ln"/>  <text x="255" y="50" text-anchor="middle" class="lbl">R₁ + R₂</text>  <text x="255" y="66" text-anchor="middle" class="sub">길이 ↑ → 커진다</text>  <path d="M10 86 H310" class="ln2"/>  <text x="14" y="110" class="lbl">병렬</text>  <path d="M14 122 H50 M50 106 V138" class="ln"/>  <rect x="50" y="96" width="42" height="20" rx="3" class="ln"/>  <text x="71" y="110" text-anchor="middle" class="sub">R₁</text>  <rect x="50" y="128" width="42" height="20" rx="3" class="ln"/>  <text x="71" y="142" text-anchor="middle" class="sub">R₂</text>  <path d="M92 106 H120 M92 138 H120 M120 106 V138 M120 122 H160" class="ln"/>  <text x="245" y="118" text-anchor="middle" class="lbl">가장 작은 것보다 작다</text>  <text x="245" y="134" text-anchor="middle" class="sub">넓이 ↑ → 줄어든다</text></svg><figcaption><strong>직렬은 관이 길어진 것</strong>(저항이 더해진다), <strong>병렬은 관이 넓어진 것</strong>(저항이 줄어든다). 그래서 병렬 합성은 <strong>가장 작은 저항보다도 작다.</strong></figcaption></figure>
 <blockquote>
 <p><strong>⚠ 콘덴서는 정반대다.</strong> 병렬이 더하기, 직렬이 분수. 표를 대각선으로 기억한다.</p>
 </blockquote>
-<h3>🧲 ③ 자기회로 — 전기회로를 그대로 베낀 것</h3>
+<h3 class="h3">🧲 ③ 자기회로 — 전기회로를 그대로 베낀 것</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="전기회로와 자기회로 비교">  <text x="12" y="18" class="lbl">전기회로</text>  <path d="M20 40 H130 V96 H20 Z" class="ln"/>  <rect x="10" y="56" width="20" height="24" rx="3" class="ln" fill="var(--surface)"/>  <text x="20" y="72" text-anchor="middle" class="sub">E</text>  <rect x="60" y="30" width="30" height="18" rx="3" class="ln" fill="var(--surface)"/>  <text x="75" y="43" text-anchor="middle" class="sub">R</text>  <path d="M96 68 h16" class="acc"/><path d="M108 63 l8 5 -8 5" class="acc"/>  <text x="104" y="88" text-anchor="middle" class="sub">I</text>  <text x="75" y="120" text-anchor="middle" class="sub">I = E / R</text>  <path d="M160 26 V132" class="ln2"/>  <text x="182" y="18" class="lbl">자기회로</text>  <path d="M190 40 H300 V96 H190 Z" class="ln" stroke-width="7" opacity=".28"/>  <path d="M190 40 H300 V96 H190 Z" class="ln"/>  <path d="M186 44 q-10 6 0 12 M186 58 q-10 6 0 12 M186 72 q-10 6 0 12" class="acc"/>  <text x="176" y="102" text-anchor="middle" class="sub">NI</text>  <path d="M266 68 h16" class="acc"/><path d="M278 63 l8 5 -8 5" class="acc"/>  <text x="274" y="88" text-anchor="middle" class="sub">Φ</text>  <text x="245" y="120" text-anchor="middle" class="sub">Φ = NI / Rₘ</text></svg><figcaption>자속·기자력이라는 말이 안 그려지면 <strong>전기회로 옆에 나란히 놓고 본다.</strong> 밀어주는 힘 ÷ 막는 것 = 흐르는 것 — 구조가 똑같다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;<span class="math"><i>E</i><span class="op">→</span><i>F</i><sub><i>m</i></sub></span>, <span class="math"><i>R</i><span class="op">→</span><i>R</i><sub><i>m</i></sub></span>, <span class="math"><i>I</i><span class="op">→</span><span class="op">Φ</span></span>&quot;.</strong></p>
 <p>옴의 법칙을 알면 자기회로는 <strong>글자만 바꾸면 된다.</strong></p>
 </blockquote>
-<h3>〰️ ④ 코일과 콘덴서 — 누가 앞서고 누가 뒤지나</h3>
+<h3 class="h3">〰️ ④ 코일과 콘덴서 — 누가 앞서고 누가 뒤지나</h3>
 <figure class="fig"><svg viewBox="-14 0 348 150" role="img" aria-label="코일과 콘덴서의 위상차">  <text x="10" y="16" class="lbl">코일 L — 전류가 뒤진다</text>  <path d="M10 46 H300" class="ln2"/>  <path d="M10 46 q20 -26 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" class="ln"/>  <path d="M32 46 q20 -26 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" class="acc"/>  <text x="292" y="34" text-anchor="end" class="sub">— 전압  — 전류(밀림)</text>  <path d="M10 96 H300" class="ln2"/>  <text x="10" y="80" class="lbl">콘덴서 C — 전류가 앞선다</text>  <path d="M10 96 q20 -26 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" class="ln"/>  <path d="M-12 96 q20 -26 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" class="acc"/>  <text x="10" y="126" class="sub">코일은 f 가 높을수록 더 막고(X_L = 2πfL), 콘덴서는 덜 막는다(X_C = 1/2πfC).</text>  <text x="10" y="142" class="sub">직류(f = 0)에서 코일은 그냥 도선, 콘덴서는 아예 안 통한다.</text></svg><figcaption><strong>코일은 전류가 뒤지고(지상), 콘덴서는 전류가 앞선다(진상).</strong> 전압 곡선을 기준으로 전류 곡선이 오른쪽으로 밀리면 뒤진 것, 왼쪽이면 앞선 것이다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;코뒤콘앞&quot;</strong>: <strong>코</strong>일은 전류가 <strong>뒤</strong>지고, <strong>콘</strong>덴서는 전류가 <strong>앞</strong>선다.</p>
 </blockquote>
-<h3>🍺 ⑤ 전력 3형제 — 맥주잔</h3>
+<h3 class="h3">🍺 ⑤ 전력 3형제 — 맥주잔</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="전력 3형제 맥주잔과 직각삼각형">  <path d="M40 34 H104 V120 Q72 130 40 120 Z" class="ln"/>  <path d="M40 34 H104 V62 H40 Z" class="fill"/>  <path d="M40 62 H104" class="ln2"/>  <text x="72" y="52" text-anchor="middle" class="sub">거품 = 무효</text>  <text x="72" y="96" text-anchor="middle" class="sub">물 = 유효</text>  <text x="72" y="18" text-anchor="middle" class="lbl">잔 전체 = 피상</text>  <path d="M170 108 H280" class="ln"/>  <path d="M280 108 V48" class="ln"/>  <path d="M170 108 L280 48" class="acc"/>  <path d="M268 108 V96 H280" class="ln2"/>  <text x="225" y="126" text-anchor="middle" class="sub">P = VI cosθ [W]</text>  <text x="292" y="82" class="sub">Q</text>  <text x="212" y="70" text-anchor="middle" class="sub">Pa = VI</text>  <text x="186" y="102" class="sub">θ</text></svg><figcaption><strong>피상전력[VA]은 잔 전체, 유효전력[W]은 마시는 물, 무효전력[Var]은 거품.</strong> 거품이 많을수록(역률이 나쁠수록) 같은 잔에서 마실 게 적다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;유코무싸&quot;</strong>: <strong>유</strong>효는 <strong>코</strong>사인, <strong>무</strong>효는 <strong>사</strong>인.</p>
 <p>답의 단위가 [W]면 <span class="math"><span class="txt">cos</span></span>, [Var]면 <span class="math"><span class="txt">sin</span></span>, [VA]면 아무것도 안 붙는다.</p>
 </blockquote>
-<h3>🔺 ⑥ Y결선과 Δ결선 — 어느 쪽에 √3 이 붙나</h3>
+<h3 class="h3">🔺 ⑥ Y결선과 Δ결선 — 어느 쪽에 √3 이 붙나</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="Y결선과 델타결선">  <text x="14" y="18" class="lbl">Y (성형)</text>  <path d="M76 74 V34 M76 74 L42 108 M76 74 L110 108" class="ln"/>  <circle cx="76" cy="74" r="3.5" class="ln" fill="var(--ink)"/>  <text x="76" y="26" text-anchor="middle" class="sub">a</text>  <text x="34" y="120" class="sub">b</text>  <text x="112" y="120" class="sub">c</text>  <path d="M76 34 Q118 60 110 108" class="acc"/>  <text x="128" y="66" class="sub">선간 = √3 × 상</text>  <text x="76" y="136" text-anchor="middle" class="sub">전류는 그대로</text>  <path d="M168 26 V132" class="ln2"/>  <text x="196" y="18" class="lbl">Δ (삼각)</text>  <path d="M244 36 L206 106 H282 Z" class="ln"/>  <text x="244" y="28" text-anchor="middle" class="sub">a</text>  <text x="196" y="118" class="sub">b</text>  <text x="284" y="118" class="sub">c</text>  <path d="M206 106 h-22" class="acc"/>  <path d="M190 101 l-8 5 8 5" class="acc"/>  <text x="244" y="126" text-anchor="middle" class="sub">전압은 그대로</text>  <text x="244" y="138" text-anchor="middle" class="sub">선전류 = √3 × 상전류</text></svg><figcaption><strong>Y는 전압이 √3 배, Δ는 전류가 √3 배.</strong> 둘 중 <strong>하나에만</strong> 붙는다 — 둘 다 붙거나 둘 다 안 붙으면 틀린 것이다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;와이는 전압이, 델타는 전류가 √3&quot;.</strong></p>
@@ -373,10 +381,12 @@ html{scroll-behavior:smooth;}
 <p>그 자리에서 되살릴 수 있다. 접어둔 <strong>＋ 왜 이 식인가</strong> 안에 들어 있다.</p>
 <p>⚠️ <strong>빈도는 확정 데이터가 아니라 일반적인 경향 판단이다.</strong> 실제로 풀다가 다르면</p>
 <p><code>오답_체크리스트.md</code> 에 적어 알려줄 것 — 그 자리에서 바로 고친다.</p>
+<p><strong>▽ 후순위</strong> — 시간이 없으면 <strong>여기부터 버린다.</strong> ☆(가끔)이거나, 본문이 스스로</p>
+<p>&quot;산업기사 범위&quot;·&quot;잘 안 쓰는 공법&quot;이라고 밝힌 자리다. <strong>빈도는 확정 데이터가 아니라 &gt; 경향 판단</strong>이므로, 기출을 풀어 다르게 나오면 <code>오답_체크리스트.md</code> 에 적어 고친다.</p>
 </blockquote>
 <section class="card" id="k1-s1"><h2>1. 물질의 미시 구조와 전기량</h2>
 <p>원자(Atom)는 중심의 <strong>원자핵</strong>(양성자 + 중성자)과 그 주위를 도는 <strong>전자</strong>로 이루어진다.</p>
-<h3>🔬 원자의 구성 요소</h3>
+<h3 class="h3">🔬 원자의 구성 요소</h3>
 <ul>
 <li>
 <strong>양성자 (<span class="math"><i>p</i><sup><span class="op">+</span></sup></span>)</strong>: 원자핵 내부, 양(+)전기
@@ -386,7 +396,7 @@ html{scroll-behavior:smooth;}
 <strong>전자 (<span class="math"><i>e</i><sup><span class="op">-</span></sup></span>)</strong>: 궤도를 돌며 음(-)전기. 궤도를 쉽게 벗어나는 것이 <strong>자유전자</strong>이고,
 <br>이 자유전자의 이동이 곧 <strong>전류</strong>다.
 </li></ul>
-<h3>📐 꼭 외우는 물리상수 4개 (<span class="star">★</span>필기 초단골)</h3>
+<h3 class="h3">📐 꼭 외우는 물리상수 4개 (<span class="star">★</span>필기 초단골)</h3>
 <p><strong>이 네 개는 값 자체를 묻는다.</strong> 표를 통째로 외운다.</p>
 <div class="scroller"><table><thead><tr><th>상수</th><th>기호</th><th>값</th><th>단위</th></tr></thead><tbody><tr><td>전자의 전하</td><td><span class="math"><i>e</i></span></td><td><span class="math">1.602 <span class="op">×</span> 10<sup><span class="op">-</span>19</sup></span></td><td>[C]</td></tr><tr><td>전자의 정지질량</td><td><span class="math"><i>m</i><sub><i>e</i></sub></span></td><td><span class="math">9.109 <span class="op">×</span> 10<sup><span class="op">-</span>31</sup></span></td><td>[kg]</td></tr><tr><td>진공의 유전율</td><td><span class="math"><span class="op">ε</span><sub>0</sub></span></td><td><span class="math">8.855 <span class="op">×</span> 10<sup><span class="op">-</span>12</sup></span></td><td>[F/m]</td></tr><tr><td>진공의 투자율</td><td><span class="math"><span class="op">μ</span><sub>0</sub></span></td><td><span class="math">4<span class="op">π</span> <span class="op">×</span> 10<sup><span class="op">-</span>7</sup> <span class="op">=</span> 1.257 <span class="op">×</span> 10<sup><span class="op">-</span>6</sup></span></td><td>[H/m]</td></tr></tbody></table></div>
 <blockquote>
@@ -408,7 +418,7 @@ html{scroll-behavior:smooth;}
 <p>유전율은 <strong>전기</strong>(F/m, 콘덴서의 F), 투자율은 <strong>자기</strong>(H/m, 코일의 H) 다.</p>
 <p>단위의 F 와 H 로 구분하면 안 헷갈린다.</p>
 </blockquote>
-<h3>⚙️ 도체 · 반도체 · 절연체</h3>
+<h3 class="h3">⚙️ 도체 · 반도체 · 절연체</h3>
 <div class="scroller"><table><thead><tr><th>구분</th><th>자유전자</th><th>예</th><th>저항 온도계수</th></tr></thead><tbody><tr><td><strong>도체</strong></td><td>많다</td><td>은 &gt; 구리 &gt; 금 &gt; 알루미늄</td><td><strong>정(+)</strong> — 온도 오르면 저항 증가</td></tr><tr><td><strong>반도체</strong></td><td>중간</td><td>실리콘, 게르마늄</td><td><strong>부(-)</strong> — 온도 오르면 저항 감소</td></tr><tr><td><strong>절연체</strong></td><td>거의 없다</td><td>고무, 유리, 운모</td><td>부(-)</td></tr></tbody></table></div>
 <blockquote>
 <p><strong>함정</strong>: &quot;도전율이 가장 좋은 금속&quot;은 <strong>은(Ag)</strong> 이지만, 전선 재료로 쓰는 것은 값 때문에 <strong>구리(Cu)</strong> 다.</p>
@@ -416,7 +426,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k1-s2"><h2>2. 정전기와 쿨롱의 법칙</h2>
-<h3>⚡ 쿨롱의 법칙 (정전력) (<span class="star">★</span>자주)</h3>
+<h3 class="h3">⚡ 쿨롱의 법칙 (정전력) (<span class="star">★</span>자주)</h3>
 <p>두 전하 사이에 작용하는 힘은 <strong>전하량의 곱에 비례하고 거리의 제곱에 반비례</strong>한다.</p>
 <p class="display"><span class="math math-inline-block"><i>F</i> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den">4<span class="op">π</span><span class="op">ε</span><sub>0</sub></span></span> <span class="op">·</span> <span class="frac"><span class="num"><i>Q</i><sub>1</sub> <i>Q</i><sub>2</sub></span><span class="den"><i>r</i><sup>2</sup></span></span> <span class="op">=</span> 9 <span class="op">×</span> 10<sup>9</sup> <span class="op">·</span> <span class="frac"><span class="num"><i>Q</i><sub>1</sub> <i>Q</i><sub>2</sub></span><span class="den"><i>r</i><sup>2</sup></span></span> <span class="txt"> [N]</span></span></p>
 <ul>
@@ -442,7 +452,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;거리 2배면 힘은 1/4&quot;.</strong> 제곱인지 아닌지 헷갈리면 이 문장으로 확인한다.</p>
 <p>같은 이유로 전계 <span class="math"><i>E</i></span> 도 제곱 반비례인데, <strong>전위 <span class="math"><i>V</i></span> 만 그냥 반비례</strong>다</p>
 <p>(거리 2배면 절반). 셋이 같이 나오면 전위만 지수가 1인 것을 기억한다.</p></div></details>
-<h3>🌐 전계(전기장)와 전위</h3>
+<h3 class="h3">🌐 전계(전기장)와 전위</h3>
 <ul>
 <li>
 <strong>전계의 세기</strong>: 그 점에 1 [C] 을 놓았을 때 받는 힘
@@ -472,7 +482,7 @@ html{scroll-behavior:smooth;}
 <p>mm 그대로 넣으면 1000배 틀린다.</p>
 <p><strong>방향도 다르다</strong> — 전계는 크기와 방향이 있는 벡터, 전위는 크기만 있는 값이다.</p>
 <p>전위가 0 인 곳에서도 전계는 0 이 아닐 수 있다(두 전하 사이 중점).</p></div></details>
-<h3>〰️ 전기력선의 성질 (<span class="star">★</span>암기)</h3>
+<h3 class="h3">〰️ 전기력선의 성질 (<span class="star">★</span>암기)</h3>
 <ol>
 <li>
 양(+)전하에서 나와 음(-)전하로 들어간다.
@@ -500,7 +510,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;전속은 <span class="math"><i>Q</i></span> 개, 전기력선은 <span class="math"><i>Q</i>/<span class="op">ε</span><sub>0</sub></span> 개&quot;.</strong></p>
 <p>둘을 바꿔 쓰는 함정이 자주 나온다. <strong>전속 <span class="math"><span class="op">ψ</span> <span class="op">=</span> <i>Q</i></span> 는 유전율과 무관</strong>하다는</p>
 <p>것이 핵심 차이다.</p></div></details>
-<h3>🧲 전속과 전속밀도 (<span class="star">★</span>자주 — 수업 자료에서도 강조)</h3>
+<h3 class="h3">🧲 전속과 전속밀도 (<span class="star">★</span>자주 — 수업 자료에서도 강조)</h3>
 <p><strong>전속(電束) <span class="math"><span class="op">ψ</span></span></strong> — 전기력선을 매질과 상관없이 다발로 묶어서 센 것. 전하량과 같다.</p>
 <p class="display"><span class="math math-inline-block"><span class="op">ψ</span> <span class="op">=</span> <i>Q</i> <span class="txt"> [C]</span></span></p>
 <p><strong>전속밀도 <span class="math"><i>D</i></span></strong> — 전속을 그것이 지나가는 면적으로 나눈 것. 단위면적당 전속.</p>
@@ -526,7 +536,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;<span class="math"><i>D</i></span> 는 전하 편, <span class="math"><i>E</i></span> 는 매질 편&quot;.</strong></p>
 <p>문제에서 매질(비유전율 <span class="math"><span class="op">ε</span><sub><i>s</i></sub></span>)이 바뀌면 무엇이 변하는지 묻는 함정이</p>
 <p>나오는데, <strong><span class="math"><i>D</i></span> 는 안 변하고 <span class="math"><i>E</i></span> 가 변한다.</strong></p></div></details>
-<h3>🎯 가우스 법칙 — 전하 모양별 전계의 세기</h3>
+<h3 class="h3">🎯 가우스 법칙 — 전하 모양별 전계의 세기</h3>
 <p>닫힌 면을 뚫고 나오는 <strong>전기력선의 총수는 그 안에 든 전하량으로만 정해진다.</strong></p>
 <p class="display"><span class="math math-inline-block"><span class="op">∮</span> <i>E</i> <span class="op">·</span> <i>dS</i> <span class="op">=</span> <span class="frac"><span class="num"><i>Q</i><sub><span class="txt">내부</span></sub></span><span class="den"><span class="op">ε</span><sub>0</sub></span></span></span></p>
 <p>바깥에 무엇이 있든, 면 안의 전하가 같으면 결과가 같다.</p>
@@ -563,7 +573,7 @@ html{scroll-behavior:smooth;}
 <p><strong><span class="math"><span class="op">σ</span>/2<span class="op">ε</span><sub>0</sub></span> 과 <span class="math"><span class="op">σ</span>/<span class="op">ε</span><sub>0</sub></span> 의 차이</strong> — 평면 한 장은</p>
 <p>양쪽으로 전계가 퍼지니 절반씩(2로 나눔), 도체 표면은 한쪽으로만 나가니</p>
 <p>2가 없다.</p></div></details>
-<h3>① 점전하 · 도체구 (반지름 <span class="math"><i>R</i></span>)</h3>
+<h3 class="h3">① 점전하 · 도체구 (반지름 <span class="math"><i>R</i></span>)</h3>
 <p><strong>바깥</strong> — <span class="math"><i>r</i> <span class="op">≥</span> <i>R</i></span></p>
 <p class="display"><span class="math math-inline-block"><i>E</i> <span class="op">=</span> <span class="frac"><span class="num"><i>Q</i></span><span class="den">4<span class="op">π</span><span class="op">ε</span><sub>0</sub> <i>r</i><sup>2</sup></span></span> <span class="txt">[V/m]</span></span></p>
 <p><strong>안</strong> — <span class="math"><i>r</i> <span class="op">&lt;</span> <i>R</i></span></p>
@@ -574,7 +584,7 @@ html{scroll-behavior:smooth;}
 </li><li>
 도체 내부가 0인 이유 — 전하가 <strong>표면에만</strong> 있어서 안에는 든 전하가 없다.
 </li></ul>
-<h3>② 무한 평면 (면전하밀도 <span class="math"><span class="op">σ</span></span> [C/m²])</h3>
+<h3 class="h3">② 무한 평면 (면전하밀도 <span class="math"><span class="op">σ</span></span> [C/m²])</h3>
 <p><strong>얇은 부도체 판</strong></p>
 <p class="display"><span class="math math-inline-block"><i>E</i> <span class="op">=</span> <span class="frac"><span class="num"><span class="op">σ</span></span><span class="den">2<span class="op">ε</span><sub>0</sub></span></span> <span class="txt">[V/m]</span></span></p>
 <p><strong>도체 표면 바로 바깥</strong></p>
@@ -586,9 +596,9 @@ html{scroll-behavior:smooth;}
 도체 쪽이 <strong>2배</strong>인 이유 — 얇은 판은 앞뒤 양쪽으로 전기력선이 나가지만,
 <br>도체는 내부가 <span class="math"><i>E</i> <span class="op">=</span> 0</span> 이라 <strong>한쪽으로만</strong> 나간다.
 </li></ul>
-<h3>📊 한눈에 비교 (<span class="star">★</span>이 표만 외워도 된다)</h3>
+<h3 class="h3">📊 한눈에 비교 (<span class="star">★</span>이 표만 외워도 된다)</h3>
 <div class="scroller"><table><thead><tr><th>모양</th><th>거리 의존성</th><th>바깥 전계</th><th>안 (도체)</th></tr></thead><tbody><tr><td>점전하 · 도체구</td><td><span class="math"><span class="op">∝</span> 1/<i>r</i><sup>2</sup></span></td><td><span class="math"><span class="frac"><span class="num"><i>Q</i></span><span class="den">4<span class="op">π</span><span class="op">ε</span><sub>0</sub> <i>r</i><sup>2</sup></span></span></span></td><td><span class="math">0</span></td></tr><tr><td>무한 평면</td><td><strong>거리 무관</strong></td><td><span class="math"><span class="frac"><span class="num"><span class="op">σ</span></span><span class="den">2<span class="op">ε</span><sub>0</sub></span></span></span></td><td><span class="math">0</span></td></tr></tbody></table></div>
-<h3>왜 이렇게 갈리나 — 전기력선이 퍼지는 방향의 수로 외운다</h3>
+<h3 class="h3">왜 이렇게 갈리나 — 전기력선이 퍼지는 방향의 수로 외운다</h3>
 <p>전기력선이 퍼져나갈 면적이 커지는 만큼 전계가 묽어진다. 점전하는 사방(3차원)으로</p>
 <p>퍼지는 구면 <span class="math">4<span class="op">π</span> <i>r</i><sup>2</sup></span> 에 나눠지니 <span class="math">1/<i>r</i><sup>2</sup></span>, 평면은 퍼질 곳이 없으니 거리와 무관하게 일정하다.</p>
 <blockquote>
@@ -605,7 +615,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k1-s3"><h2>3. 콘덴서 (정전용량)</h2>
-<h3>🔋 기본 관계 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔋 기본 관계 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>C</i> <span class="op">=</span> <span class="frac"><span class="num"><i>Q</i></span><span class="den"><i>V</i></span></span> <span class="sp-q"></span> <span class="op">⟺</span> <span class="sp-q"></span> <i>Q</i> <span class="op">=</span> <i>C</i> <i>V</i> <span class="txt"> [C]</span></span></p>
 <p>단위는 <strong>패럿 [F]</strong> 이고, 실제로는 <span class="math"><span class="op">μ</span></span>F · pF 를 쓴다.</p>
 <p><strong>평행판 콘덴서</strong></p>
@@ -634,7 +644,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — 에너지 세 꼴은 <span class="math"><i>Q</i> <span class="op">=</span> <i>CV</i></span> 로 서로 바꾼 것뿐이다.</strong></p>
 <p><span class="math"><span class="frac"><span class="num">1</span><span class="den">2</span></span><i>CV</i><sup>2</sup></span> 에서 <span class="math"><i>CV</i></span> 를 <span class="math"><i>Q</i></span> 로 바꾸면 <span class="math"><span class="frac"><span class="num">1</span><span class="den">2</span></span><i>QV</i></span>, 다시 <span class="math"><i>V</i></span> 를</p>
 <p><span class="math"><i>Q</i>/<i>C</i></span> 로 바꾸면 <span class="math"><i>Q</i><sup>2</sup>/2<i>C</i></span>. 주어진 값에 맞는 것을 고르면 된다.</p></div></details>
-<h3>🔗 콘덴서의 접속 (<span class="star">★</span>저항과 반대!)</h3>
+<h3 class="h3">🔗 콘덴서의 접속 (<span class="star">★</span>저항과 반대!)</h3>
 <div class="scroller"><table><thead><tr><th>구분</th><th>합성 정전용량</th><th>전하·전압</th></tr></thead><tbody><tr><td><strong>직렬</strong></td><td><span class="math math-inline-block"><span class="frac"><span class="num">1</span><span class="den"><i>C</i><sub>0</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den"><i>C</i><sub>1</sub></span></span> <span class="op">+</span> <span class="frac"><span class="num">1</span><span class="den"><i>C</i><sub>2</sub></span></span> <span class="op">⇒</span> <i>C</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>C</i><sub>1</sub> <i>C</i><sub>2</sub></span><span class="den"><i>C</i><sub>1</sub> <span class="op">+</span> <i>C</i><sub>2</sub></span></span></span></td><td><strong>전하 <span class="math"><i>Q</i></span> 가 같다.</strong> 전압은 용량에 <strong>반비례</strong> 분배</td></tr><tr><td><strong>병렬</strong></td><td><span class="math math-inline-block"><i>C</i><sub>0</sub> <span class="op">=</span> <i>C</i><sub>1</sub> <span class="op">+</span> <i>C</i><sub>2</sub></span></td><td><strong>전압이 같다.</strong> 전하는 용량에 <strong>비례</strong> 분배</td></tr></tbody></table></div>
 <blockquote>
 <p><strong><span class="star">★</span>핵심 함정</strong>: 저항은 직렬에서 더하고, <strong>콘덴서는 병렬에서 더한다.</strong> 정확히 반대다.</p>
@@ -661,7 +671,7 @@ html{scroll-behavior:smooth;}
 <p>직렬로 하면 정확히 절반이다.</p></div></details>
 </section>
 <section class="card" id="k1-s4"><h2>4. 전압 · 전류 · 저항</h2>
-<h3>💧 세 가지 기본량</h3>
+<h3 class="h3">💧 세 가지 기본량</h3>
 <ol>
 <li>
 <strong>전류 <span class="math"><i>I</i></span></strong> — 전하의 흐름. 단위 <strong>[A]</strong>
@@ -684,7 +694,7 @@ html{scroll-behavior:smooth;}
 <p>분을 그대로 넣어 10 C 이라고 답하는 것이 대표적 실수다.</p>
 <p><strong>단위가 곧 공식이다</strong> — [A]는 [C/s]라 <span class="math"><i>I</i> <span class="op">=</span> <i>Q</i>/<i>t</i></span>, [V]는 [J/C]라 <span class="math"><i>V</i> <span class="op">=</span> <i>W</i>/<i>Q</i></span>.</p>
 <p>공식을 잊어도 단위를 떠올리면 되살아난다.</p></div></details>
-<h3>📏 전선의 고유저항 (<span class="star">★</span>매우 중요)</h3>
+<h3 class="h3">📏 전선의 고유저항 (<span class="star">★</span>매우 중요)</h3>
 <p class="display"><span class="math math-inline-block"><i>R</i> <span class="op">=</span> <span class="op">ρ</span> <span class="frac"><span class="num"><span class="op">ℓ</span></span><span class="den"><i>A</i></span></span> <span class="txt"> [</span><span class="op">Ω</span><span class="txt">]</span></span></p>
 <ul>
 <li>
@@ -703,7 +713,7 @@ html{scroll-behavior:smooth;}
 <p>답이 100만 배 어긋난다 — 계산 자체는 맞는데 자릿수만 틀리는 대표적 자리다.</p>
 <p><strong>손잡이 — &quot;길이는 위, 굵기는 아래&quot;.</strong></p>
 <p>굵은 전선이 저항이 작다는 상식과 맞으니, 헷갈리면 상식으로 되짚는다.</p></div></details>
-<h3>🌡 저항의 온도계수</h3>
+<h3 class="h3">🌡 저항의 온도계수</h3>
 <p class="display"><span class="math math-inline-block"><i>R</i><sub>2</sub> <span class="op">=</span> <i>R</i><sub>1</sub>  1 <span class="op">+</span> <span class="op">α</span><sub>1</sub> (<i>t</i><sub>2</sub> <span class="op">-</span> <i>t</i><sub>1</sub>) </span></p>
 <ul>
 <li>
@@ -731,7 +741,7 @@ html{scroll-behavior:smooth;}
 <p>값이라, 다른 온도에서 시작하면 계수도 달라진다.</p></div></details>
 </section>
 <section class="card" id="k1-s5"><h2>5. 옴의 법칙 · 전력 · 열량</h2>
-<h3>📈 옴의 법칙 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">📈 옴의 법칙 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>R</i></span></span></span></p>
 <p class="display"><span class="math math-inline-block"><i>V</i> <span class="op">=</span> <i>I</i> <i>R</i></span></p>
 <p class="display"><span class="math math-inline-block"><i>R</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>I</i></span></span></span></p>
@@ -753,7 +763,7 @@ html{scroll-behavior:smooth;}
 <p>위에 <span class="math"><i>V</i></span>, 아래 왼쪽에 <span class="math"><i>I</i></span>, 아래 오른쪽에 <span class="math"><i>R</i></span> 을 그린다.</p>
 <p>구하려는 것을 손으로 가리면 남은 모양이 답이다 — <span class="math"><i>V</i></span> 를 가리면 아래 둘이 나란히</p>
 <p>남으니 <span class="math"><i>I</i> <span class="op">×</span> <i>R</i></span>, <span class="math"><i>I</i></span> 를 가리면 <span class="math"><i>V</i></span> 가 <span class="math"><i>R</i></span> 위에 있으니 <span class="math"><i>V</i>/<i>R</i></span>.</p></div></details>
-<h3>🔌 전력과 전력량 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔌 전력과 전력량 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>P</i> <span class="op">=</span> <i>V</i> <i>I</i> <span class="op">=</span> <i>I</i><sup>2</sup> <i>R</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sup>2</sup></span><span class="den"><i>R</i></span></span> <span class="txt"> [W]</span></span></p>
 <details class="why"><summary>왜 세 가지 모양이 다 나오나</summary><div class="why-body"><p><strong>출발은 <span class="math"><i>P</i> <span class="op">=</span> <i>VI</i></span> 하나뿐이다.</strong> 전압은 &quot;전하 하나를 옮길 때 주는 에너지&quot;,</p>
 <p>전류는 &quot;1초에 지나가는 전하의 양&quot;이다. 둘을 곱하면 <strong>1초에 주는 에너지</strong>,</p>
@@ -782,7 +792,7 @@ html{scroll-behavior:smooth;}
 <p><strong>직렬</strong>은 전류가 같으니 <span class="math"><i>I</i><sup>2</sup><i>R</i></span> → <strong>저항이 큰 쪽이 더 뜨겁다.</strong></p>
 <p><strong>병렬</strong>은 전압이 같으니 <span class="math"><i>V</i><sup>2</sup>/<i>R</i></span> → <strong>저항이 작은 쪽이 더 뜨겁다.</strong> (<span class="star">★</span>단골 함정)</p>
 </blockquote>
-<h3>🔥 줄의 법칙 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔥 줄의 법칙 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>H</i> <span class="op">=</span> 0.24 <span class="sp-t"></span> <i>I</i><sup>2</sup> <i>R</i> <i>t</i> <span class="txt"> [cal]</span></span></p>
 <p class="display"><span class="math math-inline-block">1 <span class="txt"> [J]</span> <span class="op">=</span> 0.24 <span class="txt"> [cal]</span></span></p>
 <p class="display"><span class="math math-inline-block">1 <span class="txt"> [cal]</span> <span class="op">=</span> 4.186 <span class="txt"> [J]</span></span></p>
@@ -810,7 +820,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k1-s6"><h2>6. 저항의 접속과 회로 해석</h2>
-<h3>🔗 직렬 vs 병렬 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔗 직렬 vs 병렬 (<span class="star">★</span>자주)</h3>
 <details class="why"><summary>왜 직렬은 더하고 병렬은 분수인가</summary><div class="why-body"><p><strong>직렬은 길이 늘어난 것과 같다.</strong> 전류가 지나갈 길이 하나뿐이라 저항을 차례로</p>
 <p>다 통과해야 한다. 막는 것이 줄줄이 이어지니 <strong>그냥 더한다.</strong></p>
 <p><strong>병렬은 길이 넓어진 것과 같다.</strong> 갈 수 있는 길이 여러 개가 되니 전체로 보면</p>
@@ -830,7 +840,7 @@ html{scroll-behavior:smooth;}
 <p><span class="math"><i>R</i><sub>1</sub>, <i>R</i><sub>2</sub></span> 를 먼저 합쳐 <span class="math"><i>R</i><sub>12</sub></span> 를 만들고, 그 <span class="math"><i>R</i><sub>12</sub></span> 를 <span class="math"><i>R</i><sub>3</sub></span> 와 다시 합분의 곱.</p>
 <p>(값이 다른 저항이어도 똑같이 성립한다 — 순서를 바꿔 묶어도 결과는 같다.)</p>
 </blockquote>
-<h3>⚡ 분배 법칙 (<span class="star">★</span>암기)</h3>
+<h3 class="h3">⚡ 분배 법칙 (<span class="star">★</span>암기)</h3>
 <details class="why"><summary>왜 전압은 자기 것, 전류는 상대 것을 곱하나</summary><div class="why-body"><p><strong>분배 법칙은 두 개가 서로 반대로 생겼다.</strong> 이게 헷갈리는 이유이자 함정이다.</p>
 <p><strong>전압 분배(직렬)</strong> — 직렬은 전류가 같다. 그러니 전압은 저항에 비례해서 나뉜다.</p>
 <p><strong>저항이 큰 쪽이 전압을 많이 먹는다.</strong> 그래서 분자에 <strong>자기 저항</strong>이 온다.</p>
@@ -846,7 +856,7 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>병렬 전류 분배</strong> (분자에 상대편 저항이 온다): <span class="math math-inline-block"><i>I</i><sub>1</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub>2</sub></span><span class="den"><i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub></span></span> <i>I</i>, <span class="sp-qq"></span> <i>I</i><sub>2</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub>1</sub></span><span class="den"><i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub></span></span> <i>I</i></span>
 </li></ul>
-<h3>🎚 배율기와 분류기 (<span class="star">★</span>계기 확장)</h3>
+<h3 class="h3">🎚 배율기와 분류기 (<span class="star">★</span>계기 확장)</h3>
 <div class="scroller"><table><thead><tr><th>이름</th><th>무엇에</th><th>연결</th><th>저항 값</th></tr></thead><tbody><tr><td><strong>배율기</strong></td><td>전압계 측정범위 확대</td><td><strong>직렬</strong></td><td><span class="math math-inline-block"><i>R</i><sub><i>m</i></sub> <span class="op">=</span> <i>R</i><sub><i>v</i></sub> (<i>m</i> <span class="op">-</span> 1)</span></td></tr><tr><td><strong>분류기</strong></td><td>전류계 측정범위 확대</td><td><strong>병렬</strong></td><td><span class="math math-inline-block"><i>R</i><sub><i>s</i></sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub><i>a</i></sub></span><span class="den"><i>m</i> <span class="op">-</span> 1</span></span></span></td></tr></tbody></table></div>
 <p>(<span class="math"><i>m</i></span>: 배율, <span class="math"><i>R</i><sub><i>v</i></sub></span>: 전압계 내부저항, <span class="math"><i>R</i><sub><i>a</i></sub></span>: 전류계 내부저항)</p>
 <blockquote>
@@ -862,7 +872,7 @@ html{scroll-behavior:smooth;}
 <p>배로 <strong>작아야</strong> 그쪽으로 많이 흐른다.</p>
 <p><strong>손잡이 — &quot;배율기는 직렬·곱하기, 분류기는 병렬·나누기&quot;.</strong></p>
 <p>전압은 직렬로 나누고 전류는 병렬로 나눈다는 분배 법칙과 같은 이야기다.</p></div></details>
-<h3>⚖️ 휘트스톤 브리지 (☆가끔)</h3>
+<h3 class="h3 low">⚖️ 휘트스톤 브리지 (☆가끔 · ▽ 후순위)</h3>
 <p>마주보는 저항의 곱이 같으면 검류계에 전류가 흐르지 않는다(평형).</p>
 <p class="display"><span class="math math-inline-block"><i>P</i> <span class="op">·</span> <i>R</i> <span class="op">=</span> <i>Q</i> <span class="op">·</span> <i>X</i> <span class="sp-q"></span> <span class="op">⇒</span> <span class="sp-q"></span> <i>X</i> <span class="op">=</span> <span class="frac"><span class="num"><i>P</i> <i>R</i></span><span class="den"><i>Q</i></span></span></span></p>
 <details class="why"><summary>왜 마주 보는 것끼리 곱하나</summary><div class="why-body"><p><strong>브리지가 평형이면 가운데 검류계에 전류가 흐르지 않는다.</strong> 그 말은 검류계</p>
@@ -880,7 +890,7 @@ html{scroll-behavior:smooth;}
 <p>비율만 봐도 답이 맞는지 알 수 있다.</p></div></details>
 </section>
 <section class="card" id="k1-s7"><h2>7. 키르히호프의 법칙</h2>
-<h3>1️⃣ 제1법칙 KCL (전류 법칙)</h3>
+<h3 class="h3">1️⃣ 제1법칙 KCL (전류 법칙)</h3>
 <p>접속점에 <strong>들어온 전류의 합 = 나가는 전류의 합</strong>. 근거는 <strong>전하량 보존</strong>.</p>
 <p class="display"><span class="math math-inline-block"><span class="op">Σ</span> <i>I</i><sub><i>in</i></sub> <span class="op">=</span> <span class="op">Σ</span> <i>I</i><sub><i>out</i></sub> <span class="sp-q"></span> <span class="op">⟺</span> <span class="sp-q"></span> <span class="op">Σ</span> <i>I</i> <span class="op">=</span> 0</span></p>
 <details class="why"><summary>왜 들어온 만큼 나가나</summary><div class="why-body"><p><strong>전하는 갈림길에서 사라지거나 생기지 않는다.</strong> 도선의 한 점에 들어온 전하는</p>
@@ -898,7 +908,7 @@ html{scroll-behavior:smooth;}
 <p>계산이랄 것도 없다.</p>
 <p><strong>⚠ 부호를 섞어 쓰지 않는다.</strong> 들어오는 것을 + 로 잡았으면 그 문제 내내</p>
 <p>그 약속을 지킨다.</p></div></details>
-<h3>2️⃣ 제2법칙 KVL (전압 법칙)</h3>
+<h3 class="h3">2️⃣ 제2법칙 KVL (전압 법칙)</h3>
 <p>폐회로에서 <strong>기전력의 합 = 전압강하의 합</strong>. 근거는 <strong>에너지 보존</strong>.</p>
 <p class="display"><span class="math math-inline-block"><span class="op">Σ</span> <i>E</i> <span class="op">=</span> <span class="op">Σ</span> <i>I</i> <i>R</i></span></p>
 <details class="why"><summary>왜 한 바퀴 돌면 0 이 되나</summary><div class="why-body"><p><strong>한 바퀴 돌아 제자리로 오면 높이가 같다.</strong> 산을 오르내려도 출발점으로</p>
@@ -915,7 +925,7 @@ html{scroll-behavior:smooth;}
 <p><span class="math">12 <span class="op">=</span> <i>I</i>(2<span class="op">+</span>4)</span> 에서 <span class="math"><i>I</i> <span class="op">=</span> 2</span> A. 각 저항에 4 V 와 8 V 가 걸리고 <strong>합이 정확히 12 V</strong> 로 돌아온다. 이게 KVL 이 말하는 전부다.</p>
 <p><strong>검산에 그대로 쓴다</strong> — 구한 전압들을 다 더해 전원 전압이 안 나오면 어딘가</p>
 <p>틀린 것이다.</p></div></details>
-<h3>🧮 최대 전력 전달 조건 (☆가끔)</h3>
+<h3 class="h3 low">🧮 최대 전력 전달 조건 (☆가끔 · ▽ 후순위)</h3>
 <p>부하저항 = 내부저항일 때 부하에 최대 전력이 전달된다.</p>
 <blockquote>
 <p><strong>중첩의 원리·테브낭의 정리</strong>처럼 회로를 등가변환해서 푸는 방법은 산업기사 회로이론에서</p>
@@ -924,7 +934,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k1-s8"><h2>8. 자기 (Magnetism)</h2>
-<h3>🧲 자기에 관한 쿨롱의 법칙 (☆가끔)</h3>
+<h3 class="h3 low">🧲 자기에 관한 쿨롱의 법칙 (☆가끔 · ▽ 후순위)</h3>
 <p class="display"><span class="math math-inline-block"><i>F</i> <span class="op">=</span> 6.33 <span class="op">×</span> 10<sup>4</sup> <span class="op">·</span> <span class="frac"><span class="num"><i>m</i><sub>1</sub> <i>m</i><sub>2</sub></span><span class="den"><i>r</i><sup>2</sup></span></span> <span class="txt"> [N]</span></span></p>
 <ul>
 <li>
@@ -942,7 +952,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;전기 식을 알면 자기 식은 글자만 바꾸면 된다&quot;.</strong></p>
 <p><span class="math"><i>Q</i> <span class="op">→</span> <i>m</i></span>, <span class="math"><span class="op">ε</span> <span class="op">→</span> <span class="op">μ</span></span>, <span class="math"><i>E</i> <span class="op">→</span> <i>H</i></span>, <span class="math"><i>D</i> <span class="op">→</span> <i>B</i></span>.</p>
 <p>새로 외우는 게 아니라 대응만 기억한다.</p></div></details>
-<h3>🔄 대응표 ① 정전계 ↔ 정자계 (<span class="star">★</span>교재가 표로 내주는 자리)</h3>
+<h3 class="h3">🔄 대응표 ① 정전계 ↔ 정자계 (<span class="star">★</span>교재가 표로 내주는 자리)</h3>
 <p><strong>전기에서 배운 식을 글자만 바꾸면 자기 식이 된다.</strong> 새로 외우는 게 아니라 대응을 외운다.</p>
 <div class="scroller"><table><thead><tr><th>정전계</th><th>식 · 단위</th><th>정자계</th><th>식 · 단위</th></tr></thead><tbody><tr><td>전하</td><td><span class="math"><i>Q</i></span> [C]</td><td><strong>자하</strong>(자극의 세기)</td><td><span class="math"><i>m</i></span> [Wb]</td></tr><tr><td>진공의 유전율</td><td><span class="math"><span class="op">ε</span><sub>0</sub> <span class="op">=</span> 8.855 <span class="op">×</span> 10<sup><span class="op">-</span>12</sup></span> [F/m]</td><td>진공의 투자율</td><td><span class="math"><span class="op">μ</span><sub>0</sub> <span class="op">=</span> 4<span class="op">π</span> <span class="op">×</span> 10<sup><span class="op">-</span>7</sup></span> [H/m]</td></tr><tr><td>쿨롱의 법칙 (전기력)</td><td><span class="math"><i>F</i> <span class="op">=</span> <span class="frac"><span class="num"><i>Q</i><sub>1</sub> <i>Q</i><sub>2</sub></span><span class="den">4<span class="op">π</span><span class="op">ε</span><sub>0</sub> <i>r</i><sup>2</sup></span></span></span> [N]</td><td>쿨롱의 법칙 (자기력)</td><td><span class="math"><i>F</i> <span class="op">=</span> <span class="frac"><span class="num"><i>m</i><sub>1</sub> <i>m</i><sub>2</sub></span><span class="den">4<span class="op">π</span><span class="op">μ</span><sub>0</sub> <i>r</i><sup>2</sup></span></span></span> [N]</td></tr><tr><td>전계의 세기</td><td><span class="math"><i>E</i> <span class="op">=</span> <span class="frac"><span class="num"><i>Q</i></span><span class="den">4<span class="op">π</span><span class="op">ε</span><sub>0</sub> <i>r</i><sup>2</sup></span></span></span> [V/m]</td><td>자계의 세기</td><td><span class="math"><i>H</i> <span class="op">=</span> <span class="frac"><span class="num"><i>m</i></span><span class="den">4<span class="op">π</span><span class="op">μ</span><sub>0</sub> <i>r</i><sup>2</sup></span></span></span> [AT/m]</td></tr><tr><td>힘과 전계</td><td><span class="math"><i>F</i> <span class="op">=</span> <i>QE</i></span> [N]</td><td>힘과 자계</td><td><span class="math"><i>F</i> <span class="op">=</span> <i>mH</i></span> [N]</td></tr><tr><td>전위</td><td><span class="math"><i>V</i> <span class="op">=</span> <span class="frac"><span class="num"><i>Q</i></span><span class="den">4<span class="op">π</span><span class="op">ε</span><sub>0</sub> <i>r</i></span></span></span> [V]</td><td><strong>자위</strong></td><td><span class="math"><i>U</i> <span class="op">=</span> <span class="frac"><span class="num"><i>m</i></span><span class="den">4<span class="op">π</span><span class="op">μ</span><sub>0</sub> <i>r</i></span></span></span> [AT]</td></tr></tbody></table></div>
 <p><strong>계산할 때는 앞의 덩어리를 상수로 갈아끼운다</strong> — 이 두 값이 위 표의 실제 계산판이다.</p>
@@ -968,7 +978,7 @@ html{scroll-behavior:smooth;}
 <p><strong>딱 하나 다른 것</strong> — 전하 <span class="math"><i>Q</i></span> 는 (+)만 따로 떼어낼 수 있다.</p>
 <p><strong>그런데 자하 <span class="math"><i>m</i></span> 은 N극만 떼어낼 수 없다.</strong></p>
 <p>그래서 자기에는 &quot;고립된 자하&quot;가 실제로는 없고, 계산할 때만 점자극으로 놓고 푼다.</p></div></details>
-<h3>🌀 전류가 만드는 자계 (<span class="star">★</span>공식 4종)</h3>
+<h3 class="h3">🌀 전류가 만드는 자계 (<span class="star">★</span>공식 4종)</h3>
 <p><strong>① 무한 직선 도체</strong></p>
 <p class="display"><span class="math math-inline-block"><i>H</i> <span class="op">=</span> <span class="frac"><span class="num"><i>I</i></span><span class="den">2<span class="op">π</span> <i>r</i></span></span> <span class="txt"> [AT/m]</span></span></p>
 <p><strong>② 원형 코일의 중심</strong></p>
@@ -1010,7 +1020,7 @@ html{scroll-behavior:smooth;}
 <p>직선(<span class="math">2<span class="op">π</span> <i>r</i></span>) → 원형(<span class="math">2<i>r</i></span>) → 솔레노이드(<span class="math"><span class="op">ℓ</span></span>, 거리 없음) 순으로 자계를 잘 모은다.</p>
 <p><strong>③과 ④가 같은 식으로 보이는 이유</strong> — 둘 다 <span class="math"><i>H</i> <span class="op">=</span> <i>NI</i>/<span class="op">ℓ</span></span> 이다. 다만 <span class="math"><span class="op">ℓ</span></span> 이</p>
 <p>③에서는 <strong>막대의 길이</strong>, ④에서는 <strong>도넛을 한 바퀴 도는 자로의 길이</strong>(<span class="math">2<span class="op">π</span> <i>r</i></span>)다.</p></div></details>
-<h3>🔁 대응표 ② 전기회로 ↔ 자기회로 (<span class="star">★</span>자주 — 교재가 표로 내주는 자리)</h3>
+<h3 class="h3">🔁 대응표 ② 전기회로 ↔ 자기회로 (<span class="star">★</span>자주 — 교재가 표로 내주는 자리)</h3>
 <div class="scroller"><table><thead><tr><th>전기회로</th><th>식 · 단위</th><th>자기회로</th><th>식 · 단위</th></tr></thead><tbody><tr><td>기전력</td><td><span class="math"><i>E</i></span> [V]</td><td><strong>기자력</strong></td><td><span class="math"><i>F</i><sub><i>m</i></sub> <span class="op">=</span> <i>N</i> <i>I</i></span> [AT]</td></tr><tr><td>전류</td><td><span class="math"><i>I</i></span> [A]</td><td><strong>자속</strong></td><td><span class="math"><span class="op">Φ</span></span> [Wb]</td></tr><tr><td>전계</td><td><span class="math"><i>E</i></span> [V/m]</td><td><strong>자계</strong></td><td><span class="math"><i>H</i></span> [AT/m]</td></tr><tr><td>전기저항</td><td><span class="math"><i>R</i> <span class="op">=</span> <span class="frac"><span class="num"><span class="op">ρ</span> <span class="op">ℓ</span></span><span class="den"><i>A</i></span></span> <span class="op">=</span> <span class="frac"><span class="num"><span class="op">ℓ</span></span><span class="den"><span class="op">σ</span> <i>A</i></span></span></span> [Ω]</td><td><strong>자기저항</strong></td><td><span class="math"><i>R</i><sub><i>m</i></sub> <span class="op">=</span> <span class="frac"><span class="num"><span class="op">ℓ</span></span><span class="den"><span class="op">μ</span> <i>A</i></span></span></span> [AT/Wb]</td></tr><tr><td>도전율</td><td><span class="math"><span class="op">σ</span></span> [S/m]</td><td><strong>투자율</strong></td><td><span class="math"><span class="op">μ</span></span> [H/m]</td></tr><tr><td>옴의 법칙</td><td><span class="math"><i>E</i> <span class="op">=</span> <i>I</i> <i>R</i></span>, 즉 <span class="math"><i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>E</i></span><span class="den"><i>R</i></span></span></span> [A]</td><td>옴의 법칙</td><td><span class="math"><i>F</i><sub><i>m</i></sub> <span class="op">=</span> <span class="op">Φ</span> <i>R</i><sub><i>m</i></sub></span>, 즉 <span class="math"><span class="op">Φ</span> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i> <i>I</i></span><span class="den"><i>R</i><sub><i>m</i></sub></span></span></span> [Wb]</td></tr></tbody></table></div>
 <p><strong>자기회로의 옴의 법칙</strong> — 결국 하나의 식으로 합쳐진다.</p>
 <p class="display"><span class="math math-inline-block"><span class="op">Φ</span> <span class="op">=</span> <span class="frac"><span class="num"><i>F</i><sub><i>m</i></sub></span><span class="den"><i>R</i><sub><i>m</i></sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i> <i>I</i></span><span class="den"><span class="op">ℓ</span> / <span class="op">μ</span> <i>A</i></span></span> <span class="op">=</span> <span class="frac"><span class="num"><span class="op">μ</span> <i>A</i> <i>N</i> <i>I</i></span><span class="den"><span class="op">ℓ</span></span></span> <span class="txt"> [Wb]</span></span></p>
@@ -1031,7 +1041,7 @@ html{scroll-behavior:smooth;}
 <p>그래서 회로 표에서는 <span class="math"><span class="op">σ</span> <span class="op">↔</span> <span class="op">μ</span></span> 다.</p>
 <p><strong>한 가지 진짜 다른 점</strong> — 전류는 흐르면 열(<span class="math"><i>I</i><sup>2</sup><i>R</i></span>)이 나지만 <strong>자속은 열을 내지 않는다.</strong></p>
 <p><span class="math"><i>R</i><sub><i>m</i></sub></span> 은 &quot;저항&quot;이라 불러도 에너지를 소비하지 않는다.</p></div></details>
-<h3>📖 기호 사전 — 같은 글자가 식마다 다른 뜻 (<span class="star">★</span>함정 총정리)</h3>
+<h3 class="h3">📖 기호 사전 — 같은 글자가 식마다 다른 뜻 (<span class="star">★</span>함정 총정리)</h3>
 <p><strong>자기 단원에서 틀리는 것의 대부분은 공식이 아니라 &quot;이 글자가 뭐였지&quot;</strong> 다.</p>
 <p>한 글자가 식마다 다른 것을 가리키므로, 값을 넣기 전에 여기서 확인한다.</p>
 <p>아래 접이식을 펴면 <strong>글자 하나하나가 어느 식에서 무슨 뜻인지</strong> 전부 들어 있다.</p>
@@ -1044,7 +1054,7 @@ html{scroll-behavior:smooth;}
 <p>[AT/Wb] 면 자기저항 <span class="math"><i>R</i><sub><i>m</i></sub></span>, [AT] 면 기자력 <span class="math"><i>F</i><sub><i>m</i></sub></span> 이나 자위 <span class="math"><i>U</i></span> 다.</p>
 <p><strong>단위만으로 답이 좁혀지는 문제가 실제로 나온다</strong> — 공식이 기억 안 나도 버릴 문제가 아니다.</p>
 </blockquote>
-<h3>📉 히스테리시스 곡선 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">📉 히스테리시스 곡선 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 가로축은 <strong>자계의 세기 <span class="math"><i>H</i></span></strong>, 세로축은 <strong>자속밀도 <span class="math"><i>B</i></span></strong>.
@@ -1057,7 +1067,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 </section>
 <section class="card" id="k1-s9"><h2>9. 전자력과 전자유도</h2>
-<h3>✋ 플레밍의 왼손 법칙 (전자력 — 전동기) (<span class="star">★</span>자주)</h3>
+<h3 class="h3">✋ 플레밍의 왼손 법칙 (전자력 — 전동기) (<span class="star">★</span>자주)</h3>
 <p>자계 속 도체에 전류가 흐르면 힘을 받는다.</p>
 <p class="display"><span class="math math-inline-block"><i>F</i> <span class="op">=</span> <i>B</i> <i>I</i> <span class="op">ℓ</span> <span class="txt">sin</span><span class="op">θ</span> <span class="txt"> [N]</span></span></p>
 <blockquote>
@@ -1087,7 +1097,7 @@ html{scroll-behavior:smooth;}
 <p><strong>각도가 주어졌을 때만</strong> <span class="math"><span class="txt">sin</span></span> 을 챙기면 된다.</p>
 <p><strong>손잡이 — &quot;우발좌전&quot;</strong>: <strong>우</strong>(오른손)=<strong>발</strong>전기, <strong>좌</strong>(왼손)=<strong>전</strong>동기.</p>
 <p>전동기는 전기를 넣어 힘을 얻으니 왼손이다.</p></div></details>
-<h3>🤚 플레밍의 오른손 법칙 (기전력 — 발전기) (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🤚 플레밍의 오른손 법칙 (기전력 — 발전기) (<span class="star">★</span>자주)</h3>
 <p>자계 속에서 도체를 움직이면 기전력이 생긴다.</p>
 <p class="display"><span class="math math-inline-block"><i>e</i> <span class="op">=</span> <i>B</i> <span class="op">ℓ</span> <i>v</i> <span class="txt">sin</span><span class="op">θ</span> <span class="txt"> [V]</span></span></p>
 <blockquote>
@@ -1113,7 +1123,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;우발좌전&quot;</strong> 의 우(오른손)=발전기.</p>
 <p>직류기의 유기기전력 <span class="math"><i>E</i> <span class="op">=</span> <i>PZ</i><span class="op">Φ</span> <i>N</i>/60<i>a</i></span> 도 결국 이 이야기를 회전기에 맞춰 쓴 것이라,</p>
 <p><strong><span class="math"><span class="op">Φ</span></span>(자속)와 <span class="math"><i>N</i></span>(회전수)에 비례</strong>하는 구조가 똑같다.</p></div></details>
-<h3>🔄 전자유도 법칙 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔄 전자유도 법칙 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 <strong>패러데이의 법칙</strong>: 유도기전력은 <strong>자속의 변화율</strong>에 비례한다.
@@ -1132,7 +1142,7 @@ html{scroll-behavior:smooth;}
 <p><strong>에너지 보존이 부호로 나타난 것</strong>이다.</p>
 <p><strong>손잡이 — &quot;변해야 생기고, 생기면 방해한다&quot;.</strong></p>
 <p>계산 문제에서는 크기만 물으므로 부호를 빼고 <span class="math"><i>e</i> <span class="op">=</span> <i>N</i><span class="sp-t"></span><span class="op">Δ</span><span class="op">Φ</span>/<span class="op">Δ</span> <i>t</i></span> 로 쓴다.</p></div></details>
-<h3>🌀 인덕턴스</h3>
+<h3 class="h3">🌀 인덕턴스</h3>
 <ul>
 <li>
 <strong>자기 인덕턴스</strong>: <span class="math math-inline-block"><i>L</i> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i> <span class="op">Φ</span></span><span class="den"><i>I</i></span></span> <span class="txt"> [H]</span>, <span class="sp-qq"></span> <i>e</i> <span class="op">=</span> <span class="op">-</span><i>L</i> <span class="frac"><span class="num"><i>di</i></span><span class="den"><i>dt</i></span></span></span>
@@ -1170,7 +1180,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 <p><strong>손잡이 — &quot;가동은 더하고 차동은 뺀다&quot;. 두 값의 차이가 <span class="math">4<i>M</i></span></strong> 이라, 문제가</p>
 <p>가동·차동 둘 다 주면 그 차이를 4로 나눠 <span class="math"><i>M</i></span> 을 구한다.</p></div></details>
-<h3>⏱ RL · RC 회로의 시정수 (<span class="star">★</span>자주 — CBT 단골)</h3>
+<h3 class="h3">⏱ RL · RC 회로의 시정수 (<span class="star">★</span>자주 — CBT 단골)</h3>
 <p>직류를 갑자기 걸었을 때(과도현상), 전류·전압이 <strong>정상 상태의 약 63.2 %</strong></p>
 <p>(<span class="math">1 <span class="op">-</span> 1/<i>e</i></span>)에 도달하는 데 걸리는 시간이 시정수 <span class="math"><span class="op">τ</span></span> 다.</p>
 <p class="display"><span class="math math-inline-block"><span class="op">τ</span><sub><i>RL</i></sub> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i></span><span class="den"><i>R</i></span></span> <span class="txt"> [sec]</span> <span class="sp-qq"></span> <span class="op">τ</span><sub><i>RC</i></sub> <span class="op">=</span> <i>RC</i> <span class="txt"> [sec]</span></span></p>
@@ -1196,7 +1206,7 @@ html{scroll-behavior:smooth;}
 <p>거꾸로 쓰면 단위가 안 맞으니 바로 알 수 있다.</p></div></details>
 </section>
 <section class="card" id="k1-s10"><h2>10. 교류의 표시</h2>
-<h3>〰️ 사인파 교류</h3>
+<h3 class="h3">〰️ 사인파 교류</h3>
 <p class="display"><span class="math math-inline-block"><i>v</i> <span class="op">=</span> <i>V</i><sub><i>m</i></sub> <span class="txt">sin</span>(<span class="op">ω</span> <i>t</i> <span class="op">+</span> <span class="op">θ</span>)</span></p>
 <p class="display"><span class="math math-inline-block"><span class="op">ω</span> <span class="op">=</span> 2<span class="op">π</span> <i>f</i> <span class="txt"> [rad/s]</span></span></p>
 <p class="display"><span class="math math-inline-block"><i>T</i> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den"><i>f</i></span></span> <span class="txt"> [s]</span></span></p>
@@ -1210,7 +1220,7 @@ html{scroll-behavior:smooth;}
 <p>곡선이 통째로 좌우로 밀린다.</p>
 <p><strong>손잡이 — 60 Hz 의 <span class="math"><span class="op">ω</span></span> 는 <span class="math">377</span> [rad/s].</strong> <span class="math">2<span class="op">π</span> <span class="op">×</span> 60 <span class="op">≈</span> 377</span> 을</p>
 <p>외워두면 계산이 한 단계 준다.</p></div></details>
-<h3>📊 실효값 · 평균값 (<span class="star">★</span>매회)</h3>
+<h3 class="h3">📊 실효값 · 평균값 (<span class="star">★</span>매회)</h3>
 <div class="scroller"><table><thead><tr><th>값</th><th>사인파에서</th></tr></thead><tbody><tr><td><strong>실효값 <span class="math"><i>V</i></span></strong></td><td><span class="math math-inline-block"><i>V</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sub><i>m</i></sub></span><span class="den"><span class="sqrt">2</span></span></span> <span class="op">=</span> 0.707 <i>V</i><sub><i>m</i></sub></span></td></tr><tr><td><strong>평균값 <span class="math"><i>V</i><sub><i>a</i></sub></span></strong></td><td><span class="math math-inline-block"><i>V</i><sub><i>a</i></sub> <span class="op">=</span> <span class="frac"><span class="num">2 <i>V</i><sub><i>m</i></sub></span><span class="den"><span class="op">π</span></span></span> <span class="op">=</span> 0.637 <i>V</i><sub><i>m</i></sub></span></td></tr><tr><td><strong>파형률</strong></td><td>실효값 / 평균값 = <strong>1.11</strong></td></tr><tr><td><strong>파고율</strong></td><td>최대값 / 실효값 = <strong>1.414</strong></td></tr></tbody></table></div>
 <blockquote>
 <p><strong>실효값이란</strong> — 같은 시간 동안 저항에서 <strong>같은 열을 내는 직류 값</strong>이다.</p>
@@ -1237,7 +1247,7 @@ html{scroll-behavior:smooth;}
 <p><strong>숫자로 한 번</strong> — 최댓값 141 V 면 실효값은 <span class="math">141 <span class="op">×</span> 0.707 <span class="op">≈</span> 100</span> V.</p>
 <p>거꾸로 실효 100 V 의 최댓값은 <span class="math">100 <span class="op">×</span> 1.414 <span class="op">≈</span> 141</span> V 다.</p>
 <p><strong>220 V 의 최댓값은 311 V</strong> — 이 한 쌍은 외워두면 편하다.</p></div></details>
-<h3>🧭 위상</h3>
+<h3 class="h3">🧭 위상</h3>
 <ul>
 <li>
 앞선 위상은 <strong>진상</strong>, 뒤진 위상은 <strong>지상</strong>.
@@ -1246,7 +1256,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 </section>
 <section class="card" id="k1-s11"><h2>11. R · L · C 교류 회로</h2>
-<h3>🔍 소자 하나씩 — 전압과 전류의 위상 관계 (<span class="star">★</span>핵심)</h3>
+<h3 class="h3">🔍 소자 하나씩 — 전압과 전류의 위상 관계 (<span class="star">★</span>핵심)</h3>
 <div class="scroller"><table><thead><tr><th>소자</th><th>리액턴스</th><th>전류의 위상</th><th>외우는 말</th></tr></thead><tbody><tr><td><strong>저항 <span class="math"><i>R</i></span></strong></td><td><span class="math"><i>R</i></span> [<span class="math"><span class="op">Ω</span></span>]</td><td>전압과 <strong>동상</strong></td><td>—</td></tr><tr><td><strong>코일 <span class="math"><i>L</i></span></strong></td><td><span class="math math-inline-block"><i>X</i><sub><i>L</i></sub> <span class="op">=</span> <span class="op">ω</span> <i>L</i> <span class="op">=</span> 2<span class="op">π</span> <i>f</i> <i>L</i></span></td><td>전압보다 <strong>90° 뒤진다(지상)</strong></td><td><strong>전류가 뒤지는 코일</strong></td></tr><tr><td><strong>콘덴서 <span class="math"><i>C</i></span></strong></td><td><span class="math math-inline-block"><i>X</i><sub><i>C</i></sub> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den"><span class="op">ω</span> <i>C</i></span></span> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den">2<span class="op">π</span> <i>f</i> <i>C</i></span></span></span></td><td>전압보다 <strong>90° 앞선다(진상)</strong></td><td><strong>전류가 앞서는 콘덴서</strong></td></tr></tbody></table></div>
 <blockquote>
 <p>암기법 <strong>&quot;코뒤콘앞&quot;</strong> — 코일은 전류가 뒤지고, 콘덴서는 전류가 앞선다.</p>
@@ -1267,7 +1277,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 <p><strong>손잡이 — &quot;코뒤콘앞&quot;</strong>: 코일은 전류가 뒤지고, 콘덴서는 전류가 앞선다.</p>
 <p><strong>&quot;코일은 직류를 통과, 콘덴서는 직류를 차단&quot;</strong> 도 같이 외운다.</p></div></details>
-<h3>🧮 R-L-C 직렬 회로 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🧮 R-L-C 직렬 회로 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>Z</i> <span class="op">=</span> <span class="sqrt"><i>R</i><sup>2</sup> <span class="op">+</span> (<i>X</i><sub><i>L</i></sub> <span class="op">-</span> <i>X</i><sub><i>C</i></sub>)<sup>2</sup></span> <span class="txt"> [</span><span class="op">Ω</span><span class="txt">]</span></span></p>
 <p class="display"><span class="math math-inline-block"><i>I</i> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i></span><span class="den"><i>Z</i></span></span></span></p>
 <p class="display"><span class="math math-inline-block"><span class="op">θ</span> <span class="op">=</span> <span class="txt">tan</span><sup><span class="op">-</span>1</sup><span class="frac"><span class="num"><i>X</i><sub><i>L</i></sub> <span class="op">-</span> <i>X</i><sub><i>C</i></sub></span><span class="den"><i>R</i></span></span></span></p>
@@ -1287,7 +1297,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — 3-4-5 를 노린다.</strong> <span class="math"><i>R</i></span> 과 <span class="math"><i>X</i></span> 가 3·4(또는 6·8)로 나오면 <span class="math"><i>Z</i></span> 는</p>
 <p>계산할 것 없이 5(또는 10)다. 시험 문제는 대개 이렇게 깔끔한 값으로 낸다.</p>
 <p><span class="math"><i>X</i><sub><i>L</i></sub> <span class="op">&gt;</span> <i>X</i><sub><i>C</i></sub></span> 면 유도성(전류 지상), 반대면 용량성(전류 진상)이다.</p></div></details>
-<h3>📶 직렬 공진 (<span class="star">★</span>단골)</h3>
+<h3 class="h3">📶 직렬 공진 (<span class="star">★</span>단골)</h3>
 <p><span class="math"><i>X</i><sub><i>L</i></sub> <span class="op">=</span> <i>X</i><sub><i>C</i></sub></span> 가 되는 순간이다.</p>
 <p class="display"><span class="math math-inline-block"><i>f</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num">1</span><span class="den">2<span class="op">π</span> <span class="sqrt"><i>LC</i></span></span></span> <span class="txt"> [Hz]</span></span></p>
 <ul>
@@ -1317,7 +1327,7 @@ html{scroll-behavior:smooth;}
 <p>직렬 공진은 전류 최대, 병렬 공진은 반대로 전류 최소다.</p></div></details>
 </section>
 <section class="card" id="k1-s12"><h2>12. 교류 전력과 역률</h2>
-<h3>📐 전력의 3형제 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">📐 전력의 3형제 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>P</i> <span class="op">=</span> <i>V</i> <i>I</i> <span class="txt">cos</span><span class="op">θ</span> <span class="txt"> [W] (유효전력)</span></span></p>
 <p class="display"><span class="math math-inline-block"><i>Q</i> <span class="op">=</span> <i>V</i> <i>I</i> <span class="txt">sin</span><span class="op">θ</span> <span class="txt"> [Var] (무효전력)</span></span></p>
 <p class="display"><span class="math math-inline-block"><i>P</i><sub><i>a</i></sub> <span class="op">=</span> <i>V</i> <i>I</i> <span class="op">=</span> <span class="sqrt"><i>P</i><sup>2</sup> <span class="op">+</span> <i>Q</i><sup>2</sup></span> <span class="txt"> [VA] (피상전력)</span></span></p>
@@ -1366,7 +1376,7 @@ html{scroll-behavior:smooth;}
 <p>구해 뺀 것뿐이다.</p></div></details>
 </section>
 <section class="card" id="k1-s13"><h2>13. 3상 교류</h2>
-<h3>🔺 Y결선과 Δ결선 (<span class="star">★</span>반드시 구분)</h3>
+<h3 class="h3">🔺 Y결선과 Δ결선 (<span class="star">★</span>반드시 구분)</h3>
 <div class="scroller"><table><thead><tr><th>구분</th><th>Y(성형) 결선</th><th>Δ(삼각) 결선</th></tr></thead><tbody><tr><td><strong>선간전압 <span class="math"><i>V</i><sub><span class="op">ℓ</span></sub></span></strong></td><td><span class="math math-inline-block"><i>V</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <span class="sqrt">3</span> <i>V</i><sub><i>p</i></sub></span> (위상 30° 앞섬)</td><td><span class="math math-inline-block"><i>V</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <i>V</i><sub><i>p</i></sub></span></td></tr><tr><td><strong>선전류 <span class="math"><i>I</i><sub><span class="op">ℓ</span></sub></span></strong></td><td><span class="math math-inline-block"><i>I</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <i>I</i><sub><i>p</i></sub></span></td><td><span class="math math-inline-block"><i>I</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <span class="sqrt">3</span> <i>I</i><sub><i>p</i></sub></span></td></tr><tr><td><strong>특징</strong></td><td>중성점을 뽑을 수 있다(4선식)</td><td>제3고조파가 순환해 파형이 좋다</td></tr></tbody></table></div>
 <blockquote>
 <p>암기법 — <strong>Y는 전압이 √3배, Δ는 전류가 √3배.</strong> 한쪽만 √3 이 붙는다.</p>
@@ -1381,7 +1391,7 @@ html{scroll-behavior:smooth;}
 <p>둘 중 <strong>하나에만</strong> 붙는다는 것이 핵심이다. 둘 다 붙거나 둘 다 안 붙으면 틀린 것이다.</p>
 <p><strong><span class="math"><span class="sqrt">3</span> <span class="op">≈</span> 1.732</span></strong> 는 외워둔다. 220 V 상전압이면 선간은 380 V 다 —</p>
 <p>실제 배전 전압이 그래서 380/220 V 다.</p></div></details>
-<h3>⚡ 3상 전력 (결선과 무관하게 같은 식) (<span class="star">★</span>자주)</h3>
+<h3 class="h3">⚡ 3상 전력 (결선과 무관하게 같은 식) (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>P</i> <span class="op">=</span> <span class="sqrt">3</span> <span class="sp-t"></span> <i>V</i><sub><span class="op">ℓ</span></sub> <i>I</i><sub><span class="op">ℓ</span></sub> <span class="txt">cos</span><span class="op">θ</span> <span class="txt"> [W]</span></span></p>
 <details class="why"><summary>왜 결선이 달라도 같은 식인가</summary><div class="why-body"><p><strong>Y든 Δ든 <span class="math"><i>P</i> <span class="op">=</span> <span class="sqrt">3</span> <i>V</i><sub><span class="op">ℓ</span></sub> <i>I</i><sub><span class="op">ℓ</span></sub> <span class="txt">cos</span><span class="op">θ</span></span> 로 똑같다.</strong> 결선을 안 봐도 되니</p>
 <p>시험에서 아주 편한 자리다.</p>
@@ -1396,7 +1406,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;선간 값으로 쓰면 √3, 상 값으로 쓰면 3&quot;.</strong></p>
 <p><span class="math"><i>P</i> <span class="op">=</span> <span class="sqrt">3</span> <i>V</i><sub><span class="op">ℓ</span></sub> <i>I</i><sub><span class="op">ℓ</span></sub><span class="txt">cos</span><span class="op">θ</span> <span class="op">=</span> 3 <i>V</i><sub><i>p</i></sub> <i>I</i><sub><i>p</i></sub> <span class="txt">cos</span><span class="op">θ</span></span> — 둘은 같은 식이다.</p>
 <p>문제가 선간을 줬는지 상을 줬는지만 확인하면 된다.</p></div></details>
-<h3>🔄 Y ↔ Δ 변환과 소비전력 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔄 Y ↔ Δ 변환과 소비전력 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 임피던스 변환: <span class="math math-inline-block"><i>Z</i><sub><span class="op">Δ</span></sub> <span class="op">=</span> 3 <i>Z</i><sub><i>Y</i></sub></span>
@@ -1416,7 +1426,7 @@ html{scroll-behavior:smooth;}
 <p><strong>전류와 토크가 1/3</strong> 이 된다. 큰 기동전류를 피한 뒤 Δ로 바꿔 정상 운전한다.</p>
 <p><strong>손잡이 — &quot;Y로 걸면 1/3, Δ로 걸면 3배&quot;.</strong></p>
 <p>임피던스는 Δ가 3배, 전력은 Δ가 3배 — <strong>둘 다 Δ 쪽이 3</strong> 이라고 묶어 외운다.</p></div></details>
-<h3>⚖️ 3상 평형 · 불평형</h3>
+<h3 class="h3">⚖️ 3상 평형 · 불평형</h3>
 <ul>
 <li>
 평형이면 중성선 전류는 <strong>0</strong>. 그래서 3상 4선식에서 중성선은 가늘게 해도 된다.
@@ -1455,13 +1465,13 @@ html{scroll-behavior:smooth;}
 </li></ul>
 </section>
 <section class="card" id="k1-s15"><h2>15. 단위 접두어와 자주 틀리는 것</h2>
-<h3>⚠️ 대문자 M 과 소문자 m</h3>
+<h3 class="h3">⚠️ 대문자 M 과 소문자 m</h3>
 <ul>
 <li>
 <strong>M (Mega)</strong> <span class="math"><span class="op">=</span> 10<sup>6</sup></span> / <strong>m (milli)</strong> <span class="math"><span class="op">=</span> 10<sup><span class="op">-</span>3</sup></span> → <strong>10억 배 차이</strong>다.
 </li></ul>
 <div class="scroller"><table><thead><tr><th>접두어</th><th>명칭</th><th>승수</th></tr></thead><tbody><tr><td><strong>G</strong></td><td>기가</td><td><span class="math">10<sup>9</sup></span></td></tr><tr><td><strong>M</strong></td><td>메가</td><td><span class="math">10<sup>6</sup></span></td></tr><tr><td><strong>k</strong></td><td>킬로</td><td><span class="math">10<sup>3</sup></span></td></tr><tr><td><strong>m</strong></td><td>밀리</td><td><span class="math">10<sup><span class="op">-</span>3</sup></span></td></tr><tr><td><strong><span class="math"><span class="op">μ</span></span></strong></td><td>마이크로</td><td><span class="math">10<sup><span class="op">-</span>6</sup></span></td></tr><tr><td><strong>n</strong></td><td>나노</td><td><span class="math">10<sup><span class="op">-</span>9</sup></span></td></tr><tr><td><strong>p</strong></td><td>피코</td><td><span class="math">10<sup><span class="op">-</span>12</sup></span></td></tr></tbody></table></div>
-<h3>🧮 승수끼리 계산하기 (<span class="star">★</span>실수 1위)</h3>
+<h3 class="h3">🧮 승수끼리 계산하기 (<span class="star">★</span>실수 1위)</h3>
 <p><strong>서로 상쇄되는 짝을 외워두면 지수를 안 세도 된다.</strong></p>
 <div class="scroller"><table><thead><tr><th>이렇게 곱하면</th><th>답이</th><th>왜</th></tr></thead><tbody><tr><td>k<span class="math"><span class="op">Ω</span></span> × mA</td><td><strong>V</strong></td><td><span class="math">10<sup>3</sup> <span class="op">×</span> 10<sup><span class="op">-</span>3</sup> <span class="op">=</span> 1</span></td></tr><tr><td>M<span class="math"><span class="op">Ω</span></span> × <span class="math"><span class="op">μ</span></span>A</td><td><strong>V</strong></td><td><span class="math">10<sup>6</sup> <span class="op">×</span> 10<sup><span class="op">-</span>6</sup> <span class="op">=</span> 1</span></td></tr><tr><td><span class="math"><span class="op">μ</span></span>F × V</td><td><strong><span class="math"><span class="op">μ</span></span>C</strong></td><td>승수가 그대로 따라온다</td></tr><tr><td>k<span class="math"><span class="op">Ω</span></span> × <span class="math"><span class="op">μ</span></span>A</td><td><strong>mV</strong></td><td><span class="math">10<sup>3</sup> <span class="op">×</span> 10<sup><span class="op">-</span>6</sup> <span class="op">=</span> 10<sup><span class="op">-</span>3</sup></span></td></tr></tbody></table></div>
 <blockquote>
@@ -1469,7 +1479,7 @@ html{scroll-behavior:smooth;}
 <p>지수를 일일이 <span class="math">10<sup><span class="op">-</span>6</sup></span> 까지 풀어 쓰다 틀리는 경우가 가장 많다.</p>
 <p><strong>위 짝이면 숫자만 곱하면 된다.</strong></p>
 </blockquote>
-<h3>📏 면적 단위</h3>
+<h3 class="h3">📏 면적 단위</h3>
 <p class="display"><span class="math math-inline-block">1 <span class="txt"> [m</span><sup>2</sup>] <span class="op">=</span> 10<sup>6</sup> <span class="txt"> [mm</span><sup>2</sup>]</span></p>
 <p class="display"><span class="math math-inline-block">1 <span class="txt"> [mm</span><sup>2</sup>] <span class="op">=</span> 10<sup><span class="op">-</span>6</sup> <span class="txt"> [m</span><sup>2</sup>]</span></p>
 <details class="why"><summary>왜 100만 배인가</summary><div class="why-body"><p><strong>길이가 1000배 차이면 넓이는 그 제곱인 100만 배</strong>다.</p>
@@ -1485,32 +1495,32 @@ html{scroll-behavior:smooth;}
 <p><span class="math"><i>R</i> <span class="op">=</span> 1.7<span class="op">×</span>10<sup><span class="op">-</span>8</sup> <span class="op">×</span> 100 / (2<span class="op">×</span>10<sup><span class="op">-</span>6</sup>) <span class="op">=</span> 0.85<span class="sp-t"></span><span class="op">Ω</span></span> 이다.</p>
 <p><span class="math">2<span class="sp-t"></span><span class="txt">mm</span><sup>2</sup></span> 를 그대로 넣으면 <span class="math">0.00000085<span class="sp-t"></span><span class="op">Ω</span></span> 이 나온다 —</p>
 <p><strong>100만 배 틀린 답이 그럴듯하게 나오는 것</strong>이 이 함정의 무서운 점이다.</p></div></details>
-<h3>🧾 단위 모아보기</h3>
+<h3 class="h3">🧾 단위 모아보기</h3>
 <div class="scroller"><table><thead><tr><th>양</th><th>기호</th><th>단위</th><th>비고</th></tr></thead><tbody><tr><td>전하량</td><td><span class="math"><i>Q</i></span></td><td>[C] 쿨롱</td><td>—</td></tr><tr><td>정전용량</td><td><span class="math"><i>C</i></span></td><td>[F] 패럿</td><td>콘덴서의 능력치</td></tr><tr><td>자속</td><td><span class="math"><span class="op">Φ</span></span></td><td>[Wb] 웨버</td><td>자기력선의 묶음</td></tr><tr><td>자속밀도</td><td><span class="math"><i>B</i></span></td><td>[T] 테슬라 = [Wb/m²]</td><td>면적당 자속 (<span class="math"><i>B</i><span class="op">=</span><span class="op">Φ</span>/<i>A</i></span>)</td></tr><tr><td>자계의 세기</td><td><span class="math"><i>H</i></span></td><td>[AT/m]</td><td>—</td></tr><tr><td>기자력</td><td><span class="math"><i>F</i></span></td><td>[AT]</td><td>—</td></tr><tr><td><strong>자기저항</strong></td><td><span class="math"><i>R</i><sub><i>m</i></sub></span></td><td><strong>[AT/Wb]</strong></td><td><strong>옴[<span class="math"><span class="op">Ω</span></span>] 아니다</strong> — 전기저항과 헷갈리기 쉽다</td></tr><tr><td>인덕턴스</td><td><span class="math"><i>L</i></span></td><td>[H] 헨리</td><td>코일의 능력치</td></tr><tr><td>컨덕턴스</td><td><span class="math"><i>G</i></span></td><td>[S] 지멘스</td><td>저항의 역수</td></tr><tr><td>무효전력</td><td><span class="math"><i>Q</i></span></td><td>[Var]</td><td>—</td></tr><tr><td>피상전력</td><td><span class="math"><i>P</i><sub><i>a</i></sub></span></td><td>[VA]</td><td>—</td></tr></tbody></table></div>
 </section>
 <section class="card" id="k1-s16"><h2>🖼 그림으로 보기</h2>
 <p><strong>계산이 몰린 과목이라, 식이 무엇을 재는 것인지 그림으로 잡아두면 대입이 쉬워진다.</strong></p>
 <p>(전압·전류·저항, 직렬·병렬, 자기회로, 코일·콘덴서 위상, 전력 3형제, Y/Δ 는</p>
 <p><strong>핵심 탭</strong>에 그려 뒀다.)</p>
-<h3>🎯 가우스 법칙 — 모양마다 거리가 다르게 들어간다</h3>
+<h3 class="h3">🎯 가우스 법칙 — 모양마다 거리가 다르게 들어간다</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="점전하 무한직선 무한평면의 전계">  <text x="10" y="16" class="lbl">점전하 · 구</text>  <circle cx="52" cy="72" r="5" fill="var(--accent)"/>  <circle cx="52" cy="72" r="24" class="ln2"/>  <path d="M52 72 L52 48 M52 72 L76 72 M52 72 L52 96 M52 72 L28 72" class="acc"/>  <text x="52" y="118" text-anchor="middle" class="sub">겉넓이 4πr²</text>  <text x="52" y="132" text-anchor="middle" class="lbl">E ∝ 1/r²</text>  <path d="M108 26 V128" class="ln2"/>  <text x="122" y="16" class="lbl">무한 직선</text>  <path d="M150 40 V104" class="ln" stroke-width="3"/>  <ellipse cx="150" cy="72" rx="26" ry="9" class="ln2"/>  <path d="M150 72 L176 72 M150 72 L124 72" class="acc"/>  <text x="150" y="118" text-anchor="middle" class="sub">둘레 2πr</text>  <text x="150" y="132" text-anchor="middle" class="lbl">E ∝ 1/r</text>  <path d="M206 26 V128" class="ln2"/>  <text x="222" y="16" class="lbl">무한 평면</text>  <path d="M240 38 V106" class="ln" stroke-width="3"/>  <path d="M240 56 H278 M240 72 H278 M240 88 H278" class="acc"/>  <path d="M240 56 H202 M240 72 H202 M240 88 H202" class="acc"/>  <text x="240" y="118" text-anchor="middle" class="sub">넓어지지 않는다</text>  <text x="240" y="132" text-anchor="middle" class="lbl">거리 무관</text></svg><figcaption>법칙은 하나인데 <strong>전하를 감싸는 면의 넓이가 모양마다 달라서</strong> 식이 갈린다. 그 넓이가 그대로 분모가 된다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;거리가 식에 들어가는지&quot;로 모양을 되짚는다.</strong></p>
 <p><span class="math"><i>r</i><sup>2</sup></span> 이면 점·구, <span class="math"><i>r</i></span> 이면 무한 직선, <strong>거리가 없으면 무한 평면</strong>이다.</p>
 </blockquote>
-<h3>🌀 전류가 만드는 자계 4종 — 무엇을 모으느냐</h3>
+<h3 class="h3">🌀 전류가 만드는 자계 4종 — 무엇을 모으느냐</h3>
 <figure class="fig"><svg viewBox="0 0 320 150" role="img" aria-label="직선 원형 솔레노이드 환상 솔레노이드의 자계">  <text x="8" y="16" class="lbl">① 직선</text>  <path d="M38 34 V96" class="ln" stroke-width="3"/>  <ellipse cx="38" cy="65" rx="22" ry="8" class="acc"/>  <text x="38" y="116" text-anchor="middle" class="sub">I / 2πr</text>  <path d="M78 26 V138" class="ln2"/>  <text x="88" y="16" class="lbl">② 원형</text>  <ellipse cx="118" cy="65" rx="26" ry="26" class="ln"/>  <path d="M118 65 h20" class="acc"/>  <path d="M132 60 l8 5 -8 5" class="acc"/>  <text x="118" y="116" text-anchor="middle" class="sub">NI / 2r</text>  <path d="M158 26 V138" class="ln2"/>  <text x="168" y="16" class="lbl">③ 솔레노이드</text>  <path d="M172 50 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0" class="ln"/>  <path d="M172 80 q10 -10 20 0 q10 -10 20 0 q10 -10 20 0" class="ln"/>  <path d="M176 65 h56" class="acc"/>  <path d="M226 60 l8 5 -8 5" class="acc"/>  <text x="204" y="116" text-anchor="middle" class="sub">NI / ℓ = n₀I</text>  <path d="M244 26 V138" class="ln2"/>  <text x="252" y="16" class="lbl">④ 환상</text>  <circle cx="282" cy="65" r="26" class="ln"/>  <circle cx="282" cy="65" r="13" class="ln"/>  <path d="M282 39 A26 26 0 0 1 308 65" class="acc"/>  <text x="282" y="116" text-anchor="middle" class="sub">NI / 2πr</text>  <text x="8" y="140" class="sub">잘 모을수록 분모가 단순해진다 · ④ 는 외부 자계 0, μ 와 무관</text></svg><figcaption>같은 이야기인데 <strong>자계를 얼마나 잘 모으느냐</strong>에 따라 분모가 달라진다. 잘 모을수록 분모가 단순해진다.</figcaption></figure>
 <blockquote>
 <p><strong>⚠ <span class="math"><i>N</i></span> 과 <span class="math"><i>n</i><sub>0</sub></span> 을 구분한다.</strong> <span class="math"><i>N</i></span> 은 <strong>총 권수</strong>, <span class="math"><i>n</i><sub>0</sub></span> 은 <strong>1 m 당 권수</strong>(<span class="math"><span class="op">=</span><i>N</i>/<span class="op">ℓ</span></span>).</p>
 <p>③에서 두 표기는 같은 식이다.</p>
 </blockquote>
-<h3>📐 R-L-C 임피던스 — 직각으로 더한다</h3>
+<h3 class="h3">📐 R-L-C 임피던스 — 직각으로 더한다</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="임피던스 삼각형">  <path d="M60 106 H210" class="ln"/>  <path d="M210 106 V46" class="ln"/>  <path d="M60 106 L210 46" class="acc"/>  <path d="M198 106 V94 H210" class="ln2"/>  <text x="135" y="124" text-anchor="middle" class="lbl">R</text>  <text x="224" y="80" class="lbl">X_L − X_C</text>  <text x="126" y="66" text-anchor="middle" class="lbl">Z</text>  <text x="76" y="100" class="sub">θ</text>  <text x="250" y="118" class="sub">cosθ = R/Z</text>  <text x="60" y="30" class="sub">R = 3, X = 4 면 Z = 5 — 제곱할 것 없다(3-4-5)</text></svg><figcaption>저항과 리액턴스는 <strong>방향이 90° 다르다.</strong> 그래서 그냥 더하지 못하고 <strong>피타고라스로</strong> 더한다. <span class="math"><span class="txt">cos</span><span class="op">θ</span> <span class="op">=</span> <i>R</i>/<i>Z</i></span> 가 역률이다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — 3-4-5 를 노린다.</strong> <span class="math"><i>R</i>,<i>X</i></span> 가 3·4(또는 6·8)면 <span class="math"><i>Z</i></span> 는 5(또는 10).</p>
 <p>시험은 대개 이렇게 깔끔한 값으로 낸다.</p>
 </blockquote>
-<h3>📊 실효값 · 평균값 — 어느 것이 위인가</h3>
+<h3 class="h3">📊 실효값 · 평균값 — 어느 것이 위인가</h3>
 <figure class="fig"><svg viewBox="0 0 320 146" role="img" aria-label="최댓값 실효값 평균값의 크기 비교">  <path d="M20 106 H300" class="ln2"/>  <path d="M20 106 q35 -76 70 0 t70 0 t70 0 t70 0" class="ln"/>  <path d="M20 34 H300" class="ln2"/>  <text x="304" y="38" text-anchor="end" class="sub">최댓값 Vm (1.0)</text>  <path d="M20 55 H300" class="acc"/>  <text x="304" y="52" text-anchor="end" class="sub">실효값 0.707</text>  <path d="M20 65 H300" class="ln2"/>  <text x="304" y="78" text-anchor="end" class="sub">평균값 0.637</text>  <text x="20" y="128" class="sub">파형률 = 실효/평균 ≈ 1.11 · 파고율 = 최대/실효 ≈ 1.414</text></svg><figcaption><strong>실효값 0.707 · 평균값 0.637</strong> — 실효가 항상 위다. 우리가 쓰는 220 V 가 실효값이고, 최댓값은 311 V 다.</figcaption></figure>
 <blockquote>
 <p><strong>검산 — 실효값이 최댓값보다 크면 무조건 틀린 것이다.</strong></p>
@@ -1558,15 +1568,17 @@ html{scroll-behavior:smooth;}
 <p>접어둔 <strong>＋ 왜 이 식인가</strong> 안에 들어 있다.</p>
 <p>⚠️ 빈도는 확정 데이터가 아니라 일반적인 경향 판단이다. 실제로 풀다가 다르면</p>
 <p><code>오답_체크리스트.md</code> 에 적어 알려줄 것 — 그 자리에서 바로 고친다.</p>
+<p><strong>▽ 후순위</strong> — 시간이 없으면 <strong>여기부터 버린다.</strong> ☆(가끔)이거나, 본문이 스스로</p>
+<p>&quot;산업기사 범위&quot;·&quot;잘 안 쓰는 공법&quot;이라고 밝힌 자리다. <strong>빈도는 확정 데이터가 아니라 &gt; 경향 판단</strong>이므로, 기출을 풀어 다르게 나오면 <code>오답_체크리스트.md</code> 에 적어 고친다.</p>
 </blockquote>
 <section class="card" id="k2-s1"><h2>1. 직류기 (DC Machine)</h2>
-<h3>🔧 구조 3요소</h3>
+<h3 class="h3">🔧 구조 3요소</h3>
 <div class="scroller"><table><thead><tr><th>부분</th><th>역할</th><th>기출 포인트</th></tr></thead><tbody><tr><td><strong>계자 (Field)</strong></td><td>자속 <span class="math"><span class="op">Φ</span></span> 를 만든다</td><td>계자권선 + 자극</td></tr><tr><td><strong>전기자 (Armature)</strong></td><td>기전력을 유도한다</td><td><strong>규소강판 성층</strong> — 히스테리시스손과 와류손을 함께 줄인다</td></tr><tr><td><strong>정류자 (Commutator)</strong></td><td>교류를 직류로 바꾼다</td><td>브러시와 접촉. <strong>직류기 고장의 가장 큰 원인</strong></td></tr></tbody></table></div>
 <blockquote>
 <p><strong>왜 성층인가</strong> — 통짜 철심이면 철심 안에 맴돌이(와)전류가 크게 흘러 열이 된다.</p>
 <p>얇은 강판을 절연해 겹치면 전류가 돌 길이 끊긴다. 규소를 넣는 것은 히스테리시스손을 줄이기 위해서다.</p>
 </blockquote>
-<h3>🧵 전기자 권선법 (<span class="star">★</span>단골)</h3>
+<h3 class="h3">🧵 전기자 권선법 (<span class="star">★</span>단골)</h3>
 <p>고상권 · 폐로권 · <strong>2층권</strong>을 쓴다. 중권과 파권의 차이만 확실히 외운다.</p>
 <div class="scroller"><table><thead><tr><th>구분</th><th>병렬회로수 <span class="math"><i>a</i></span></th><th>브러시 수</th><th>용도</th></tr></thead><tbody><tr><td><strong>중권(병렬권)</strong></td><td><span class="math"><i>a</i> <span class="op">=</span> <i>P</i></span> (극수와 같다)</td><td><span class="math"><i>P</i></span> 개</td><td><strong>저전압 · 대전류</strong></td></tr><tr><td><strong>파권(직렬권)</strong></td><td><span class="math"><i>a</i> <span class="op">=</span> 2</span> (극수와 무관)</td><td>2개</td><td><strong>고전압 · 소전류</strong></td></tr></tbody></table></div>
 <blockquote>
@@ -1574,7 +1586,7 @@ html{scroll-behavior:smooth;}
 <p>도체가 직렬로 길게 이어져 전압이 높아진다(고전압). 이렇게 이유로 기억하면 안 헷갈린다.</p>
 <p>중권에서 극수가 4 이상이면 <strong>균압환</strong>을 달아 순환전류를 막는다.</p>
 </blockquote>
-<h3>⚡ 유기기전력 (<span class="star">★</span>반드시 암기)</h3>
+<h3 class="h3">⚡ 유기기전력 (<span class="star">★</span>반드시 암기)</h3>
 <p class="display"><span class="math math-inline-block"><i>E</i> <span class="op">=</span> <span class="frac"><span class="num"><i>P</i> <i>Z</i> <span class="op">Φ</span> <i>N</i></span><span class="den">60 <i>a</i></span></span> <span class="txt"> [V]</span> <span class="sp-qq"></span> <span class="op">⇒</span> <span class="sp-q"></span> <i>E</i> <span class="op">∝</span> <span class="op">Φ</span> <i>N</i></span></p>
 <p>(<span class="math"><i>P</i></span>: 극수, <span class="math"><i>Z</i></span>: 총 도체수, <span class="math"><span class="op">Φ</span></span>: 극당 자속[Wb], <span class="math"><i>N</i></span>: 회전수[rpm], <span class="math"><i>a</i></span>: 병렬회로수)</p>
 <blockquote>
@@ -1599,7 +1611,7 @@ html{scroll-behavior:smooth;}
 <p>기전력은?&quot; 같은 비례 문제가 대부분이라, 긴 식을 다 쓸 일이 드물다.</p>
 <p><strong>손잡이 — &quot;세게(Φ) 빨리(N) 돌리면 전압이 높다&quot;.</strong></p>
 <p><span class="math"><i>P</i>, <i>Z</i>, <i>a</i></span> 는 기계가 정해진 값이라 문제에서 바뀌지 않는다.</p></div></details>
-<h3>🌀 전기자 반작용 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🌀 전기자 반작용 (<span class="star">★</span>자주)</h3>
 <p>전기자 전류가 만든 자속이 계자 자속을 일그러뜨리는 현상이다.</p>
 <ul>
 <li>
@@ -1609,7 +1621,7 @@ html{scroll-behavior:smooth;}
 <strong>대책</strong>: <strong>보극</strong>(정류 개선), <strong>보상권선</strong>(가장 효과적 — 전기자 전류와 <strong>반대 방향</strong>으로 흘려 상쇄),
 <br>브러시를 중성축으로 이동
 </li></ul>
-<h3>🔌 직류 발전기의 종류</h3>
+<h3 class="h3">🔌 직류 발전기의 종류</h3>
 <div class="scroller"><table><thead><tr><th>종류</th><th>여자 방식</th><th>특징</th></tr></thead><tbody><tr><td><strong>타여자</strong></td><td>외부 전원</td><td>잔류자기 없어도 발전. <strong>워드 레오나드 방식</strong>에 쓴다</td></tr><tr><td><strong>분권</strong></td><td>계자 ∥ 전기자</td><td>전압 변동 적음. 운전 중 <strong>계자회로 개방 금지</strong>(고전압 유기·위험)</td></tr><tr><td><strong>직권</strong></td><td>계자 — 전기자 직렬</td><td><strong>무부하 운전 금지</strong>(전압 상승)</td></tr><tr><td><strong>복권</strong></td><td>분권 + 직권</td><td>가동복권(승압) / 차동복권(감압)</td></tr></tbody></table></div>
 <ul>
 <li>
@@ -1628,7 +1640,7 @@ html{scroll-behavior:smooth;}
 <p>구조라 그렇다 — 이걸 묻는 문제가 나온다.</p>
 <p><strong>손잡이 — &quot;무부하 빼기 정격, 정격으로 나눈다&quot;.</strong></p>
 <p>변압기 전압변동률도 똑같은 모양이라 한 번 외우면 두 번 쓴다.</p></div></details>
-<h3>🔁 직류 전동기</h3>
+<h3 class="h3">🔁 직류 전동기</h3>
 <ul>
 <li>
 <strong>역기전력</strong>: <span class="math math-inline-block"><i>E</i> <span class="op">=</span> <i>V</i> <span class="op">-</span> <i>I</i><sub><i>a</i></sub> <i>R</i><sub><i>a</i></sub></span>
@@ -1668,7 +1680,7 @@ html{scroll-behavior:smooth;}
 <p><strong>토크 <span class="math"><i>T</i> <span class="op">=</span> 9.55 <i>P</i><sub><i>out</i></sub>/<i>N</i></span></strong> — 같은 출력이면 <strong>느릴수록 토크가 크다.</strong> 자전거</p>
 <p>기어와 같은 이야기다.</p>
 <p><strong>손잡이 — &quot;자속 줄이면 빨라진다, 대신 토크는 준다&quot;.</strong></p></div></details>
-<h3>📉 손실과 효율 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">📉 손실과 효율 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 <strong>고정손(무부하손)</strong> = 철손(히스테리시스손 + 와류손) + 기계손(마찰·풍손)
@@ -1685,7 +1697,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k2-s2"><h2>2. 동기기 (Synchronous Machine)</h2>
-<h3>🔄 동기속도 (<span class="star">★</span>매회)</h3>
+<h3 class="h3">🔄 동기속도 (<span class="star">★</span>매회)</h3>
 <p class="display"><span class="math math-inline-block"><i>N</i><sub><i>s</i></sub> <span class="op">=</span> <span class="frac"><span class="num">120 <i>f</i></span><span class="den"><i>P</i></span></span> <span class="txt"> [rpm]</span></span></p>
 <div class="scroller"><table><thead><tr><th>극수</th><th>60 Hz</th><th>50 Hz</th></tr></thead><tbody><tr><td>2극</td><td>3600 rpm</td><td>3000 rpm</td></tr><tr><td>4극</td><td>1800 rpm</td><td>1500 rpm</td></tr><tr><td>6극</td><td>1200 rpm</td><td>1000 rpm</td></tr><tr><td>8극</td><td>900 rpm</td><td>750 rpm</td></tr></tbody></table></div>
 <blockquote>
@@ -1711,12 +1723,12 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — 60 Hz 는 7200 만 외운다.</strong> <span class="math">120 <span class="op">×</span> 60 <span class="op">=</span> 7200</span> 을 미리 계산해두고</p>
 <p>극수로 나누기만 한다 — 2극 3600, 4극 1800, 6극 1200, 8극 900.</p>
 <p><strong>매번 곱할 필요가 없다.</strong></p></div></details>
-<h3>🌀 동기발전기의 전기자 반작용 (부하 역률에 따라 달라진다)</h3>
+<h3 class="h3">🌀 동기발전기의 전기자 반작용 (부하 역률에 따라 달라진다)</h3>
 <div class="scroller"><table><thead><tr><th>부하</th><th>전류 위상</th><th>작용</th></tr></thead><tbody><tr><td><strong>저항 부하</strong></td><td>동상</td><td><strong>교차자화 작용</strong>(횡축 반작용)</td></tr><tr><td><strong>유도성 부하</strong></td><td>90° 지상</td><td><strong>감자 작용</strong> — 자속을 깎는다</td></tr><tr><td><strong>용량성 부하</strong></td><td>90° 진상</td><td><strong>증자 작용</strong> — 자속을 늘린다</td></tr></tbody></table></div>
-<h3>🔗 병렬운전 조건 (<span class="star">★</span>단골)</h3>
+<h3 class="h3">🔗 병렬운전 조건 (<span class="star">★</span>단골)</h3>
 <p>기전력의 <strong>크기 · 위상 · 주파수 · 파형</strong>이 같을 것. (3상은 <strong>상회전 방향</strong>까지 같아야 한다)</p>
 <div class="scroller"><table><thead><tr><th>무엇이 다르면</th><th>무엇이 흐르나</th></tr></thead><tbody><tr><td>크기가 다르다</td><td><strong>무효 순환전류</strong>(무효 횡류)</td></tr><tr><td>위상이 다르다</td><td><strong>유효 순환전류</strong>(동기화 전류)</td></tr><tr><td>주파수가 다르다</td><td><strong>난조</strong>의 원인</td></tr></tbody></table></div>
-<h3>📊 단락비와 %임피던스</h3>
+<h3 class="h3 low">📊 단락비와 %임피던스 (▽ 후순위)</h3>
 <p class="display"><span class="math math-inline-block"><i>K</i><sub><i>s</i></sub> <span class="op">=</span> <span class="frac"><span class="num"><i>I</i><sub><i>fs</i></sub></span><span class="den"><i>I</i><sub><i>fn</i></sub></span></span> <span class="op">=</span> <span class="frac"><span class="num">100</span><span class="den"><i>Z</i></span></span></span></p>
 <ul>
 <li>
@@ -1742,7 +1754,7 @@ html{scroll-behavior:smooth;}
 <p><strong>%Z 가 작다는 것은 단락전류가 크다는 뜻</strong>이기도 하다. 정격의 <span class="math">100/<i>Z</i></span> 배가</p>
 <p>흐르니, %Z 20 % 면 단락 시 <strong>정격의 5배</strong>가 흐른다. 차단기 용량을 정할 때</p>
 <p>쓰는 계산이다.</p></div></details>
-<h3>🧲 동기 전동기</h3>
+<h3 class="h3">🧲 동기 전동기</h3>
 <ul>
 <li>
 <strong>장점</strong>: <strong>속도가 <span class="math"><i>N</i><sub><i>s</i></sub></span> 로 일정</strong>, <strong>역률 1.0 운전 가능</strong>, 효율이 좋다
@@ -1763,7 +1775,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 </section>
 <section class="card" id="k2-s3"><h2>3. 변압기 (Transformer)</h2>
-<h3>📐 권수비 (<span class="star">★</span>계산 단골)</h3>
+<h3 class="h3">📐 권수비 (<span class="star">★</span>계산 단골)</h3>
 <p class="display"><span class="math math-inline-block"><i>a</i> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i><sub>1</sub></span><span class="den"><i>N</i><sub>2</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>V</i><sub>1</sub></span><span class="den"><i>V</i><sub>2</sub></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>I</i><sub>2</sub></span><span class="den"><i>I</i><sub>1</sub></span></span> <span class="op">=</span> <span class="sqrt"><span class="frac"><span class="num"><i>R</i><sub>1</sub></span><span class="den"><i>R</i><sub>2</sub></span></span></span> <span class="op">=</span> <span class="sqrt"><span class="frac"><span class="num"><i>Z</i><sub>1</sub></span><span class="den"><i>Z</i><sub>2</sub></span></span></span></span></p>
 <ul>
 <li>
@@ -1790,7 +1802,7 @@ html{scroll-behavior:smooth;}
 <p><strong><span class="math"><i>E</i> <span class="op">=</span> 4.44<i>fN</i><span class="op">Φ</span><sub><i>m</i></sub></span> 의 4.44</strong> — 실효값을 만드는 과정에서 나온 수다.</p>
 <p><span class="math">2<span class="op">π</span>/<span class="sqrt">2</span> <span class="op">≈</span> 4.44</span> 로, <strong>외워서 쓰는 상수</strong>다.</p>
 <p><strong>손잡이 — &quot;전압은 그대로, 전류는 뒤집어, 임피던스는 제곱&quot;.</strong></p></div></details>
-<h3>🧯 구조와 부속품</h3>
+<h3 class="h3">🧯 구조와 부속품</h3>
 <ul>
 <li>
 <strong>철심</strong>: 규소 약 <strong>4 %</strong>, 두께 <strong>0.35 mm</strong> 규소강판 성층
@@ -1804,7 +1816,7 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>호흡작용</strong>: 온도 변화로 기름이 팽창·수축하며 공기가 드나드는 것 → 열화의 원인
 </li></ul>
-<h3>🔬 등가회로 시험 (<span class="star">★</span>자주 — 어느 시험에서 무엇이 나오나)</h3>
+<h3 class="h3">🔬 등가회로 시험 (<span class="star">★</span>자주 — 어느 시험에서 무엇이 나오나)</h3>
 <div class="scroller"><table><thead><tr><th>시험</th><th>알 수 있는 것</th></tr></thead><tbody><tr><td><strong>무부하(개방) 시험</strong></td><td><strong>철손</strong>, 여자전류, 여자 어드미턴스</td></tr><tr><td><strong>단락 시험</strong></td><td><strong>동손(임피던스 와트)</strong>, 임피던스 전압, 전압변동률</td></tr><tr><td><strong>절연내력 시험</strong></td><td>유전체 손실, 절연 상태</td></tr></tbody></table></div>
 <ul>
 <li>
@@ -1814,7 +1826,7 @@ html{scroll-behavior:smooth;}
 <p><strong>전압변동률을 %저항강하·%리액턴스강하로 분해해 계산하는 식</strong>은 산업기사 수준 계산이라</p>
 <p><a href="./Machinery_Extra_전기기사대비.md"><code>Machinery_Extra_전기기사대비.md</code></a> 로 뺐다.</p>
 </blockquote>
-<h3>📉 효율</h3>
+<h3 class="h3">📉 효율</h3>
 <ul>
 <li>
 <strong>최대 효율 조건</strong>: <strong>철손 = 동손</strong>
@@ -1823,7 +1835,7 @@ html{scroll-behavior:smooth;}
 <p><strong>부하율에 따른 최적 효율 조건 계산</strong>과 <strong>전일효율</strong>은 산업기사 수준 심화 계산이라</p>
 <p><a href="./Machinery_Extra_전기기사대비.md"><code>Machinery_Extra_전기기사대비.md</code></a> 로 뺐다.</p>
 </blockquote>
-<h3>🔺 3상 결선 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔺 3상 결선 (<span class="star">★</span>자주)</h3>
 <div class="scroller"><table><thead><tr><th>결선</th><th>특징</th></tr></thead><tbody><tr><td><strong>Δ-Δ</strong></td><td>제3고조파가 순환해 <strong>파형이 좋다</strong>. 1대 고장 시 <strong>V결선</strong>으로 계속 운전. 중성점 접지 불가</td></tr><tr><td><strong>Y-Y</strong></td><td>중성점 접지 가능(절연 유리)이나 <strong>제3고조파가 선로로 나가 통신선 유도장해</strong> → 잘 안 씀</td></tr><tr><td><strong>Y-Δ</strong></td><td><strong>강압용</strong>(송전단)</td></tr><tr><td><strong>Δ-Y</strong></td><td><strong>승압용</strong>(발전소). Y-Δ·Δ-Y 는 <strong>위상차 30°</strong> 발생</td></tr><tr><td><strong>V-V</strong></td><td>변압기 2대로 3상. <strong>이용률 86.6 %, 출력비 57.7 %</strong> (<span class="star">★</span>)</td></tr></tbody></table></div>
 <ul>
 <li>
@@ -1842,7 +1854,7 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k2-s4"><h2>4. 유도기 (Induction Machine)</h2>
 <p>현장에서 가장 많이 쓰는 전동기다. <strong>구조가 튼튼하고 값이 싸며 취급이 쉽다.</strong></p>
-<h3>🔃 슬립 (<span class="star">★</span>핵심)</h3>
+<h3 class="h3">🔃 슬립 (<span class="star">★</span>핵심)</h3>
 <p>회전자는 동기속도보다 <strong>조금 느리게</strong> 돈다. 그래야 자속을 끊어 유도전류가 생긴다.</p>
 <p class="display"><span class="math math-inline-block"><i>s</i> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i><sub><i>s</i></sub> <span class="op">-</span> <i>N</i></span><span class="den"><i>N</i><sub><i>s</i></sub></span></span> <span class="op">×</span> 100 <span class="sp-t"></span> [] <span class="sp-qq"></span> <i>N</i> <span class="op">=</span> (1 <span class="op">-</span> <i>s</i>) <i>N</i><sub><i>s</i></sub></span></p>
 <ul>
@@ -1867,7 +1879,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 <p><strong><span class="math"><i>N</i> <span class="op">=</span> (1<span class="op">-</span><i>s</i>)<i>N</i><sub><i>s</i></sub></span> 는 같은 식을 옮긴 것뿐이다.</strong></p>
 <p><strong>손잡이 — &quot;슬립이 1보다 크거나 음수면 계산이 틀린 것&quot;</strong> (전동기 운전 기준).</p></div></details>
-<h3>⚖️ 전력 변환 관계 (<span class="star">★</span>계산 단골)</h3>
+<h3 class="h3">⚖️ 전력 변환 관계 (<span class="star">★</span>계산 단골)</h3>
 <p class="display"><span class="math math-inline-block"><i>P</i><sub>2</sub> : <i>P</i><sub><i>c</i>2</sub> : <i>P</i><sub>0</sub> <span class="op">=</span> 1 : <i>s</i> : (1 <span class="op">-</span> <i>s</i>)</span></p>
 <p>(<span class="math"><i>P</i><sub>2</sub></span> 2차 입력, <span class="math"><i>P</i><sub><i>c</i>2</sub></span> 2차 동손, <span class="math"><i>P</i><sub>0</sub></span> 기계적 출력)</p>
 <p class="display"><span class="math math-inline-block"><span class="op">η</span><sub>2</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>P</i><sub>0</sub></span><span class="den"><i>P</i><sub>2</sub></span></span> <span class="op">=</span> 1 <span class="op">-</span> <i>s</i> <span class="op">=</span> <span class="frac"><span class="num"><i>N</i></span><span class="den"><i>N</i><sub><i>s</i></sub></span></span></span></p>
@@ -1885,7 +1897,7 @@ html{scroll-behavior:smooth;}
 <p><strong>손잡이 — &quot;슬립은 버리는 비율&quot;.</strong> <span class="math"><i>s</i> <span class="op">=</span> 0.05</span> 면 5 %를 열로 버리고 95 %가</p>
 <p>출력이다. 이 하나로 세 값을 다 만들 수 있다.</p>
 <p><strong>비율 문제가 대부분</strong>이라 이 관계만 알면 계산이 한 줄로 끝난다.</p></div></details>
-<h3>🌀 토크와 비례추이</h3>
+<h3 class="h3">🌀 토크와 비례추이</h3>
 <ul>
 <li>
 <strong>토크는 공급전압의 제곱에 비례</strong>한다. <span class="math math-inline-block"><i>T</i> <span class="op">∝</span> <i>V</i><sup>2</sup></span>
@@ -1909,7 +1921,7 @@ html{scroll-behavior:smooth;}
 <p>산봉우리를 왼쪽으로 미는 그림이다 — 높이는 같고 위치만 바뀐다.</p>
 <p><strong>전압은 제곱으로 기억한다</strong> — &quot;전압 10 % 떨어지면 토크는 20 % 가까이 준다&quot;.</p>
 <p><span class="math">0.9<sup>2</sup> <span class="op">=</span> 0.81</span> 이라 19 % 감소다.</p></div></details>
-<h3>🚀 기동법 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🚀 기동법 (<span class="star">★</span>자주)</h3>
 <div class="scroller"><table><thead><tr><th>종류</th><th>기동법</th><th>적용</th></tr></thead><tbody><tr><td><strong>농형</strong></td><td>전전압(직입) 기동</td><td>5 kW 이하 소형</td></tr><tr><td></td><td><strong>Y-Δ 기동</strong></td><td>5~15 kW. <strong>기동전류·기동토크가 1/3</strong></td></tr><tr><td></td><td>기동보상기법(단권변압기)</td><td>15 kW 초과</td></tr><tr><td></td><td>리액터 기동</td><td>—</td></tr><tr><td><strong>권선형</strong></td><td><strong>2차 저항 기동</strong>(비례추이)</td><td>기동토크가 필요한 곳</td></tr><tr><td></td><td>2차 여자법</td><td>속도제어까지</td></tr></tbody></table></div>
 <blockquote>
 <p><strong>왜 1/3 인가</strong> — Y 로 걸면 상전압이 <span class="math">1/<span class="sqrt">3</span></span> 이 되고, 토크는 전압의 제곱에 비례하므로</p>
@@ -1921,7 +1933,7 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>역회전</strong>: 3상 전원 <strong>3선 중 임의의 2선을 바꾼다</strong> (<span class="star">★</span>)
 </li></ul>
-<h3>🔌 단상 유도전동기</h3>
+<h3 class="h3">🔌 단상 유도전동기</h3>
 <p>회전자계가 생기지 않아 <strong>기동토크가 0</strong> 이다. 그래서 기동장치가 반드시 붙는다.</p>
 <p>기동토크가 큰 순서 (<span class="star">★</span>암기):</p>
 <blockquote>
@@ -1929,13 +1941,13 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k2-s5"><h2>5. 정류기 · 전력변환 (Power Electronics)</h2>
-<h3>📥 정류 회로별 직류 평균 전압 (<span class="star">★</span>공식 암기)</h3>
+<h3 class="h3">📥 정류 회로별 직류 평균 전압 (<span class="star">★</span>공식 암기)</h3>
 <div class="scroller"><table><thead><tr><th>방식</th><th>직류 평균 전압 <span class="math"><i>E</i><sub><i>d</i></sub></span></th><th>맥동 주파수(60 Hz)</th><th>맥동률</th></tr></thead><tbody><tr><td><strong>단상 반파</strong></td><td><span class="math">0.45 <i>E</i></span></td><td>60 Hz</td><td>121 % (가장 나쁨)</td></tr><tr><td><strong>단상 전파</strong></td><td><span class="math">0.90 <i>E</i></span></td><td>120 Hz</td><td>48 %</td></tr><tr><td><strong>3상 반파</strong></td><td><span class="math">1.17 <i>E</i></span></td><td>180 Hz</td><td>17 %</td></tr><tr><td><strong>3상 전파</strong></td><td><span class="math">1.35 <i>E</i></span></td><td>360 Hz</td><td><strong>4 % (가장 좋음)</strong></td></tr></tbody></table></div>
 <blockquote>
 <p><strong>맥동률</strong>이란 직류에 남은 교류 성분의 비율이다. 상수와 파수가 많을수록 매끈해진다.</p>
 <p>평활회로(콘덴서·리액터)를 넣으면 더 좋아진다.</p>
 </blockquote>
-<h3>🎛 반도체 소자 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🎛 반도체 소자 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 <strong>다이오드</strong>: 한 방향으로만 흘린다. 직렬 연결 → <strong>과전압 보호</strong>, 병렬 연결 → <strong>과전류 보호</strong>
@@ -1956,30 +1968,30 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>UJT</strong>: 펄스 발생용
 </li></ul>
-<h3>🔄 변환장치 이름 (<span class="star">★</span>혼동 주의)</h3>
+<h3 class="h3">🔄 변환장치 이름 (<span class="star">★</span>혼동 주의)</h3>
 <div class="scroller"><table><thead><tr><th>이름</th><th>변환</th></tr></thead><tbody><tr><td><strong>컨버터(정류기)</strong></td><td>교류 → <strong>직류</strong></td></tr><tr><td><strong>인버터</strong></td><td>직류 → <strong>교류</strong></td></tr><tr><td><strong>초퍼</strong></td><td>직류 → 직류 (전압 조정)</td></tr><tr><td><strong>사이클로 컨버터</strong></td><td>교류 → <strong>다른 주파수의 교류</strong></td></tr></tbody></table></div>
 </section>
 <section class="card" id="k2-s6"><h2>🖼 그림으로 보기</h2>
 <p><strong>기기는 &quot;무엇이 돌고 무엇이 멈춰 있나&quot;만 잡으면 절반이 풀린다.</strong></p>
-<h3>🔄 동기속도 — 극수가 많으면 왜 느린가</h3>
+<h3 class="h3">🔄 동기속도 — 극수가 많으면 왜 느린가</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="2극과 4극의 동기속도 비교">  <text x="12" y="16" class="lbl">2극 — 3600 rpm</text>  <circle cx="72" cy="72" r="40" class="ln"/>  <path d="M72 32 A40 40 0 0 1 72 112 Z" class="fill"/>  <text x="88" y="56" class="sub">N</text>  <text x="48" y="96" class="sub">S</text>  <path d="M72 72 L72 40" class="acc"/>  <text x="72" y="130" text-anchor="middle" class="sub">7200 ÷ 2</text>  <path d="M160 20 V128" class="ln2"/>  <text x="196" y="16" class="lbl">4극 — 1800 rpm</text>  <circle cx="248" cy="72" r="40" class="ln"/>  <path d="M248 32 A40 40 0 0 1 288 72 Z" class="fill"/>  <path d="M248 112 A40 40 0 0 1 208 72 Z" class="fill"/>  <text x="264" y="52" class="sub">N</text>  <text x="224" y="52" class="sub">S</text>  <text x="264" y="98" class="sub">S</text>  <text x="224" y="98" class="sub">N</text>  <path d="M248 72 L248 40" class="acc"/>  <text x="248" y="130" text-anchor="middle" class="sub">7200 ÷ 4</text></svg><figcaption>극이 많으면 <strong>한 바퀴 도는 동안 N·S 를 여러 번 지나므로</strong>, 천천히 돌아도 같은 주파수가 나온다. 그래서 <span class="math"><i>N</i><sub><i>s</i></sub> <span class="op">=</span> 120<i>f</i>/<i>P</i></span> 에서 극수가 분모다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — 60 Hz 는 7200 만 외운다.</strong> 극수로 나누기만 하면 된다.</p>
 <p>2극 3600 · 4극 1800 · 6극 1200 · 8극 900.</p>
 </blockquote>
-<h3>🔃 슬립 — 왜 동기속도에 못 닿나</h3>
+<h3 class="h3">🔃 슬립 — 왜 동기속도에 못 닿나</h3>
 <figure class="fig"><svg viewBox="0 0 320 130" role="img" aria-label="회전자계와 회전자의 속도 차이가 슬립">  <path d="M20 44 H300" class="ln2"/>  <path d="M20 44 H272" class="acc"/>  <path d="M266 39 l8 5 -8 5" class="acc"/>  <text x="20" y="34" class="lbl">회전자계 Ns (동기속도)</text>  <path d="M20 86 H300" class="ln2"/>  <path d="M20 86 H236" class="ln"/>  <path d="M230 81 l8 5 -8 5" class="ln"/>  <text x="20" y="76" class="lbl">회전자 N (실제 회전)</text>  <path d="M236 96 H272" class="ln2"/>  <path d="M236 92 V100 M272 92 V100" class="ln"/>  <text x="254" y="116" text-anchor="middle" class="lbl">이 차이 = 슬립</text>  <text x="20" y="116" class="sub">전부하 s = 0.03~0.05 · 정지 s = 1</text></svg><figcaption>회전자계와 회전자 사이에 <strong>속도 차이가 있어야</strong> 자속을 끊고, 끊어야 전류가 생기고, 전류가 있어야 힘이 난다. 같은 속도가 되면 <strong>끊을 게 없어 토크가 0</strong> 이라 곧 느려진다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;슬립은 버리는 비율&quot;.</strong> <span class="math"><i>s</i> <span class="op">=</span> 0.05</span> 면 5 %를 열로 버리고 95 %가 출력.</p>
 <p><span class="math"><i>P</i><sub>2</sub> : <i>P</i><sub><i>c</i>2</sub> : <i>P</i><sub>0</sub> <span class="op">=</span> 1 : <i>s</i> : (1<span class="op">-</span><i>s</i>)</span> 가 그 이야기다.</p>
 </blockquote>
-<h3>📐 변압기 권수비 — 전압과 전류가 반대로 간다</h3>
+<h3 class="h3">📐 변압기 권수비 — 전압과 전류가 반대로 간다</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="변압기 권수비에서 전압과 전류의 관계">  <path d="M148 26 V116 M172 26 V116" class="ln"/>  <path d="M120 40 q-12 8 0 16 M120 56 q-12 8 0 16 M120 72 q-12 8 0 16" class="acc"/>  <path d="M200 44 q12 8 0 16 M200 60 q12 8 0 16" class="acc"/>  <text x="104" y="34" text-anchor="middle" class="lbl">1차 N₁</text>  <text x="216" y="34" text-anchor="middle" class="lbl">2차 N₂</text>  <path d="M60 44 H120 M60 84 H120 M60 44 V84" class="ln"/>  <text x="46" y="68" text-anchor="middle" class="sub">V₁</text>  <path d="M200 52 H260 M200 76 H260 M260 52 V76" class="ln"/>  <text x="276" y="68" text-anchor="middle" class="sub">V₂</text>  <text x="160" y="132" text-anchor="middle" class="lbl">a = N₁/N₂ = V₁/V₂ = I₂/I₁</text>  <text x="88" y="104" text-anchor="middle" class="sub">I₁ 작다</text>  <text x="232" y="100" text-anchor="middle" class="sub">I₂ 크다</text></svg><figcaption><strong>에너지를 만들지 않는다</strong>(<span class="math"><i>V</i><sub>1</sub><i>I</i><sub>1</sub> <span class="op">=</span> <i>V</i><sub>2</sub><i>I</i><sub>2</sub></span>). 전압이 <span class="math"><i>a</i></span> 배 오르면 전류는 <span class="math">1/<i>a</i></span> 로 줄어야 한다 — 그래서 첨자 순서가 반대로 적힌다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;전압은 그대로, 전류는 뒤집어, 임피던스는 제곱&quot;.</strong></p>
 <p><span class="math"><i>V</i></span> 는 <span class="math"><i>V</i><sub>1</sub>/<i>V</i><sub>2</sub></span> 인데 <span class="math"><i>I</i></span> 는 <span class="math"><i>I</i><sub>2</sub>/<i>I</i><sub>1</sub></span> 로 <strong>첨자가 반대</strong>다.</p>
 </blockquote>
-<h3>🚀 Y-Δ 기동 — 왜 기동전류가 1/3 이 되나</h3>
+<h3 class="h3">🚀 Y-Δ 기동 — 왜 기동전류가 1/3 이 되나</h3>
 <figure class="fig"><svg viewBox="0 0 320 140" role="img" aria-label="Y 기동에서 델타 운전으로 전환">  <text x="12" y="16" class="lbl">기동 — Y</text>  <path d="M62 76 V38 M62 76 L32 106 M62 76 L92 106" class="ln"/>  <circle cx="62" cy="76" r="3.5" class="ln" fill="var(--ink)"/>  <text x="62" y="128" text-anchor="middle" class="sub">전압 1/√3 → 전류·토크 1/3</text>  <path d="M132 70 h48" class="acc"/>  <path d="M174 64 l8 6 -8 6" class="acc"/>  <text x="156" y="58" text-anchor="middle" class="sub">타이머</text>  <text x="216" y="16" class="lbl">운전 — Δ</text>  <path d="M252 40 L216 104 H288 Z" class="ln"/>  <text x="252" y="128" text-anchor="middle" class="sub">전압 그대로 → 정상 토크</text></svg><figcaption>기동할 때 <strong>Y로 걸면 각 상에 걸리는 전압이 <span class="math">1/<span class="sqrt">3</span></span></strong> 로 줄어, <strong>전류와 토크가 1/3</strong> 이 된다. 속도가 붙으면 Δ 로 바꿔 정상 운전한다.</figcaption></figure>
 <blockquote>
 <p><strong>⚠ MC-Y 와 MC-Δ 사이에는 반드시 인터록</strong>이 있어야 한다.</p>
@@ -2023,20 +2035,22 @@ html{scroll-behavior:smooth;}
 <p>접어둔 <strong>＋ 왜 이 식인가</strong> 안에 들어 있다.</p>
 <p>⚠️ 빈도는 확정 데이터가 아니라 일반적인 경향 판단이다. 실제로 풀다가 다르면</p>
 <p><code>오답_체크리스트.md</code> 에 적어 알려줄 것 — 그 자리에서 바로 고친다.</p>
+<p><strong>▽ 후순위</strong> — 시간이 없으면 <strong>여기부터 버린다.</strong> ☆(가끔)이거나, 본문이 스스로</p>
+<p>&quot;산업기사 범위&quot;·&quot;잘 안 쓰는 공법&quot;이라고 밝힌 자리다. <strong>빈도는 확정 데이터가 아니라 &gt; 경향 판단</strong>이므로, 기출을 풀어 다르게 나오면 <code>오답_체크리스트.md</code> 에 적어 고친다.</p>
 </blockquote>
 <section class="card" id="k3-s1"><h2>1. 전압의 구분과 전선 식별</h2>
-<h3>⚡ 전압 구분 (<span class="star">★</span>KEC 개정)</h3>
+<h3 class="h3">⚡ 전압 구분 (<span class="star">★</span>KEC 개정)</h3>
 <div class="scroller"><table><thead><tr><th>구분</th><th>교류(AC)</th><th>직류(DC)</th></tr></thead><tbody><tr><td><strong>저압</strong></td><td><strong>1 kV 이하</strong></td><td><strong>1.5 kV 이하</strong></td></tr><tr><td><strong>고압</strong></td><td>1 kV 초과 ~ <strong>7 kV 이하</strong></td><td>1.5 kV 초과 ~ 7 kV 이하</td></tr><tr><td><strong>특고압</strong></td><td><strong>7 kV 초과</strong></td><td>7 kV 초과</td></tr></tbody></table></div>
 <blockquote>
 <p>예전 기준(저압 교류 600 V·직류 750 V)에서 바뀐 부분이다. <strong>1 kV / 1.5 kV / 7 kV</strong> 세 숫자로 외운다.</p>
 </blockquote>
-<h3>🎨 전선의 색상 식별 (<span class="star">★</span>매회)</h3>
+<h3 class="h3">🎨 전선의 색상 식별 (<span class="star">★</span>매회)</h3>
 <div class="scroller"><table><thead><tr><th>상(도체)</th><th>색상</th></tr></thead><tbody><tr><td><strong>L1</strong></td><td><strong>갈색</strong></td></tr><tr><td><strong>L2</strong></td><td><strong>흑색</strong></td></tr><tr><td><strong>L3</strong></td><td><strong>회색</strong></td></tr><tr><td><strong>N (중성선)</strong></td><td><strong>청색</strong></td></tr><tr><td><strong>보호도체 (PE)</strong></td><td><strong>녹색-노란색 혼합</strong></td></tr></tbody></table></div>
 <blockquote>
 <p>암기 — <strong>갈 · 흑 · 회 · 청</strong>, 보호도체만 <strong>녹황</strong>. 색을 못 맞추면 접속·점검에서 사고가 나므로</p>
 <p>규정으로 못박아 둔 것이다.</p>
 </blockquote>
-<h3>🏷 전선의 약호 (자주 나오는 것만)</h3>
+<h3 class="h3">🏷 전선의 약호 (자주 나오는 것만)</h3>
 <div class="scroller"><table><thead><tr><th>약호</th><th>이름</th></tr></thead><tbody><tr><td><strong>IV</strong></td><td>600 V 비닐절연전선</td></tr><tr><td><strong>HIV</strong></td><td>600 V 2종 비닐절연전선(내열)</td></tr><tr><td><strong>OW</strong></td><td>옥외용 비닐절연전선</td></tr><tr><td><strong>DV</strong></td><td>인입용 비닐절연전선</td></tr><tr><td><strong>CV</strong></td><td>가교폴리에틸렌 절연 비닐시스 케이블</td></tr><tr><td><strong>VCT</strong></td><td>비닐 캡타이어 케이블</td></tr><tr><td><strong>NR</strong></td><td>450/750 V 일반용 단심 비닐절연전선</td></tr></tbody></table></div>
 </section>
 <section class="card" id="k3-s2"><h2>2. 전선과 접속</h2>
@@ -2073,7 +2087,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k3-s3"><h2>3. 배선공사 방법별 규격 (<span class="star">★</span>숫자 집중)</h2>
-<h3>📏 지지점(새들·클리트) 간격</h3>
+<h3 class="h3">📏 지지점(새들·클리트) 간격</h3>
 <div class="scroller"><table><thead><tr><th>공사 종류</th><th>지지점 간격</th></tr></thead><tbody><tr><td><strong>합성수지관 공사</strong></td><td><strong>1.5 m 이하</strong></td></tr><tr><td><strong>금속관 공사</strong></td><td><strong>2 m 이하</strong></td></tr><tr><td><strong>금속제 가요전선관</strong></td><td><strong>1 m 이하</strong></td></tr><tr><td><strong>케이블 공사</strong></td><td><strong>2 m 이하</strong> (조영재 아랫면·옆면), <strong>수직으로 붙이면 6 m 이하</strong>, 캡타이어케이블 1 m</td></tr><tr><td><strong>금속덕트 공사</strong></td><td><strong>3 m 이하</strong> (수직 또는 취급자 외 출입 없는 곳은 6 m)</td></tr><tr><td><strong>버스덕트 공사</strong></td><td>3 m 이하</td></tr></tbody></table></div>
 <blockquote>
 <p>가벼운 관일수록 자주 잡아준다 — <strong>합성수지관(1.5 m) &lt; 금속관(2 m)</strong>, 잘 휘는 가요관은 <strong>1 m</strong>.</p>
@@ -2082,7 +2096,7 @@ html{scroll-behavior:smooth;}
 <li>
 <strong>금속덕트 내부 전선 점유율</strong>: 덕트 단면적의 <strong>20 % 이하</strong> (제어회로 등만 넣는 경우엔 <strong>50 % 이하</strong>)
 </li></ul>
-<h3>🔩 금속관 공사</h3>
+<h3 class="h3">🔩 금속관 공사</h3>
 <ul>
 <li>
 <strong>관 두께</strong>: 콘크리트 <strong>매입은 1.2 mm 이상</strong>, 그 외는 <strong>1 mm 이상</strong>
@@ -2099,7 +2113,7 @@ html{scroll-behavior:smooth;}
 <strong>부속품</strong>
 </li></ul>
 <div class="scroller"><table><thead><tr><th>부속품</th><th>용도</th></tr></thead><tbody><tr><td><strong>부싱</strong></td><td>관 끝에서 전선 피복 보호</td></tr><tr><td><strong>커플링</strong></td><td>관과 관을 잇는다</td></tr><tr><td><strong>노멀밴드</strong></td><td>콘크리트 매입 굴곡부</td></tr><tr><td><strong>유니버설 엘보</strong></td><td>노출 배관의 직각 굴곡</td></tr><tr><td><strong>링리듀서</strong></td><td>녹아웃 지름이 관보다 클 때</td></tr><tr><td><strong>로크너트</strong></td><td>박스에 관 고정</td></tr><tr><td><strong>새들·파이프행거</strong></td><td>관 지지</td></tr><tr><td><strong>엔트런스 캡</strong></td><td>인입구에서 빗물 침입 방지</td></tr></tbody></table></div>
-<h3>🧵 합성수지관(PVC) 공사</h3>
+<h3 class="h3">🧵 합성수지관(PVC) 공사</h3>
 <ul>
 <li>
 <strong>장점</strong>: 절연성·내식성 우수, 가볍고 시공이 쉬움, 접지 불필요
@@ -2110,7 +2124,7 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>중량물의 압력이나 현저한 기계적 충격</strong>을 받는 곳에는 쓰지 않는다.
 </li></ul>
-<h3>🪢 가요전선관 공사</h3>
+<h3 class="h3">🪢 가요전선관 공사</h3>
 <ul>
 <li>
 <strong>전동기 등 진동이 있는 기기</strong>, 굴곡이 많은 곳, 엘리베이터·기차 배선
@@ -2119,13 +2133,13 @@ html{scroll-behavior:smooth;}
 </li><li>
 부속품: <strong>콤비네이션 커플링</strong>(금속관 ↔ 가요관), <strong>스트레이트 박스 커넥터</strong>
 </li></ul>
-<h3>🍶 애자사용 공사 (☆가끔 — 현대엔 잘 안 쓰는 공법)</h3>
+<h3 class="h3 low">🍶 애자사용 공사 (☆가끔 — 현대엔 잘 안 쓰는 공법 · ▽ 후순위)</h3>
 <div class="scroller"><table><thead><tr><th>항목</th><th>400 V 이하</th><th>400 V 초과</th></tr></thead><tbody><tr><td><strong>전선 상호 간격</strong></td><td>6 cm 이상</td><td>6 cm 이상</td></tr><tr><td><strong>전선 ↔ 조영재 이격</strong></td><td><strong>2.5 cm 이상</strong></td><td><strong>4.5 cm 이상</strong>(건조한 곳 2.5 cm)</td></tr><tr><td><strong>지지점 간격</strong></td><td>—</td><td><strong>6 m 이하</strong>(조영재 윗면·옆면을 따르면 2 m 이하)</td></tr></tbody></table></div>
 <ul>
 <li>
 애자의 구비 조건: <strong>절연성 · 난연성 · 내수성</strong>
 </li></ul>
-<h3>🚫 시설 장소에 따른 공사 방법 (<span class="star">★</span>)</h3>
+<h3 class="h3">🚫 시설 장소에 따른 공사 방법 (<span class="star">★</span>)</h3>
 <ul>
 <li>
 <strong>어느 장소에나 가능</strong>: <strong>금속관 · 케이블 · 합성수지관</strong>(중량물 압력 받는 곳 제외)
@@ -2134,7 +2148,7 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>습기·물기 있는 곳 불가</strong>: 금속몰드 · 금속덕트 · 버스덕트 · 라이팅덕트
 </li></ul>
-<h3>⚠️ 위험 장소별 공사 방법 (<span class="star">★</span>자주 — 헷갈리게 낸다)</h3>
+<h3 class="h3">⚠️ 위험 장소별 공사 방법 (<span class="star">★</span>자주 — 헷갈리게 낸다)</h3>
 <div class="scroller"><table><thead><tr><th>장소</th><th>가능한 공사</th><th>불가능</th><th>왜</th></tr></thead><tbody><tr><td><strong>폭연성 분진</strong>(폭발성 분진)</td><td><strong>금속관·케이블 공사만</strong>(캡타이어 제외)</td><td>합성수지관 불가</td><td>열·충격에 약한 합성수지관은 위험</td></tr><tr><td><strong>가연성 분진</strong></td><td>금속관·케이블·<strong>합성수지관</strong>(두께 2 mm 이상)까지</td><td>—</td><td>폭연성보다는 완화</td></tr><tr><td><strong>부식성 가스</strong> 있는 곳</td><td>합성수지관·케이블·<strong>애자 공사</strong></td><td><strong>금속관 불가</strong>(부식)</td><td>금속이 부식가스에 약함</td></tr></tbody></table></div>
 <blockquote>
 <p><strong>화약고 등의 위험장소</strong></p>
@@ -2143,7 +2157,7 @@ html{scroll-behavior:smooth;}
 <p>* 옥내배선은 <strong>금속관 공사 또는 케이블 공사</strong>로 시설</p>
 <p>* 전기기계기구는 <strong>전기불꽃이 발생하지 않는 구조</strong>로 한다</p>
 </blockquote>
-<h3>🗼 가공전선로 · 가공인입선의 높이 (<span class="star">★</span>자주 — 숫자만 묻는다)</h3>
+<h3 class="h3">🗼 가공전선로 · 가공인입선의 높이 (<span class="star">★</span>자주 — 숫자만 묻는다)</h3>
 <div class="scroller"><table><thead><tr><th>구분</th><th>높이 기준</th><th>완화 조건</th></tr></thead><tbody><tr><td><strong>가공전선로 도로 횡단</strong></td><td>지표상 <strong>6 m 이상</strong></td><td>교통에 지장 없으면 <strong>5 m</strong></td></tr><tr><td><strong>가공전선로 철도·궤도 횡단</strong></td><td>레일면상 <strong>6.5 m 이상</strong></td><td>(완화 없음 — 철도는 무조건 6.5 m)</td></tr><tr><td><strong>가공전선로 횡단보도교 위</strong></td><td>노면상 <strong>3.5 m 이상</strong></td><td>—</td></tr><tr><td><strong>가공인입선 도로 횡단</strong></td><td>노면상 <strong>5 m 이상</strong></td><td>기술상 지장 없고 위험 없으면 <strong>3 m</strong></td></tr><tr><td><strong>가공인입선 횡단보도교 위</strong></td><td>노면상 <strong>3 m 이상</strong></td><td>—</td></tr></tbody></table></div>
 <blockquote>
 <p><strong>가공전선로(본선)와 가공인입선(집 앞 인하선)은 숫자가 다르다</strong> — 인입선 쪽이 전반적으로</p>
@@ -2152,7 +2166,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k3-s4"><h2>4. 접지시스템 (KEC)</h2>
-<h3>🌍 접지의 목적과 구분</h3>
+<h3 class="h3">🌍 접지의 목적과 구분</h3>
 <ul>
 <li>
 <strong>목적</strong>: 감전 보호, 기기 손상 방지, 이상전압 억제, 보호장치의 확실한 동작
@@ -2167,7 +2181,7 @@ html{scroll-behavior:smooth;}
 <li>
 <strong>보호접지</strong>: 기기 외함 접지 / <strong>피뢰시스템 접지</strong>
 </li></ul>
-<h3>📐 도체의 굵기</h3>
+<h3 class="h3">📐 도체의 굵기</h3>
 <ul>
 <li>
 <strong>보호도체(PE) 최소 단면적</strong> — 상도체 단면적 <span class="math"><i>S</i></span> 기준
@@ -2178,7 +2192,7 @@ html{scroll-behavior:smooth;}
 <strong>접지도체 최소 굵기</strong>: 구리 <strong>6 mm²</strong> 이상
 <br>(특고압·고압 전기설비용 6 mm², <strong>중성점 접지용은 16 mm²</strong> 이상)
 </li></ul>
-<h3>🔋 절연저항 (<span class="star">★</span>KEC 개정 — 옛 표와 다르다)</h3>
+<h3 class="h3">🔋 절연저항 (<span class="star">★</span>KEC 개정 — 옛 표와 다르다)</h3>
 <div class="scroller"><table><thead><tr><th>전로의 사용전압</th><th>시험 전압(DC)</th><th>절연저항</th></tr></thead><tbody><tr><td><strong>SELV 및 PELV</strong></td><td>250 V</td><td><strong>0.5 MΩ 이상</strong></td></tr><tr><td><strong>FELV, 500 V 이하</strong></td><td>500 V</td><td><strong>1.0 MΩ 이상</strong></td></tr><tr><td><strong>500 V 초과</strong></td><td>1000 V</td><td><strong>1.0 MΩ 이상</strong></td></tr></tbody></table></div>
 <blockquote>
 <p>옛 규정의 &quot;대지전압 150 V 이하 0.1 MΩ&quot; 식 단계별 표는 <strong>더 이상 쓰지 않는다.</strong></p>
@@ -2186,12 +2200,12 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k3-s5"><h2>5. 보호장치와 분기회로</h2>
-<h3>🔥 과전류차단기 동작 특성 (정격 63 A 이하)</h3>
+<h3 class="h3">🔥 과전류차단기 동작 특성 (정격 63 A 이하)</h3>
 <div class="scroller"><table><thead><tr><th>종류</th><th>부동작 전류</th><th>동작 전류</th><th>시간</th></tr></thead><tbody><tr><td><strong>주택용 배선차단기</strong></td><td><strong>1.13배</strong></td><td><strong>1.45배</strong></td><td>60분</td></tr><tr><td><strong>산업용 배선차단기</strong></td><td><strong>1.05배</strong></td><td><strong>1.30배</strong></td><td>60분</td></tr><tr><td><strong>저압 퓨즈(gG)</strong></td><td><strong>1.25배</strong></td><td><strong>1.6배</strong></td><td>60분</td></tr></tbody></table></div>
 <blockquote>
 <p>정격 <strong>63 A 초과</strong>면 시간이 <strong>120분</strong>으로 늘어난다.</p>
 </blockquote>
-<h3>⚡ 누전차단기(ELB) (<span class="star">★</span>자주)</h3>
+<h3 class="h3">⚡ 누전차단기(ELB) (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 <strong>인체 감전 보호용(일반)</strong>: <strong>정격감도전류 30 mA 이하, 동작시간 0.03초 이내</strong>
@@ -2203,7 +2217,7 @@ html{scroll-behavior:smooth;}
 <strong>중성선(접지측 전선)에는 과전류차단기를 시설하지 않는다</strong> (<span class="star">★</span>단골)
 <br>→ 중성선이 먼저 끊기면 기기에 이상전압이 걸린다.
 </li></ul>
-<h3>🔀 분기회로</h3>
+<h3 class="h3">🔀 분기회로</h3>
 <ul>
 <li>
 주택용 일반 분기회로는 <strong>20 A</strong> (배선용차단기 기준)
@@ -2215,7 +2229,7 @@ html{scroll-behavior:smooth;}
 </li></ul>
 </section>
 <section class="card" id="k3-s6"><h2>6. 옥내 배선 설계 계산</h2>
-<h3>📊 수용률 · 부등률 · 부하율 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">📊 수용률 · 부등률 · 부하율 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><span class="txt">수용률</span> <span class="op">=</span> <span class="frac"><span class="num"><span class="txt">최대수용전력</span></span><span class="den"><span class="txt">설비용량</span></span></span> <span class="op">×</span> 100 <span class="sp-t"></span> []</span></p>
 <p class="display"><span class="math math-inline-block"><span class="txt">부등률</span> <span class="op">=</span> <span class="frac"><span class="num"><span class="txt">각 부하 최대수용전력의 합</span></span><span class="den"><span class="txt">합성 최대수용전력</span></span></span> <span class="sp-q"></span> (<span class="txt">항상 1 이상</span>)</span></p>
 <p class="display"><span class="math math-inline-block"><span class="txt">부하율</span> <span class="op">=</span> <span class="frac"><span class="num"><span class="txt">평균전력</span></span><span class="den"><span class="txt">최대수용전력</span></span></span> <span class="op">×</span> 100 <span class="sp-t"></span> []</span></p>
@@ -2239,7 +2253,7 @@ html{scroll-behavior:smooth;}
 <p><strong>부등률만 1 이상인 이유</strong> — 각자 최대인 시각이 다르면 그 합이 동시 최대보다</p>
 <p>클 수밖에 없다. <strong>보기에 1보다 작은 부등률이 있으면 그것부터 지운다.</strong></p>
 <p><strong>손잡이 — &quot;수용률·부하율은 100 % 이하, 부등률만 1 이상&quot;.</strong></p></div></details>
-<h3>📉 전압강하 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">📉 전압강하 (<span class="star">★</span>자주)</h3>
 <div class="scroller"><table><thead><tr><th>배전방식</th><th>전압강하 <span class="math"><i>e</i></span></th></tr></thead><tbody><tr><td><strong>단상 2선식</strong></td><td><span class="math math-inline-block"><i>e</i> <span class="op">=</span> <span class="frac"><span class="num">35.6 <span class="sp-t"></span> <i>L</i> <span class="sp-t"></span> <i>I</i></span><span class="den">1000 <span class="sp-t"></span> <i>A</i></span></span></span></td></tr><tr><td><strong>3상 3선식</strong></td><td><span class="math math-inline-block"><i>e</i> <span class="op">=</span> <span class="frac"><span class="num">30.8 <span class="sp-t"></span> <i>L</i> <span class="sp-t"></span> <i>I</i></span><span class="den">1000 <span class="sp-t"></span> <i>A</i></span></span></span></td></tr><tr><td><strong>단상 3선식 · 3상 4선식</strong></td><td><span class="math math-inline-block"><i>e</i> <span class="op">=</span> <span class="frac"><span class="num">17.8 <span class="sp-t"></span> <i>L</i> <span class="sp-t"></span> <i>I</i></span><span class="den">1000 <span class="sp-t"></span> <i>A</i></span></span></span></td></tr></tbody></table></div>
 <p>(<span class="math"><i>L</i></span>: 전선 길이[m], <span class="math"><i>I</i></span>: 전류[A], <span class="math"><i>A</i></span>: 단면적[mm²])</p>
 <ul>
@@ -2264,7 +2278,7 @@ html{scroll-behavior:smooth;}
 <p>1000 으로 나누는 것은 단위를 맞추기 위한 것이다.</p>
 <p><strong>손잡이 — &quot;35.6 → 30.8 → 17.8, 선이 늘수록 작아진다&quot;.</strong></p>
 <p><strong>17.8 = 35.6 의 절반</strong>이라 둘만 외우면 셋이 나온다.</p></div></details>
-<h3>💡 조명 설계 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">💡 조명 설계 (<span class="star">★</span>자주)</h3>
 <p class="display"><span class="math math-inline-block"><i>F</i> <span class="op">=</span> <span class="frac"><span class="num"><i>E</i> <span class="sp-t"></span> <i>A</i> <span class="sp-t"></span> <i>D</i></span><span class="den"><i>N</i> <span class="sp-t"></span> <i>U</i></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>E</i> <span class="sp-t"></span> <i>A</i></span><span class="den"><i>N</i> <span class="sp-t"></span> <i>U</i> <span class="sp-t"></span> <i>M</i></span></span></span></p>
 <p>(<span class="math"><i>F</i></span>: 1등당 광속[lm], <span class="math"><i>E</i></span>: 조도[lx], <span class="math"><i>A</i></span>: 면적[m²], <span class="math"><i>N</i></span>: 등 개수, <span class="math"><i>U</i></span>: 조명률,</p>
 <p><span class="math"><i>D</i></span>: 감광보상률, <span class="math"><i>M</i></span>: 보수율 <span class="math"><span class="op">=</span> 1/<i>D</i></span>)</p>
@@ -2297,7 +2311,7 @@ html{scroll-behavior:smooth;}
 <p><span class="math"><i>U</i></span> 는 나누고 <span class="math"><i>D</i></span> 는 곱한다.</p></div></details>
 </section>
 <section class="card" id="k3-s7"><h2>7. 시퀀스 제어 (실기와 직결)</h2>
-<h3>🔘 접점과 기본 회로 (<span class="star">★</span>자주 — 실기와 직결)</h3>
+<h3 class="h3">🔘 접점과 기본 회로 (<span class="star">★</span>자주 — 실기와 직결)</h3>
 <ul>
 <li>
 <strong>a접점</strong>(NO, 평상시 열림) / <strong>b접점</strong>(NC, 평상시 닫힘) / <strong>c접점</strong>(전환)
@@ -2310,9 +2324,9 @@ html{scroll-behavior:smooth;}
 </li><li>
 <strong>타이머</strong>: 한시동작 순시복귀(<strong>ON 딜레이</strong>) / 순시동작 한시복귀(<strong>OFF 딜레이</strong>)
 </li></ul>
-<h3>🏷 주요 약호</h3>
+<h3 class="h3">🏷 주요 약호</h3>
 <div class="scroller"><table><thead><tr><th>약호</th><th>이름</th></tr></thead><tbody><tr><td><strong>MC</strong></td><td>전자접촉기</td></tr><tr><td><strong>MCCB</strong></td><td>배선용차단기</td></tr><tr><td><strong>ELB</strong></td><td>누전차단기</td></tr><tr><td><strong>THR / EOCR</strong></td><td>열동형 과전류계전기 / 전자식 과전류계전기</td></tr><tr><td><strong>PB</strong></td><td>푸시버튼</td></tr><tr><td><strong>GL / RL / YL</strong></td><td>표시등(녹·적·황)</td></tr><tr><td><strong>T / TLR</strong></td><td>타이머</td></tr><tr><td><strong>F</strong></td><td>퓨즈</td></tr></tbody></table></div>
-<h3>🔄 3상 유도전동기 제어회로 (<span class="star">★</span>자주)</h3>
+<h3 class="h3">🔄 3상 유도전동기 제어회로 (<span class="star">★</span>자주)</h3>
 <ul>
 <li>
 <strong>정·역 운전</strong>: MC 2개로 3선 중 2선을 바꿔 연결한다. <strong>두 MC 는 반드시 인터록.</strong>
@@ -2334,24 +2348,24 @@ html{scroll-behavior:smooth;}
 <section class="card" id="k3-s9"><h2>🖼 그림으로 보기</h2>
 <p><strong>설비는 그림으로 외우면 훨씬 빨리 붙는다.</strong> 아래 넷은 글로 읽으면 안 그려지는데</p>
 <p>그림 한 장이면 끝나는 것들이다.</p>
-<h3>🔀 3로 · 4로 스위치 — 두 곳에서 켜고 끄기</h3>
+<h3 class="h3">🔀 3로 · 4로 스위치 — 두 곳에서 켜고 끄기</h3>
 <figure class="fig"><svg viewBox="0 0 320 156" role="img" aria-label="3로 스위치 두 개로 한 등을 제어하는 결선">  <text x="10" y="16" class="lbl">두 곳에서 — 3로 2개</text>  <path d="M14 46 H46" class="ln"/>  <text x="14" y="38" class="sub">전원</text>  <circle cx="52" cy="46" r="4" class="ln" fill="var(--ink)"/>  <path d="M52 46 L88 32" class="acc"/>  <path d="M52 46 L88 60" class="ln2"/>  <text x="60" y="76" class="sub">3로 ①</text>  <path d="M88 32 H196 M88 60 H196" class="ln"/>  <text x="142" y="26" text-anchor="middle" class="sub">중간 2가닥</text>  <circle cx="196" cy="32" r="3.5" class="ln" fill="var(--ink)"/>  <circle cx="196" cy="60" r="3.5" class="ln" fill="var(--ink)"/>  <path d="M196 32 L232 46" class="acc"/>  <text x="204" y="76" class="sub">3로 ②</text>  <circle cx="238" cy="46" r="4" class="ln" fill="var(--ink)"/>  <path d="M242 46 H266" class="ln"/>  <circle cx="280" cy="46" r="13" class="ln"/>  <path d="M271 37 L289 55 M289 37 L271 55" class="ln"/>  <text x="280" y="76" text-anchor="middle" class="sub">등</text>  <path d="M10 96 H310" class="ln2"/>  <text x="10" y="118" class="lbl">세 곳에서 — 3로 2개 + 4로 1개</text>  <text x="10" y="134" class="sub">3로 ① — 4로 — 3로 ② 순서로 잇는다.</text>  <text x="10" y="147" class="sub">4로는 혼자 못 쓰고 반드시 3로 사이에 들어간다.</text></svg><figcaption><strong>3로 스위치 2개</strong>로 한 등을 두 곳에서 켜고 끈다(계단 위·아래). 세 곳이면 <strong>3로 2개 사이에 4로 1개</strong>를 끼운다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;곳의 수 = 3로 2개 + 4로 (곳−2)개&quot;.</strong></p>
 <p>두 곳이면 4로 0개, 세 곳이면 1개, 네 곳이면 2개다.</p>
 </blockquote>
-<h3>🎨 전선 색상 (KEC) — 매회 나온다</h3>
+<h3 class="h3">🎨 전선 색상 (KEC) — 매회 나온다</h3>
 <figure class="fig"><svg viewBox="0 0 320 118" role="img" aria-label="KEC 전선 식별 색상">  <rect x="16" y="26" width="46" height="30" rx="4" fill="#8A5533"/>  <text x="39" y="46" text-anchor="middle" class="lbl" fill="#fff">L1</text>  <text x="39" y="72" text-anchor="middle" class="sub">갈색</text>  <rect x="72" y="26" width="46" height="30" rx="4" fill="#232323"/>  <text x="95" y="46" text-anchor="middle" class="lbl" fill="#fff">L2</text>  <text x="95" y="72" text-anchor="middle" class="sub">흑색</text>  <rect x="128" y="26" width="46" height="30" rx="4" fill="#8C8C8C"/>  <text x="151" y="46" text-anchor="middle" class="lbl" fill="#fff">L3</text>  <text x="151" y="72" text-anchor="middle" class="sub">회색</text>  <rect x="184" y="26" width="46" height="30" rx="4" fill="#2F6FB5"/>  <text x="207" y="46" text-anchor="middle" class="lbl" fill="#fff">N</text>  <text x="207" y="72" text-anchor="middle" class="sub">청색</text>  <rect x="240" y="26" width="60" height="30" rx="4" fill="#4C9A2A"/>  <path d="M240 26 h60 v30 h-60 Z" fill="none"/>  <path d="M244 56 L300 26" stroke="#E8D64A" stroke-width="9"/>  <text x="270" y="46" text-anchor="middle" class="lbl" fill="#fff">PE</text>  <text x="270" y="72" text-anchor="middle" class="sub">녹-황 혼합</text>  <text x="16" y="98" class="sub">L1·L2·L3 = 상(전압선), N = 중성선, PE = 보호도체(접지)</text>  <text x="16" y="112" class="sub">⚠ 접지에 녹색만 쓰지 않는다 — 반드시 녹색-노란색 혼합이다.</text></svg><figcaption><strong>갈 · 흑 · 회 · 청</strong>, 그리고 보호도체(접지)만 <strong>녹색-노란색 혼합</strong>이다. 색을 바꿔 내는 함정이 자주 나온다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;갈흑회청, 접지는 녹황&quot;.</strong> 상 3개를 순서대로 외우고 중성선이 청색.</p>
 </blockquote>
-<h3>🗼 가공전선로 높이 — 숫자만 묻는다</h3>
+<h3 class="h3">🗼 가공전선로 높이 — 숫자만 묻는다</h3>
 <figure class="fig"><svg viewBox="0 0 320 150" role="img" aria-label="가공전선로 최소 높이">  <path d="M28 22 V128" class="ln"/>  <path d="M20 128 H308" class="ln"/>  <path d="M28 34 H300" class="acc"/>  <text x="34" y="28" class="sub">전선</text>  <path d="M92 34 V128" class="ln2"/>  <text x="92" y="146" text-anchor="middle" class="lbl">도로</text>  <text x="92" y="86" text-anchor="middle" class="lbl">6 m</text>  <path d="M170 34 V128" class="ln2"/>  <text x="170" y="146" text-anchor="middle" class="lbl">철도</text>  <text x="170" y="86" text-anchor="middle" class="lbl">6.5 m</text>  <path d="M248 34 V128" class="ln2"/>  <text x="248" y="146" text-anchor="middle" class="lbl">보도</text>  <text x="248" y="86" text-anchor="middle" class="lbl">3.5 m</text></svg><figcaption>계산이 없다. <strong>숫자만 외우면 바로 점수</strong>다. 가공인입선은 한 단계씩 완화된다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;철도는 육오(6.5)&quot;</strong>. 다른 숫자보다 훨씬 자주 나오는 단골이다.</p>
 <p><strong>가공인입선은 한 단계 완화</strong> — 도로 5 m, 보도 3 m.</p>
 </blockquote>
-<h3>📏 지지점 간격 — 관 종류마다 다르다</h3>
+<h3 class="h3">📏 지지점 간격 — 관 종류마다 다르다</h3>
 <figure class="fig"><svg viewBox="0 0 320 150" role="img" aria-label="공사 방법별 지지점 간격">  <text x="10" y="18" class="sub">간격이 짧을수록 자주 잡아준다 = 약한 관</text>  <text x="12" y="42" class="lbl">가요전선관</text>  <rect x="112" y="30" width="40" height="14" rx="3" class="fill"/>  <rect x="112" y="30" width="40" height="14" rx="3" class="ln"/>  <text x="292" y="42" text-anchor="end" class="lbl">1 m</text>  <text x="12" y="68" class="lbl">합성수지관</text>  <rect x="112" y="56" width="60" height="14" rx="3" class="fill"/>  <rect x="112" y="56" width="60" height="14" rx="3" class="ln"/>  <text x="292" y="68" text-anchor="end" class="lbl">1.5 m</text>  <text x="12" y="94" class="lbl">금속관 · 케이블</text>  <rect x="112" y="82" width="80" height="14" rx="3" class="fill"/>  <rect x="112" y="82" width="80" height="14" rx="3" class="ln"/>  <text x="292" y="94" text-anchor="end" class="lbl">2 m</text>  <text x="12" y="120" class="lbl">금속덕트</text>  <rect x="112" y="108" width="120" height="14" rx="3" class="fill"/>  <rect x="112" y="108" width="120" height="14" rx="3" class="ln"/>  <text x="292" y="120" text-anchor="end" class="lbl">3 m</text>  <text x="12" y="142" class="sub">가요 1 → 합성수지 1.5 → 금속관·케이블 2 → 금속덕트 3</text></svg><figcaption>관이 <strong>약할수록 자주 잡아줘야</strong> 한다. 합성수지관이 제일 약해 1.5 m, 금속덕트가 제일 튼튼해 3 m 다.</figcaption></figure>
 <blockquote>
 <p><strong>손잡이 — &quot;1 · 1.5 · 2 · 3&quot;</strong> 네 숫자만 순서대로 외운다.</p>
@@ -2406,7 +2420,7 @@ html{scroll-behavior:smooth;}
 </blockquote>
 </section>
 <section class="card" id="k4-s2"><h2>4단계 커리큘럼</h2>
-<h3>1단계 — 핵심 요약 강의 1회독 (이론 압축)</h3>
+<h3 class="h3">1단계 — 핵심 요약 강의 1회독 (이론 압축)</h3>
 <p><strong>9/5 ~ 9/7 (3일)</strong></p>
 <p>유튜브의 다산에듀 무료 &#x27;전기기능사 필기 번개불 요약&#x27; 같은 3~5시간짜리 과목별 핵심 요약</p>
 <p>영상을 1.3~1.5배속으로 완강한다. <strong>전부 이해하려 하지 말 것</strong> — 자주 나오는 용어·기호에</p>
@@ -2415,11 +2429,11 @@ html{scroll-behavior:smooth;}
 <p>이 시간에 <code>Theory_Summary.md</code> · <code>Machinery_Summary.md</code> · <code>Facility_Summary.md</code> 를</p>
 <p>(<code>summaries.html</code> 로 폰에서) 같이 훑으면 강의에서 들은 용어를 바로 찾아볼 수 있다.</p>
 </blockquote>
-<h3>2단계 — 과년도 기출 5~7개년 1회독 (문제와 답 눈에 익히기)</h3>
+<h3 class="h3">2단계 — 과년도 기출 5~7개년 1회독 (문제와 답 눈에 익히기)</h3>
 <p><strong>9/8 ~ 9/12 (5일)</strong></p>
 <p>하루 3~4회분씩 기출을 푼다. <strong>모르는 문제는 30초 넘게 고민하지 말고</strong> 바로 해설을 보고</p>
 <p>문제·정답 키워드를 짝지어 외운다. <strong>전기설비는 문제와 답을 통째로 암기한다.</strong></p>
-<h3>3단계 — 기출 2회독 + 오답 집중 정리</h3>
+<h3 class="h3">3단계 — 기출 2회독 + 오답 집중 정리</h3>
 <p><strong>9/13 ~ 9/17 (5일)</strong></p>
 <p>1회독한 기출을 다시 풀며 <strong>틀린 문제 위주로</strong> 체크한다. 자주 나오는 계산 공식(전력식·효율·</p>
 <p>권수비 등)은 손바닥 수첩에 따로 적어 매일 아침·저녁 10분씩 외운다.</p>
@@ -2430,7 +2444,7 @@ html{scroll-behavior:smooth;}
 <p><code>전위</code>·<code>전속밀도</code> 항목이 새로 들어가거나 <code><span class="star">★</span></code> 표시가 올라갔다).</p>
 <p>기호 암기는 <code>symbols.html</code> 자가 테스트 모드로 반복한다.</p>
 </blockquote>
-<h3>4단계 — 실전 CBT 모의고사 반복 + 최종 점검</h3>
+<h3 class="h3">4단계 — 실전 CBT 모의고사 반복 + 최종 점검</h3>
 <p><strong>9/18 ~ 9/20 (3일)</strong></p>
 <p>전자문제집 CBT(comcbt.com)에서 실제 시험과 똑같이 <strong>컴퓨터 화면 + 마우스</strong>로 모의고사를</p>
 <p>하루 4~5회분씩 푼다. <strong>평균 65~70점대가 안정적으로 나올 때까지</strong> 반복하고 오답노트를 복습한다.</p>
@@ -2464,30 +2478,30 @@ html{scroll-behavior:smooth;}
 </section>
 <section class="card" id="k5-s2"><h2>2. 같은 값을 묻는데 식이 갈리는 자리 (<span class="star">★</span>함정)</h2>
 <p><strong>여기서 대부분 틀린다.</strong> 조건 한 단어가 식을 바꾼다.</p>
-<h3>🔀 직렬인가 병렬인가 — 저항과 콘덴서는 반대다</h3>
+<h3 class="h3">🔀 직렬인가 병렬인가 — 저항과 콘덴서는 반대다</h3>
 <div class="scroller"><table><thead><tr><th></th><th>직렬</th><th>병렬</th></tr></thead><tbody><tr><td>저항</td><td><span class="math"><i>R</i><sub>0</sub> <span class="op">=</span> <i>R</i><sub>1</sub> <span class="op">+</span> <i>R</i><sub>2</sub></span></td><td><span class="math"><i>R</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>R</i><sub>1</sub> <i>R</i><sub>2</sub></span><span class="den"><i>R</i><sub>1</sub><span class="op">+</span><i>R</i><sub>2</sub></span></span></span></td></tr><tr><td>콘덴서</td><td><span class="math"><i>C</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>C</i><sub>1</sub> <i>C</i><sub>2</sub></span><span class="den"><i>C</i><sub>1</sub><span class="op">+</span><i>C</i><sub>2</sub></span></span></span></td><td><span class="math"><i>C</i><sub>0</sub> <span class="op">=</span> <i>C</i><sub>1</sub> <span class="op">+</span> <i>C</i><sub>2</sub></span></td></tr></tbody></table></div>
 <blockquote>
 <p><strong>손잡이 — &quot;저항은 곧이곧대로, 콘덴서는 거꾸로.&quot;</strong></p>
 <p>저항 직렬이 더하기면 콘덴서는 직렬이 분수다. 표에서 대각선으로 짝이 맞는다.</p>
 </blockquote>
-<h3>🔺 Y결선인가 Δ결선인가</h3>
+<h3 class="h3">🔺 Y결선인가 Δ결선인가</h3>
 <div class="scroller"><table><thead><tr><th></th><th>Y(성형)</th><th>Δ(삼각)</th></tr></thead><tbody><tr><td>전압</td><td><span class="math"><i>V</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <span class="sqrt">3</span> <i>V</i><sub><i>p</i></sub></span></td><td><span class="math"><i>V</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <i>V</i><sub><i>p</i></sub></span></td></tr><tr><td>전류</td><td><span class="math"><i>I</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <i>I</i><sub><i>p</i></sub></span></td><td><span class="math"><i>I</i><sub><span class="op">ℓ</span></sub> <span class="op">=</span> <span class="sqrt">3</span> <i>I</i><sub><i>p</i></sub></span></td></tr></tbody></table></div>
 <blockquote>
 <p><strong>손잡이 — &quot;와이는 전압이, 델타는 전류가 루트3.&quot;</strong></p>
 <p>Y는 <strong>전</strong>압(Y의 세로획처럼 위로), Δ는 <strong>전</strong>류. 둘 중 하나에만 <span class="math"><span class="sqrt">3</span></span> 이 붙는다.</p>
 <p><strong>전력은 결선과 무관하게 같은 식</strong>이다 — <span class="math"><i>P</i> <span class="op">=</span> <span class="sqrt">3</span> <i>V</i><sub><span class="op">ℓ</span></sub> <i>I</i><sub><span class="op">ℓ</span></sub> <span class="txt">cos</span><span class="op">θ</span></span>.</p>
 </blockquote>
-<h3>✋ 왼손인가 오른손인가</h3>
+<h3 class="h3">✋ 왼손인가 오른손인가</h3>
 <div class="scroller"><table><thead><tr><th>법칙</th><th>무엇을 구하나</th><th>어느 기계</th></tr></thead><tbody><tr><td>플레밍 <strong>왼손</strong></td><td>힘 <span class="math"><i>F</i> <span class="op">=</span> <i>BI</i><span class="op">ℓ</span><span class="txt">sin</span><span class="op">θ</span></span></td><td>전동기</td></tr><tr><td>플레밍 <strong>오른손</strong></td><td>기전력 <span class="math"><i>e</i> <span class="op">=</span> <i>B</i><span class="op">ℓ</span> <i>v</i> <span class="txt">sin</span><span class="op">θ</span></span></td><td>발전기</td></tr></tbody></table></div>
 <blockquote>
 <p><strong>손잡이 — &quot;우발좌전&quot;</strong>: <strong>우</strong>(오른손)=<strong>발</strong>전기, <strong>좌</strong>(왼손)=<strong>전</strong>동기. (1과목 원문 그대로)</p>
 </blockquote>
-<h3>〰️ 코일인가 콘덴서인가</h3>
+<h3 class="h3">〰️ 코일인가 콘덴서인가</h3>
 <blockquote>
 <p><strong>손잡이 — &quot;코뒤콘앞&quot;</strong>: 코일은 전류가 <strong>뒤</strong>지고, 콘덴서는 전류가 <strong>앞</strong>선다. (1과목 원문 그대로)</p>
 <p>리액턴스도 짝이 반대다 — <span class="math"><i>X</i><sub><i>L</i></sub></span> 은 <span class="math"><i>f</i></span> 와 <strong>곱</strong>하고(<span class="math">2<span class="op">π</span> <i>f</i> <i>L</i></span>), <span class="math"><i>X</i><sub><i>C</i></sub></span> 는 <span class="math"><i>f</i></span> 로 <strong>나눈다</strong>.</p>
 </blockquote>
-<h3>📏 몇 선식인가 — 전압강하 계수가 갈린다</h3>
+<h3 class="h3">📏 몇 선식인가 — 전압강하 계수가 갈린다</h3>
 <div class="scroller"><table><thead><tr><th>방식</th><th>계수</th></tr></thead><tbody><tr><td>단상 2선식</td><td><span class="math"><i>e</i> <span class="op">=</span> <span class="frac"><span class="num">35.6 <i>L</i> <i>I</i></span><span class="den">1000 <i>A</i></span></span></span></td></tr><tr><td>3상 3선식</td><td><span class="math"><i>e</i> <span class="op">=</span> <span class="frac"><span class="num">30.8 <i>L</i> <i>I</i></span><span class="den">1000 <i>A</i></span></span></span></td></tr><tr><td>단상 3선식 · 3상 4선식</td><td><span class="math"><i>e</i> <span class="op">=</span> <span class="frac"><span class="num">17.8 <i>L</i> <i>I</i></span><span class="den">1000 <i>A</i></span></span></span></td></tr></tbody></table></div>
 <blockquote>
 <p><strong>손잡이 — 35.6 → 30.8 → 17.8 로 줄어든다.</strong> 선이 많아질수록 계수가 작아진다고 외운다.</p>

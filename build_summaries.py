@@ -325,7 +325,8 @@ def render(md: str, prefix: str) -> tuple[str, list[tuple[str, str]], str]:
             else:
                 close_lists()
                 close_quote()
-                out.append(f"<h3>{inline(text)}</h3>")
+                low = " low" if "▽" in text else ""
+                out.append(f'<h3 class="h3{low}">{inline(text)}</h3>')
             i += 1
             continue
 
@@ -517,6 +518,14 @@ blockquote{
 }
 blockquote p{margin:.2rem 0;}
 .star{color:var(--pe); font-weight:700;}
+
+/* --- ▽ 후순위 — 시간이 없으면 여기부터 버린다 --- */
+h3.low{opacity:.55;}
+h3.low::after{
+  content:"후순위"; margin-left:.45rem; padding:.1rem .4rem;
+  border:1px solid var(--line); border-radius:.35rem;
+  font-size:.68rem; font-weight:700; color:var(--muted); vertical-align:middle;
+}
 
 /* --- 접이식 상세 설명(::: 블록) --- */
 .fig{
