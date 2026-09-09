@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -88,6 +89,8 @@ UNKNOWN: set[str] = set()
 # 화면에 그대로 새어나온 굵게 표시(**). 인용문·목록은 줄마다 따로 처리하므로
 # 굵게가 줄을 넘으면 닫히지 않고 별표가 그대로 보인다. 원본에서 한 줄 안에 닫아야 한다.
 STRAY_BOLD: list[str] = []
+DUP_IDS: list[str] = []
+BAD_ANSWER: list[str] = []
 
 # 일부러 버리는 명령. 괄호 크기 조절용이라 괄호 자체는 뒤에 따로 나온다.
 IGNORED = {"left", "right", "displaystyle", "limits"}
@@ -672,6 +675,10 @@ PLAN_WIDGET = """<div class="plan-widget">
   </div>
   <div class="plan-rail" id="planRail"></div>
   <p class="plan-today" id="planToday">불러오는 중…</p>
+  <!-- PUBLIC-MIRROR:SKIP-START -->
+  <p class="plan-link">날짜별 체크박스로 진행 상황을 기록하려면 —
+    <a href="https://claude.ai/code/artifact/482687a7-2aee-46d5-bfc5-7b531237985f" target="_blank" rel="noopener">학습 로드맵 페이지</a>를 쓴다.</p>
+  <!-- PUBLIC-MIRROR:SKIP-END -->
 </div>
 """
 
@@ -748,6 +755,148 @@ PLAN_JS = """
 })();
 """
 
+QUIZ_CSS = """
+/* --- 문제풀이 탭 --- */
+.quiz{display:flex; flex-direction:column; gap:1rem; margin-top:.4rem;}
+.quiz-note{margin:0; font-size:.86rem; color:var(--muted);}
+.quiz-pick{display:flex; flex-wrap:wrap; gap:.4rem;}
+.qpill{
+  appearance:none; cursor:pointer; font:inherit; font-size:.86rem;
+  padding:.4rem .8rem; border-radius:999px; border:1px solid var(--line);
+  background:var(--surface); color:var(--muted);
+}
+.qpill[aria-pressed="true"]{border-color:var(--accent); color:var(--accent); font-weight:600;}
+.qbar{height:4px; background:var(--line-soft); border-radius:999px; overflow:hidden;}
+.qbar i{display:block; height:100%; width:0; background:var(--accent); transition:width .25s ease;}
+.qmeta{display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted);
+  font-variant-numeric:tabular-nums; margin-top:.35rem;}
+.qcard{
+  background:var(--surface); border:1px solid var(--line); border-radius:12px;
+  padding:1.05rem 1rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.85rem;
+}
+.qtag{font-size:.74rem; letter-spacing:.05em; color:var(--muted);}
+.qtag b{color:var(--accent); font-weight:600;}
+.qtext{margin:0; font-size:1.04rem; line-height:1.55; font-weight:600; text-wrap:balance;}
+.qchoices{display:flex; flex-direction:column; gap:.45rem;}
+.qchoice{
+  display:flex; gap:.6rem; align-items:flex-start; text-align:left;
+  appearance:none; cursor:pointer; font:inherit; width:100%; line-height:1.5;
+  padding:.62rem .75rem; border-radius:9px; border:1px solid var(--line);
+  background:var(--bg); color:var(--ink);
+}
+.qchoice:hover:not(:disabled){border-color:var(--accent);}
+.qchoice:disabled{cursor:default;}
+.qchoice .qn{
+  flex:0 0 1.35rem; height:1.35rem; border-radius:50%; border:1px solid var(--line);
+  display:grid; place-items:center; font-size:.76rem; color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.qchoice.ok{border-color:var(--pe); background:var(--pe-bg);}
+.qchoice.ok .qn{border-color:var(--pe); color:var(--pe); font-weight:700;}
+.qchoice.bad{border-color:var(--danger);}
+.qchoice.bad .qn{border-color:var(--danger); color:var(--danger); font-weight:700;}
+/* 찍었는지 묻는 자리 — 4지선다는 25 % 가 운이라, 이걸 안 물으면 오답 목록이 거짓말을 한다 */
+.qask{
+  display:flex; flex-direction:column; gap:.55rem;
+  border:1px dashed var(--accent); border-radius:10px; padding:.8rem .85rem;
+}
+.qask p{margin:0; font-size:.92rem; font-weight:600;}
+.qask .qrow{display:flex; gap:.5rem; flex-wrap:wrap;}
+.qverdict{display:flex; flex-direction:column; gap:.45rem;
+  border-top:1px solid var(--line-soft); padding-top:.8rem;}
+.qhead{font-weight:700; font-size:.95rem;}
+.qhead.ok{color:var(--pe);} .qhead.bad{color:var(--danger);} .qhead.luck{color:var(--core);}
+.qwhy{margin:0; font-size:.92rem;}
+.qsrc{margin:0; font-size:.78rem; color:var(--muted);}
+.qbtn{
+  appearance:none; cursor:pointer; font:inherit; font-weight:600; font-size:.92rem;
+  padding:.48rem 1rem; border-radius:8px;
+  border:1px solid var(--accent); background:var(--accent); color:var(--surface);
+}
+.qbtn.ghost{background:var(--surface); color:var(--ink); border-color:var(--line);}
+.qbtn:focus-visible, .qchoice:focus-visible, .qpill:focus-visible{
+  outline:2px solid var(--accent); outline-offset:2px;
+}
+.qend{display:flex; gap:1.4rem; flex-wrap:wrap; align-items:baseline;}
+.qend .big{font-size:1.9rem; font-weight:700; line-height:1; font-variant-numeric:tabular-nums;}
+.qend .sub{font-size:.82rem; color:var(--muted);}
+.qlist{display:flex; flex-direction:column; gap:.7rem; margin:0; padding:0; list-style:none;}
+.qlist li{border-left:3px solid var(--danger); padding-left:.75rem;}
+.qlist li.luck{border-left-color:var(--core);}
+.qlist .lq{font-weight:600; font-size:.94rem;}
+.qlist .la{font-size:.86rem; color:var(--muted);}
+.qlist .la s{color:var(--danger);} .qlist .la b{color:var(--pe);}
+.qrank{width:100%; border-collapse:collapse; font-size:.86rem;}
+.qrank th,.qrank td{border-bottom:1px solid var(--line-soft); padding:.45rem .5rem; text-align:left;}
+.qrank td.num{text-align:right; font-variant-numeric:tabular-nums;}
+.qrank .star{color:var(--danger); font-weight:700;}
+.qpaste{
+  margin:0; background:var(--code); border:1px solid var(--line); border-radius:9px;
+  padding:.8rem; overflow-x:auto; font-size:.8rem; line-height:1.65; white-space:pre-wrap;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+.qsync{font-size:.78rem; color:var(--muted);}
+.qsync.ok{color:var(--pe);} .qsync.fail{color:var(--danger);}
+"""
+
+QUIZ_PANEL = """<div class="quiz">
+  <p class="quiz-note">요약집에서 뽑은 <strong>기출 유형</strong>이다 — 실제 회차 문제를 그대로 옮긴 것이 아니다.
+    <strong>30초 넘게 고민하지 말고</strong> 고르고 해설을 본다. 문제는 매번 섞여 나오고,
+    <strong>틀렸거나 찍은 문제가 더 자주</strong> 나온다.</p>
+  <div class="quiz-pick" id="qPick" role="group" aria-label="과목 고르기"></div>
+  <div>
+    <div class="qbar"><i id="qFill"></i></div>
+    <div class="qmeta"><span id="qPos">—</span><span id="qTally">—</span></div>
+  </div>
+  <section class="qcard" id="qCard">
+    <div class="qtag" id="qTag"></div>
+    <p class="qtext" id="qQ"></p>
+    <div class="qchoices" id="qChoices"></div>
+
+    <div class="qask" id="qAsk" hidden>
+      <p>맞았다. <strong>확실히 알고 골랐나, 찍었나?</strong></p>
+      <div class="qrow">
+        <button class="qbtn" type="button" id="qKnew">알고 맞혔다</button>
+        <button class="qbtn ghost" type="button" id="qLuck">찍어서 맞혔다</button>
+      </div>
+      <p class="qsrc">찍어서 맞힌 것은 <strong>모르는 것</strong>으로 친다 — 4지선다는 25 % 가 운이라,
+        이걸 걸러내지 않으면 오답 목록이 거짓말을 한다.</p>
+    </div>
+
+    <div class="qverdict" id="qVerdict" hidden>
+      <div class="qhead" id="qHead"></div>
+      <p class="qwhy" id="qWhy"></p>
+      <p class="qsrc" id="qSrc"></p>
+      <button class="qbtn" type="button" id="qNext">다음 문제</button>
+    </div>
+  </section>
+
+  <section class="qcard" id="qEnd" hidden>
+    <div class="qend">
+      <div><div class="big" id="qSureN">—</div><div class="sub">알고 맞힘</div></div>
+      <div><div class="big" id="qLuckN">—</div><div class="sub">찍어서 맞힘</div></div>
+      <div><div class="big" id="qWrongN">—</div><div class="sub">틀림</div></div>
+    </div>
+    <div id="qEndBody"></div>
+    <div class="qrow" style="display:flex; gap:.5rem; flex-wrap:wrap;">
+      <button class="qbtn ghost" type="button" id="qCopy">오답 복사</button>
+      <button class="qbtn ghost" type="button" id="qRetry">모르는 것만 다시</button>
+      <button class="qbtn ghost" type="button" id="qReset">처음부터</button>
+    </div>
+    <div class="qsync" id="qSync"></div>
+  </section>
+
+  <section class="qcard">
+    <div class="qtag"><b>누적</b> · 자주 틀리는 것 (이 기기에 쌓인 기록)</div>
+    <div id="qRankBody"><p class="quiz-note">아직 푼 기록이 없다.</p></div>
+    <div class="qrow" style="display:flex; gap:.5rem; flex-wrap:wrap;">
+      <button class="qbtn ghost" type="button" id="qRankCopy">누적 오답 복사</button>
+      <button class="qbtn ghost" type="button" id="qRankClear">기록 지우기</button>
+    </div>
+  </section>
+</div>
+"""
+
 JS = """
 (function(){
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
@@ -796,6 +945,309 @@ JS = """
     top.classList.toggle('show', window.scrollY > 600);
   }, {passive:true});
   top.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+"""
+
+
+QUIZ_JS = """
+(function(){
+  var BANK = __BANK__;
+  if(!BANK.length) return;
+
+  var LS = 'haengdo.craft.quiz.v1';   /* 이 기기 */
+  var DOC = 'craftsman/wrong-answers'; /* 브라우저 바깥(아티팩트 db) */
+
+  /* stats[id] = {seen, wrong, luck} — 틀린 횟수와 '찍어서 맞힌' 횟수를 따로 센다.
+     찍어서 맞힌 것을 정답으로 치면 누적 기록이 거짓말을 하기 때문이다. */
+  var stats = {};
+  try{ stats = JSON.parse(localStorage.getItem(LS) || '{}') || {}; }catch(e){ stats = {}; }
+
+  var byId = {};
+  BANK.forEach(function(q){ byId[q.id] = q; });
+
+  var S = {subj:'전체', order:[], at:0, sure:0, luck:0, wrong:[], picked:-1, phase:'ask'};
+  function $(id){ return document.getElementById(id); }
+
+  /* --- 출제 순서. 틀렸거나 찍은 문제에 가중치를 줘 더 자주 나오게 한다. --- */
+  function weightOf(q){
+    var st = stats[q.id] || {};
+    return 1 + (st.wrong || 0) * 2 + (st.luck || 0);
+  }
+  function drawOrder(pool){
+    var bag = [];
+    pool.forEach(function(q){
+      var w = Math.min(weightOf(q), 6);
+      for(var i=0;i<w;i++) bag.push(q);
+    });
+    var out = [], seen = {};
+    while(bag.length && out.length < pool.length){
+      var i = Math.floor(Math.random()*bag.length);
+      var q = bag[i];
+      bag.splice(i,1);
+      if(seen[q.id]) continue;
+      seen[q.id] = 1; out.push(q);
+    }
+    pool.forEach(function(q){ if(!seen[q.id]) out.push(q); });
+    return out;
+  }
+
+  /* --- 과목 고르기 --- */
+  ['전체','이론','기기','설비'].forEach(function(name){
+    var n = name === '전체' ? BANK.length : BANK.filter(function(x){return x.s===name;}).length;
+    var b = document.createElement('button');
+    b.type='button'; b.className='qpill'; b.dataset.subj=name;
+    b.setAttribute('aria-pressed', name==='전체' ? 'true':'false');
+    b.textContent = name + ' ' + n;
+    b.addEventListener('click', function(){ start(name); });
+    $('qPick').appendChild(b);
+  });
+
+  function start(subj, only){
+    S.subj = subj;
+    var pool = only || BANK.filter(function(x){ return subj==='전체' || x.s===subj; });
+    S.order = drawOrder(pool);
+    S.at=0; S.sure=0; S.luck=0; S.wrong=[]; S.picked=-1;
+    Array.prototype.forEach.call($('qPick').children, function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.subj===subj));
+    });
+    $('qEnd').hidden = true; $('qCard').hidden = false;
+    render();
+  }
+
+  function render(){
+    if(S.at >= S.order.length){ finish(); return; }
+    var it = S.order[S.at];
+    S.picked = -1;
+    $('qTag').innerHTML = '<b>' + it.s + '</b> · ' + it.u;
+    $('qQ').textContent = it.q;
+    $('qAsk').hidden = true;
+    $('qVerdict').hidden = true;
+
+    var box = $('qChoices'); box.textContent='';
+    it.c.forEach(function(text, i){
+      var b = document.createElement('button');
+      b.type='button'; b.className='qchoice';
+      var n = document.createElement('span'); n.className='qn'; n.textContent=String(i+1);
+      var t = document.createElement('span'); t.textContent=text;
+      b.appendChild(n); b.appendChild(t);
+      b.addEventListener('click', function(){ pick(i); });
+      box.appendChild(b);
+    });
+    $('qPos').textContent = (S.at+1) + ' / ' + S.order.length + ' 문항';
+    tally();
+    $('qFill').style.width = (S.at / S.order.length * 100) + '%';
+  }
+
+  function tally(){
+    $('qTally').textContent = '알고 ' + S.sure + ' · 찍음 ' + S.luck + ' · 틀림 ' + S.wrong.length;
+  }
+
+  function bump(id, key){
+    var st = stats[id] || {seen:0, wrong:0, luck:0};
+    st.seen = (st.seen||0) + 1;
+    if(key) st[key] = (st[key]||0) + 1;
+    stats[id] = st;
+    try{ localStorage.setItem(LS, JSON.stringify(stats)); }catch(e){}
+  }
+
+  function pick(i){
+    if(S.picked >= 0) return;
+    S.picked = i;
+    var it = S.order[S.at];
+    Array.prototype.forEach.call($('qChoices').children, function(b, idx){
+      b.disabled = true;
+      if(idx === it.a) b.classList.add('ok');
+      else if(idx === i) b.classList.add('bad');
+    });
+    if(i === it.a){
+      /* 맞았어도 바로 넘어가지 않는다 — 찍었는지 먼저 묻는다. */
+      $('qAsk').hidden = false;
+      $('qKnew').focus();
+    } else {
+      bump(it.id, 'wrong');
+      S.wrong.push({id:it.id, kind:'wrong', q:it.q, picked:it.c[i], answer:it.c[it.a], src:it.src});
+      reveal('bad', '틀렸다');
+    }
+  }
+
+  $('qKnew').addEventListener('click', function(){
+    if($('qAsk').hidden) return;   /* 숨어 있는 버튼이 눌려 두 번 세는 것을 막는다 */
+    var it = S.order[S.at];
+    bump(it.id, null);
+    S.sure++;
+    $('qAsk').hidden = true;
+    reveal('ok', '맞았다 — 알고 맞힌 것으로 기록했다');
+  });
+
+  $('qLuck').addEventListener('click', function(){
+    if($('qAsk').hidden) return;   /* 위와 같은 이유 */
+    var it = S.order[S.at];
+    bump(it.id, 'luck');
+    S.luck++;
+    S.wrong.push({id:it.id, kind:'luck', q:it.q, picked:'(찍어서 맞힘)', answer:it.c[it.a], src:it.src});
+    $('qAsk').hidden = true;
+    reveal('luck', '찍어서 맞혔다 — 모르는 것으로 쌓았다');
+  });
+
+  function reveal(kind, head){
+    var it = S.order[S.at];
+    $('qHead').className = 'qhead ' + kind;
+    $('qHead').textContent = head;
+    $('qWhy').textContent = it.why;
+    $('qSrc').innerHTML = '다시 볼 곳 — <code>' + it.src + '</code>';
+    $('qVerdict').hidden = false;
+    $('qNext').textContent = (S.at+1 >= S.order.length) ? '결과 보기' : '다음 문제';
+    $('qNext').focus();
+    tally();
+    drawRank();
+  }
+
+  $('qNext').addEventListener('click', function(){ S.at++; render(); });
+
+  function pasteOf(list){
+    return list.map(function(w,i){
+      return (i+1) + '. ' + w.q +
+        '\\n   → 내가 쓴 답: ' + w.picked +
+        '\\n   → 정답: ' + w.answer + '  (' + w.src + ')';
+    }).join('\\n');
+  }
+
+  function finish(){
+    $('qCard').hidden = true; $('qEnd').hidden = false;
+    $('qFill').style.width = '100%';
+    $('qPos').textContent = S.order.length + ' 문항 끝';
+    $('qSureN').textContent = S.sure;
+    $('qLuckN').textContent = S.luck;
+    $('qWrongN').textContent = S.wrong.filter(function(w){return w.kind==='wrong';}).length;
+
+    var body = $('qEndBody'); body.textContent='';
+    if(!S.wrong.length){
+      var p = document.createElement('p'); p.className='quiz-note';
+      p.textContent = '모르는 것이 없다. 다른 과목으로 넘어가거나 전체로 돌린다.';
+      body.appendChild(p);
+    } else {
+      var ul = document.createElement('ul'); ul.className='qlist';
+      S.wrong.forEach(function(w){
+        var li = document.createElement('li');
+        if(w.kind==='luck') li.className='luck';
+        var q = document.createElement('div'); q.className='lq'; q.textContent=w.q;
+        var a = document.createElement('div'); a.className='la';
+        a.innerHTML = '내가 쓴 답 <s></s> → 정답 <b></b>';
+        a.querySelector('s').textContent = w.picked;
+        a.querySelector('b').textContent = w.answer;
+        var s = document.createElement('div'); s.className='qsrc'; s.textContent=w.src;
+        li.appendChild(q); li.appendChild(a); li.appendChild(s);
+        ul.appendChild(li);
+      });
+      body.appendChild(ul);
+      var pre = document.createElement('pre'); pre.className='qpaste';
+      pre.textContent = pasteOf(S.wrong);
+      body.appendChild(pre);
+    }
+    drawRank();
+    push();
+  }
+
+  /* --- 누적: 자주 틀리는 것 --- */
+  function ranked(){
+    return Object.keys(stats).map(function(id){
+      var st = stats[id]; var q = byId[id];
+      if(!q) return null;
+      return {q:q, miss:(st.wrong||0) + (st.luck||0), wrong:st.wrong||0, luck:st.luck||0, seen:st.seen||0};
+    }).filter(function(r){ return r && r.miss > 0; })
+      .sort(function(a,b){ return b.miss - a.miss || b.wrong - a.wrong; });
+  }
+
+  function drawRank(){
+    var rows = ranked();
+    var box = $('qRankBody'); box.textContent='';
+    if(!rows.length){
+      var p = document.createElement('p'); p.className='quiz-note';
+      p.textContent = '아직 틀리거나 찍은 문제가 없다.';
+      box.appendChild(p);
+      return;
+    }
+    var wrap = document.createElement('div'); wrap.className='scroller';
+    var t = document.createElement('table'); t.className='qrank';
+    t.innerHTML = '<thead><tr><th>문제</th><th>과목</th><th>틀림</th><th>찍음</th></tr></thead>';
+    var tb = document.createElement('tbody');
+    rows.slice(0, 30).forEach(function(r){
+      var tr = document.createElement('tr');
+      var star = r.miss >= 3 ? '★ ' : '';
+      var c1 = document.createElement('td');
+      c1.innerHTML = '<span class="star"></span>';
+      c1.querySelector('.star').textContent = star;
+      c1.appendChild(document.createTextNode(r.q.q));
+      var c2 = document.createElement('td'); c2.textContent = r.q.s + ' ' + r.q.u;
+      var c3 = document.createElement('td'); c3.className='num'; c3.textContent=r.wrong;
+      var c4 = document.createElement('td'); c4.className='num'; c4.textContent=r.luck;
+      tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3); tr.appendChild(c4);
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb); wrap.appendChild(t); box.appendChild(wrap);
+    var n = document.createElement('p'); n.className='quiz-note';
+    n.textContent = '★ 는 세 번 이상 틀렸거나 찍은 것이다. 시험 직전에는 이 줄들만 본다.';
+    box.appendChild(n);
+  }
+
+  $('qRankCopy').addEventListener('click', function(){
+    var rows = ranked();
+    if(!rows.length) return;
+    var text = rows.map(function(r,i){
+      return (i+1) + '. ' + (r.miss>=3 ? '★ ' : '') + r.q.q +
+        '\\n   → 정답: ' + r.q.c[r.q.a] +
+        '\\n   → 틀림 ' + r.wrong + '회 · 찍음 ' + r.luck + '회  (' + r.q.src + ')';
+    }).join('\\n');
+    copy(text, $('qRankCopy'));
+  });
+
+  $('qRankClear').addEventListener('click', function(){
+    if(!window.confirm('이 기기에 쌓인 문제풀이 기록을 지운다. 되돌릴 수 없다.')) return;
+    stats = {};
+    try{ localStorage.removeItem(LS); }catch(e){}
+    drawRank(); push();
+  });
+
+  $('qCopy').addEventListener('click', function(){ copy(pasteOf(S.wrong), $('qCopy')); });
+
+  function copy(text, btn){
+    if(!text) return;
+    var was = btn.textContent;
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(
+        function(){ btn.textContent='복사했다'; setTimeout(function(){btn.textContent=was;},1800); },
+        function(){ btn.textContent='복사 실패 — 화면의 글을 직접 선택'; });
+    } else { btn.textContent='화면의 글을 직접 선택'; }
+  }
+
+  /* --- 브라우저 바깥에도 남긴다(아티팩트에서 열었을 때만) --- */
+  var cloud = null;
+  function mark(kind){
+    var n = $('qSync');
+    var say = {off:'이 기기에만 저장됩니다', wait:'저장하는 중…',
+               ok:'저장했습니다 — 다른 기기에서도 이어집니다',
+               fail:'바깥에 못 올렸습니다 — 이 기기에는 남아 있습니다'};
+    n.className = 'qsync ' + kind;
+    n.textContent = say[kind] || '';
+  }
+  function push(){
+    if(!cloud) return;
+    mark('wait');
+    cloud.doc(DOC).set({
+      stats: stats,
+      last: {subj:S.subj, sure:S.sure, luck:S.luck, wrong:S.wrong},
+      updatedAt: new Date().toISOString()
+    }).then(function(){ mark('ok'); }, function(){ mark('fail'); });
+  }
+  if(window.claude && window.claude.use){
+    window.claude.use('db').then(function(db){
+      if(!db){ mark('off'); return; }
+      cloud = db; mark('');
+    }, function(){ mark('off'); });
+  } else { mark('off'); }
+
+  start('전체');
+  drawRank();
 })();
 """
 
@@ -861,13 +1313,40 @@ def build() -> str:
         f'<nav class="chips" aria-label="공식 사용처 섹션">{fx_chips}</nav>{fx_body}</div>'
     )
 
+    # 6번째 탭 — 문제풀이. 원본은 문제은행.json 이고, 여기서 화면을 만든다.
+    # 요약집과 같은 파일에서 나오므로 둘이 갈라질 수 없다(따로 두었다가 갈라진 적이 있다).
+    bank = json.loads((HERE / "문제은행.json").read_text(encoding="utf-8"))["문항"]
+    _seen_ids: set[str] = set()
+    for item in bank:
+        if item["id"] in _seen_ids:
+            DUP_IDS.append(item["id"])
+        _seen_ids.add(item["id"])
+        if not (0 <= item["a"] < len(item["c"])):
+            BAD_ANSWER.append(f'{item["id"]} — 정답 번호 {item["a"]} 가 보기 {len(item["c"])}개를 벗어난다')
+        if len(item["c"]) != 4:
+            BAD_ANSWER.append(f'{item["id"]} — 보기가 4개가 아니라 {len(item["c"])}개다')
+    tabs.append(
+        '<button class="tab" role="tab" id="tab6" aria-controls="panel6" '
+        'aria-selected="false" tabindex="-1" style="--tab:var(--danger)" '
+        f'data-accent="var(--danger)"><small>{len(bank)}문항</small>문제풀이</button>'
+    )
+    panels.append(
+        '<div class="panel" id="panel6" role="tabpanel" aria-labelledby="tab6" hidden>'
+        f'{QUIZ_PANEL}</div>'
+    )
+
     legend = '<span><i style="background:var(--core)"></i>핵심</span>' + "".join(
         f'<span><i style="background:var(--s{n})"></i>{name}</span>'
         for n, (_, name, _, _, _) in enumerate(SUBJECTS, start=1)
     )
     legend += '<span><i style="background:var(--pe)"></i>학습계획</span>'
     legend += '<span><i style="background:var(--fx)"></i>공식 사용처</span>'
+    legend += '<span><i style="background:var(--danger)"></i>문제풀이</span>'
 
+    quiz_js = QUIZ_JS.replace(
+        "__BANK__",
+        json.dumps(bank, ensure_ascii=False, separators=(",", ":")),
+    )
     head = f"<title>전기기능사 필기 요약집</title>\n<style>{CSS}</style>"
     body = f"""<div class="wrap">
   <header class="masthead">
@@ -885,7 +1364,7 @@ def build() -> str:
      내용을 고칠 때는 마크다운을 고치고 다시 돌린다.</p>
 </div>
 <button class="totop" type="button">맨 위로</button>
-<script>{JS}{PLAN_JS}</script>
+<script>{JS}{PLAN_JS}{quiz_js}</script>
 """
     return head, body
 
@@ -910,6 +1389,18 @@ def main() -> None:
             encoding="utf-8",
         )
     print(f"만듦: {out} ({out.stat().st_size:,} 바이트)")
+
+    if DUP_IDS:
+        print()
+        print(f"⚠ 문제은행에 id 가 겹치는 문항 {len(DUP_IDS)}개 — 누적 기록이 엉킨다.")
+        for i in DUP_IDS:
+            print(f"    {i}")
+
+    if BAD_ANSWER:
+        print()
+        print(f"⚠ 문제은행 오류 {len(BAD_ANSWER)}건 — 정답을 못 고르거나 보기 수가 안 맞는다.")
+        for m in BAD_ANSWER:
+            print(f"    {m}")
 
     if STRAY_BOLD:
         print(f"\n⚠ 굵게(**)가 닫히지 않은 곳 {len(STRAY_BOLD)}군데 — 화면에 별표가 그대로 보인다.")
