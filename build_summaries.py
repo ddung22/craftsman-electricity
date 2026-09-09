@@ -675,6 +675,10 @@ PLAN_WIDGET = """<div class="plan-widget">
   </div>
   <div class="plan-rail" id="planRail"></div>
   <p class="plan-today" id="planToday">불러오는 중…</p>
+  <!-- PUBLIC-MIRROR:SKIP-START -->
+  <p class="plan-link">날짜별 체크박스로 진행 상황을 기록하려면 —
+    <a href="https://claude.ai/code/artifact/482687a7-2aee-46d5-bfc5-7b531237985f" target="_blank" rel="noopener">학습 로드맵 페이지</a>를 쓴다.</p>
+  <!-- PUBLIC-MIRROR:SKIP-END -->
 </div>
 """
 
