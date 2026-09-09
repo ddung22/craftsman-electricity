@@ -2,13 +2,6 @@
 
 전기기능사 자격증 취득(필기/실기)을 위한 핵심 요약, 이론 정리, 그리고 기호 암기 도구들을 관리하는 나만의 학습 공간입니다.
 
-<!-- PUBLIC-MIRROR:SKIP-START -->
-> **이 폴더는 별도 공개 저장소로도 미러링된다** — `https://github.com/ddung22/craftsman-electricity`
-> (GitHub Pages: `https://ddung22.github.io/craftsman-electricity/`). haengdo-wiki 는 비공개를 유지하되,
-> 개인정보가 없는 이 폴더만 공개로 뺀 것이다. **동기화는 `.github/workflows/sync-craftsman-electricity.yml`
-> 이 push 때 자동으로 한다** — 이 폴더를 고쳐서 커밋·푸시하면 알아서 반영된다. (이 안내문 자체는
-> 공개 저장소엔 안 나간다 — 아래 SKIP 마커 사이는 동기화 스크립트가 지운다.)
-<!-- PUBLIC-MIRROR:SKIP-END -->
 
 ## 📅 학습 과목 개요
 
@@ -38,13 +31,6 @@
 | **오답 체크리스트** | 문제풀이 탭에서 틀린 것을 쌓아 시험 직전에 훑는다 (채우는 중) | Markdown | [`오답_체크리스트.md`](./오답_체크리스트.md) |
 | **통합 요약집 (폰용)** | 요약집 3개 + 핵심 + 학습계획 + 공식 사용처 + **문제풀이**를 탭 7개 한 페이지로 | HTML | [`summaries.html`](./summaries.html) |
 
-<!-- PUBLIC-MIRROR:SKIP-START -->
-웹으로 올린 판(둘 다 비공개):
-* 학습계획 — 오늘의 단계·D-day·날짜별 체크박스를 폰에서 바로 본다: `https://claude.ai/code/artifact/482687a7-2aee-46d5-bfc5-7b531237985f`
-* 3과목 요약집: `https://claude.ai/code/artifact/449b9f40-e26a-422d-bad5-acc43ab260f3`
-> 문제풀이는 **요약집 안의 탭**으로 들어갔다. 낱장이던 `문제풀이.html` 과 그 아티팩트
-> (`62f65aa9…`)는 **더 이상 쓰지 않는다** — 두 벌을 두면 갈라지기 때문이다.
-<!-- PUBLIC-MIRROR:SKIP-END -->
 
 세 문서는 **개념 → 공식 → 왜 그런가 → 계산 예제 → 기출 함정** 순으로 쓰여 있다.
 맨 아래에는 **"시험 직전 30초 체크리스트"** 가 있으니, 시간이 없으면 그것만 본다.
@@ -60,10 +46,6 @@
 python build_summaries.py
 ```
 
-<!-- PUBLIC-MIRROR:SKIP-START -->
-웹으로 올린 판(비공개): `https://claude.ai/code/artifact/449b9f40-e26a-422d-bad5-acc43ab260f3`
-올릴 때는 `python build_summaries.py --artifact <경로>` 로 본문만 뽑아서 올린다.
-<!-- PUBLIC-MIRROR:SKIP-END -->
 
 ### 문제은행을 고칠 때
 

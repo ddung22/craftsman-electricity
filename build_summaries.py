@@ -675,10 +675,6 @@ PLAN_WIDGET = """<div class="plan-widget">
   </div>
   <div class="plan-rail" id="planRail"></div>
   <p class="plan-today" id="planToday">불러오는 중…</p>
-  <!-- PUBLIC-MIRROR:SKIP-START -->
-  <p class="plan-link">날짜별 체크박스로 진행 상황을 기록하려면 —
-    <a href="https://claude.ai/code/artifact/482687a7-2aee-46d5-bfc5-7b531237985f" target="_blank" rel="noopener">학습 로드맵 페이지</a>를 쓴다.</p>
-  <!-- PUBLIC-MIRROR:SKIP-END -->
 </div>
 """
 
@@ -756,6 +752,12 @@ PLAN_JS = """
 """
 
 QUIZ_CSS = """
+/* ⚠ 이 한 줄이 없으면 hidden 이 duds 가 된다.
+   .qask·.qcard 에 display:flex 를 주면 **작성자 스타일이 UA 의 [hidden]{display:none}
+   을 이겨서**, hidden 을 걸어도 그대로 보인다. 실제로 문제풀이 탭에서
+   "맞았다 — 찍었나?" 블록과 결과 카드가 항상 떠 있었다(2026-09-10 고침).
+   본문 CSS 의 .panel[hidden] 도 같은 이유로 따로 적어 둔 것이다. */
+.quiz [hidden]{display:none !important;}
 /* --- 문제풀이 탭 --- */
 .quiz{display:flex; flex-direction:column; gap:1rem; margin-top:.4rem;}
 .quiz-note{margin:0; font-size:.86rem; color:var(--muted);}
@@ -795,6 +797,26 @@ QUIZ_CSS = """
 .qchoice.ok .qn{border-color:var(--pe); color:var(--pe); font-weight:700;}
 .qchoice.bad{border-color:var(--danger);}
 .qchoice.bad .qn{border-color:var(--danger); color:var(--danger); font-weight:700;}
+/* 색만으로 알리지 않는다 — 색약이거나 흑백으로 인쇄해도 읽혀야 한다.
+   글자 배지를 같이 붙인다. */
+.qchoice .qflag{
+  margin-left:auto; align-self:center; flex:0 0 auto;
+  font-size:.7rem; font-weight:700; letter-spacing:.02em; white-space:nowrap;
+  padding:.12rem .42rem; border-radius:.32rem;
+}
+.qchoice.ok .qflag{background:var(--pe); color:var(--bg);}
+.qchoice.bad .qflag{background:var(--danger); color:var(--bg);}
+/* 틀렸을 때 정답을 문장으로 한 번 더 못박는다 */
+.qans{
+  margin:0 0 .55rem; padding:.55rem .7rem; border-radius:.45rem;
+  background:var(--pe-bg); border:1px solid var(--pe);
+  font-size:.94rem; line-height:1.6;
+}
+.qans b{color:var(--pe);}
+.qwhy-label{
+  display:block; margin:.7rem 0 .25rem; font-size:.72rem; font-weight:700;
+  letter-spacing:.09em; color:var(--muted);
+}
 /* 찍었는지 묻는 자리 — 4지선다는 25 % 가 운이라, 이걸 안 물으면 오답 목록이 거짓말을 한다 */
 .qask{
   display:flex; flex-direction:column; gap:.55rem;
@@ -865,6 +887,8 @@ QUIZ_PANEL = """<div class="quiz">
 
     <div class="qverdict" id="qVerdict" hidden>
       <div class="qhead" id="qHead"></div>
+      <p class="qans" id="qAns" hidden></p>
+      <span class="qwhy-label" id="qWhyLabel">해설</span>
       <p class="qwhy" id="qWhy"></p>
       <p class="qsrc" id="qSrc"></p>
       <button class="qbtn" type="button" id="qNext">다음 문제</button>
@@ -1056,8 +1080,14 @@ QUIZ_JS = """
     var it = S.order[S.at];
     Array.prototype.forEach.call($('qChoices').children, function(b, idx){
       b.disabled = true;
-      if(idx === it.a) b.classList.add('ok');
-      else if(idx === i) b.classList.add('bad');
+      var flag = null;
+      if(idx === it.a){ b.classList.add('ok'); flag = (idx === i) ? '정답 · 내 답' : '정답'; }
+      else if(idx === i){ b.classList.add('bad'); flag = '내 답'; }
+      if(flag){
+        var f = document.createElement('span');
+        f.className = 'qflag'; f.textContent = flag;
+        b.appendChild(f);
+      }
     });
     if(i === it.a){
       /* 맞았어도 바로 넘어가지 않는다 — 찍었는지 먼저 묻는다. */
@@ -1089,12 +1119,67 @@ QUIZ_JS = """
     reveal('luck', '찍어서 맞혔다 — 모르는 것으로 쌓았다');
   });
 
+  /* src("Machinery_Summary.md §3 등가회로 시험") → 그 단원 카드로 가는 앵커.
+     과목마다 탭이 다르고 카드 id 가 k<탭>-s<절> 이라 기계적으로 만들 수 있다. */
+  var SUBJ_TAB = {'이론':1, '기기':2, '설비':3};
+  function srcLink(it){
+    var m = /§ *([0-9]+)/.exec(it.src || '');
+    var t = SUBJ_TAB[it.s];
+    if(!m || !t) return null;
+    return {tab:t, id:'k' + t + '-s' + m[1]};
+  }
+
   function reveal(kind, head){
     var it = S.order[S.at];
     $('qHead').className = 'qhead ' + kind;
     $('qHead').textContent = head;
+
+    /* 틀렸거나 찍었으면 정답을 문장으로 한 번 더 말해준다.
+       보기 색만으로는 무엇이 답인지 확실히 안 남는다. */
+    var ans = $('qAns');
+    if(kind === 'bad' || kind === 'luck'){
+      ans.hidden = false;
+      ans.textContent = '';
+      var lead = document.createElement('b');
+      lead.textContent = '정답 ' + '①②③④'.charAt(it.a) + '  ';
+      ans.appendChild(lead);
+      ans.appendChild(document.createTextNode(it.c[it.a]));
+    } else {
+      ans.hidden = true;
+    }
+
     $('qWhy').textContent = it.why;
-    $('qSrc').innerHTML = '다시 볼 곳 — <code>' + it.src + '</code>';
+
+    /* '다시 볼 곳' 을 눌러서 갈 수 있게 만든다 — 틀린 자리를 바로 펴 보는 것이
+       오답 학습의 전부다. 앵커를 못 만들면 예전처럼 글씨로만 둔다. */
+    var link = srcLink(it);
+    if(link){
+      $('qSrc').textContent = '다시 볼 곳 — ';
+      var a = document.createElement('a');
+      a.href = '#' + link.id;
+      a.textContent = it.src;
+      a.addEventListener('click', function(ev){
+        ev.preventDefault();
+        var tabBtn = document.getElementById('tab' + link.tab);
+        if(tabBtn) tabBtn.click();
+        var target = document.getElementById(link.id);
+        /* 탭 버튼 클릭은 window.scrollTo({top:0}) 를 부른다(위 tabs 처리).
+           그래서 한 번만 스크롤하면 맨 위로 되돌려진 자리에서 끝난다 —
+           레이아웃이 잡힌 뒤 한 번 더 맞춘다. 카드의 scroll-margin-top 이
+           스티키 탭·칩 높이만큼 띄워 준다. */
+        var jump = function(){
+          var el = document.getElementById(link.id);
+          if(el) el.scrollIntoView({block:'start'});
+        };
+        setTimeout(function(){
+          jump();
+          requestAnimationFrame(function(){ requestAnimationFrame(jump); });
+        }, 120);
+      });
+      $('qSrc').appendChild(a);
+    } else {
+      $('qSrc').innerHTML = '다시 볼 곳 — <code>' + it.src + '</code>';
+    }
     $('qVerdict').hidden = false;
     $('qNext').textContent = (S.at+1 >= S.order.length) ? '결과 보기' : '다음 문제';
     $('qNext').focus();
@@ -1347,7 +1432,10 @@ def build() -> str:
         "__BANK__",
         json.dumps(bank, ensure_ascii=False, separators=(",", ":")),
     )
-    head = f"<title>전기기능사 필기 요약집</title>\n<style>{CSS}</style>"
+    # ⚠ QUIZ_CSS 를 빠뜨려 문제풀이 탭이 **스타일 없는 맨 버튼**으로 나왔다.
+    #   정답에 .ok 클래스는 붙는데 CSS 가 없어 초록 표시가 안 보였다 —
+    #   "정답을 안 알려준다" 로 보였던 것의 진짜 원인이다. (2026-09-10 고침)
+    head = f"<title>전기기능사 필기 요약집</title>\n<style>{CSS}{QUIZ_CSS}</style>"
     body = f"""<div class="wrap">
   <header class="masthead">
     <p class="eyebrow">Haengdo Brain · 전기기능사 학습실</p>
