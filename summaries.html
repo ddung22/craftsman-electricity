@@ -1416,11 +1416,20 @@ KVL <span class="math"><span class="op">Σ</span> <i>E</i> <span class="op">=</s
 <strong>합성 인덕턴스</strong> (☆가끔, 가동·차동 구분)
 <ul>
 <li>
-가동(같은 방향) 접속: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">+</span> 2<i>M</i></span>
+<strong>직렬</strong> 가동(같은 방향) 접속: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">+</span> 2<i>M</i></span>
 </li><li>
-차동(반대 방향) 접속: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">-</span> 2<i>M</i></span>
+<strong>직렬</strong> 차동(반대 방향) 접속: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">-</span> 2<i>M</i></span>
+</li><li>
+<strong>병렬</strong> 가동(같은 방향) 접속: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i><sub>1</sub> <i>L</i><sub>2</sub> <span class="op">-</span> <i>M</i><sup>2</sup></span><span class="den"><i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">-</span> 2<i>M</i></span></span></span>
+</li><li>
+<strong>병렬</strong> 차동(반대 방향) 접속: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i><sub>1</sub> <i>L</i><sub>2</sub> <span class="op">-</span> <i>M</i><sup>2</sup></span><span class="den"><i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">+</span> 2<i>M</i></span></span></span>
+</li><li>
+결합이 없으면(<span class="math"><i>M</i> <span class="op">=</span> 0</span>) 저항의 병렬과 같은 꼴: <span class="math math-inline-block"><i>L</i><sub>0</sub> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i><sub>1</sub> <i>L</i><sub>2</sub></span><span class="den"><i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub></span></span></span>
 </li></ul>
 </li></ul>
+<blockquote>
+<p><strong>⚠ 병렬은 분모의 부호가 직렬과 반대다</strong> — 가동 병렬이 <span class="math"><span class="op">-</span>2<i>M</i></span>, 차동 병렬이 <span class="math"><span class="op">+</span>2<i>M</i></span> 이다. 분자의 <span class="math"><span class="op">-</span><i>M</i><sup>2</sup></span> 은 둘 다 같다.</p>
+</blockquote>
 <blockquote>
 <p><strong>비교해서 외우기</strong> — 콘덴서 에너지 <span class="math"><span class="frac"><span class="num">1</span><span class="den">2</span></span><i>CV</i><sup>2</sup></span> 은 <strong>전압</strong>, 코일 에너지 <span class="math"><span class="frac"><span class="num">1</span><span class="den">2</span></span><i>LI</i><sup>2</sup></span> 은 <strong>전류</strong>로 쓴다.</p>
 </blockquote>
@@ -1433,15 +1442,23 @@ KVL <span class="math"><span class="op">Σ</span> <i>E</i> <span class="op">=</s
 <p>전류가 0 에서 <span class="math"><i>I</i></span> 까지 서서히 올라가므로 평균으로 보면 절반이다.</p>
 <p><strong>상호 인덕턴스 <span class="math"><i>M</i> <span class="op">=</span> <i>k</i><span class="sqrt"><i>L</i><sub>1</sub><i>L</i><sub>2</sub></span></span></strong> — 두 코일이 얼마나 잘 얽혔는지가 결합계수</p>
 <p><span class="math"><i>k</i></span> 다. 완전히 얽히면 <span class="math"><i>k</i> <span class="op">=</span> 1</span>, 전혀 안 얽히면 0 이다.</p>
-<p><strong>합성 <span class="math"><i>L</i><sub>0</sub> <span class="op">=</span> <i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">±</span> 2<i>M</i></span> 의 부호가 함정이다.</strong></p>
+<p><strong>합성 <span class="math"><i>L</i><sub>0</sub> <span class="op">=</span> <i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">±</span> 2<i>M</i></span> 의 부호가 함정이다.</strong> (직렬)</p>
 <ul>
 <li>
 <strong>가동(같은 방향)</strong> — 자속이 서로 도와주니 <strong>+2M</strong>
 </li><li>
 <strong>차동(반대 방향)</strong> — 자속이 서로 깎으니 <strong>−2M</strong>
 </li></ul>
-<p><strong>손잡이 — &quot;가동은 더하고 차동은 뺀다&quot;. 두 값의 차이가 <span class="math">4<i>M</i></span></strong> 이라, 문제가</p>
-<p>가동·차동 둘 다 주면 그 차이를 4로 나눠 <span class="math"><i>M</i></span> 을 구한다.</p></div></details>
+<p><strong>손잡이 — &quot;가동은 더하고 차동은 뺀다&quot;. 직렬 두 값의 차이가 <span class="math">4<i>M</i></span></strong> 이라, 문제가</p>
+<p>가동·차동 둘 다 주면 그 차이를 4로 나눠 <span class="math"><i>M</i></span> 을 구한다.</p>
+<p><strong>병렬은 분모의 부호가 뒤집힌다</strong> — 가동 병렬 <span class="math"><span class="frac"><span class="num"><i>L</i><sub>1</sub><i>L</i><sub>2</sub> <span class="op">-</span> <i>M</i><sup>2</sup></span><span class="den"><i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">-</span> 2<i>M</i></span></span></span>,</p>
+<p>차동 병렬 <span class="math"><span class="frac"><span class="num"><i>L</i><sub>1</sub><i>L</i><sub>2</sub> <span class="op">-</span> <i>M</i><sup>2</sup></span><span class="den"><i>L</i><sub>1</sub> <span class="op">+</span> <i>L</i><sub>2</sub> <span class="op">+</span> 2<i>M</i></span></span></span>. 부호만 보면 반대 같지만 <strong>결과의 방향은 직렬과 같다</strong> —</p>
+<p>분모가 작아지는 가동 병렬이 더 크고, 분모가 커지는 차동 병렬이 더 작다.</p>
+<p><strong>가동이면 합성 L 이 커지고, 차동이면 작아진다 — 직렬이든 병렬이든 같다.</strong></p>
+<p><strong>검산 손잡이 — 같은 코일 두 개(<span class="math"><i>L</i><sub>1</sub> <span class="op">=</span> <i>L</i><sub>2</sub> <span class="op">=</span> <i>L</i></span>)로 넣어 본다.</strong></p>
+<p>가동 병렬은 <span class="math"><span class="frac"><span class="num"><i>L</i><sup>2</sup> <span class="op">-</span> <i>M</i><sup>2</sup></span><span class="den">2<i>L</i> <span class="op">-</span> 2<i>M</i></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i> <span class="op">+</span> <i>M</i></span><span class="den">2</span></span></span>, 차동 병렬은 <span class="math"><span class="frac"><span class="num"><i>L</i><sup>2</sup> <span class="op">-</span> <i>M</i><sup>2</sup></span><span class="den">2<i>L</i> <span class="op">+</span> 2<i>M</i></span></span> <span class="op">=</span> <span class="frac"><span class="num"><i>L</i> <span class="op">-</span> <i>M</i></span><span class="den">2</span></span></span> —</p>
+<p>각 코일이 <span class="math"><i>L</i> <span class="op">+</span> <i>M</i></span>(가동)이나 <span class="math"><i>L</i> <span class="op">-</span> <i>M</i></span>(차동)처럼 굴고, 같은 것 둘을 병렬로 이으니 절반이 된 것이다.</p>
+<p>결합이 없으면(<span class="math"><i>M</i> <span class="op">=</span> 0</span>) 둘 다 <span class="math"><span class="frac"><span class="num"><i>L</i></span><span class="den">2</span></span></span> 로 저항의 병렬과 똑같다.</p></div></details>
 <h3 class="h3">⏱ RL · RC 회로의 시정수 (<span class="star">★</span>자주 — CBT 단골)</h3>
 <p>직류를 갑자기 걸었을 때(과도현상), 전류·전압이 <strong>정상 상태의 약 63.2 %</strong></p>
 <p>(<span class="math">1 <span class="op">-</span> 1/<i>e</i></span>)에 도달하는 데 걸리는 시간이 시정수 <span class="math"><span class="op">τ</span></span> 다.</p>
