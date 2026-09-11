@@ -94,6 +94,11 @@ BAD_ANSWER: list[str] = []
 
 # 일부러 버리는 명령. 괄호 크기 조절용이라 괄호 자체는 뒤에 따로 나온다.
 IGNORED = {"left", "right", "displaystyle", "limits"}
+# 글자 하나를 이스케이프한 것 — 그 글자를 그대로 찍는다.
+# ⚠ 전에는 이름이 알파벳이 아니면 조용히 버려서, 전압변동률·슬립의 "× 100 [\%]" 가
+#   "[ ]" 로, 단락비 "100/\%Z" 가 "100/Z" 로, 온도계수 "R₁\{1 + α(t₂ − t₁)\}" 의 중괄호가
+#   통째로 사라져 보였다(2026-09-11 발견). UNKNOWN 에도 안 잡혀 경고조차 없었다.
+ESCAPED = {"%", "{", "}", "#", "&", "$", "_"}
 
 
 def tex(s: str) -> str:
@@ -119,6 +124,10 @@ def tex(s: str) -> str:
                 continue
             j = j if j > i + 1 else i + 2
             flush()
+            if name in ESCAPED:
+                out.append(html.escape(name))
+                i = j
+                continue
             if name in ("frac", "dfrac", "tfrac"):
                 num, j = _read_group(s, j)
                 den, j = _read_group(s, j)
@@ -1132,8 +1141,18 @@ QUIZ_JS = """
   }
 
   /* --- 과목 고르기 --- */
-  ['전체','이론','기기','설비'].forEach(function(name){
-    var n = name === '전체' ? BANK.length : BANK.filter(function(x){return x.s===name;}).length;
+  /* '오답 변형' — 서버(db)에 올라간 오답을 보고 만든 쌍둥이 문제(문항에 from 이 있는 것).
+     내가 고른 오답 보기를 정답 자리로 돌려 묻는 식이라, 헷갈린 둘을 가르게 만든다 (2026-09-11). */
+  var VARIANT = '오답 변형';
+  function poolOf(name){
+    return BANK.filter(function(x){
+      return name === '전체' || x.s === name || (name === VARIANT && !!x.from);
+    });
+  }
+  var PILLS = ['전체','이론','기기','설비'];
+  if(poolOf(VARIANT).length) PILLS.push(VARIANT);
+  PILLS.forEach(function(name){
+    var n = poolOf(name).length;
     var b = document.createElement('button');
     b.type='button'; b.className='qpill'; b.dataset.subj=name;
     b.setAttribute('aria-pressed', name==='전체' ? 'true':'false');
@@ -1149,7 +1168,7 @@ QUIZ_JS = """
 
   function start(subj, only){
     S.subj = subj;
-    var pool = only || BANK.filter(function(x){ return subj==='전체' || x.s===subj; });
+    var pool = only || poolOf(subj);
     S.order = drawOrder(pool);
     S.at=0; S.sure=0; S.luck=0; S.wrong=[]; S.picked=-1;
     Array.prototype.forEach.call($('qPick').children, function(b){
