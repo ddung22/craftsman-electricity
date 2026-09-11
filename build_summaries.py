@@ -474,6 +474,16 @@ body{
   border-bottom:1px solid var(--line-soft); scrollbar-width:none;
 }
 .chips::-webkit-scrollbar{display:none;}
+/* PC(마우스) — 폰은 손가락으로 옆으로 밀지만 PC 는 휠이 세로라 안 보이는 칩에 갈 방법이
+   없었다. 옆으로 밀 수 있다는 것이 보이게 얇은 스크롤바를 드러내고, 끌어서 밀게 한다
+   (휠·끌기는 아래 CHIPS_JS). 폰(손가락)에는 적용되지 않는다. (2026-09-11) */
+@media (hover: hover) and (pointer: fine){
+  .chips{scrollbar-width:thin; scrollbar-color:var(--line) transparent; cursor:grab;}
+  .chips::-webkit-scrollbar{display:block; height:6px;}
+  .chips::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
+  .chips.dragging{cursor:grabbing; user-select:none;}
+  .chips.dragging .chip{pointer-events:none;}
+}
 .chip{
   /* 폰에서 누를 것이라 손가락 크기를 먼저 맞춘다 — 예전엔 높이가 33px 라
      애플 권장 최소 터치 영역(44px)에 못 미쳐 누르기 불편했다.
@@ -698,6 +708,46 @@ PLAN_JS = """
   /* 웹폰트가 늦게 오면 높이가 달라진다 — 폰트 로딩 후 한 번 더 잰다. */
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 })();
+/* CHIPS_JS — PC 에서 칩 바를 옆으로 민다 (2026-09-11).
+   휠(세로)을 가로로 돌리고, 마우스로 끌어서 밀 수 있게 한다. 끌었을 때는 손을 뗀 자리의
+   칩이 눌려 엉뚱한 단원으로 튀지 않게 그 클릭을 삼킨다. 끝에 닿으면 휠은 페이지를 내린다. */
+(function(){
+  /* ⚠ '마우스 기기인가' 를 열 때 한 번만 재서 끌기를 붙이지 않는다 — 폰 크기로 연 뒤 PC 크기로
+     바꾸자 끌기가 아예 안 붙어 있었다(2026-09-11 실측). 손가락으로 밀면 mousemove 가 안 나오고,
+     톡 누르면 움직임이 0 이라 moved 가 안 켜지므로 **항상 붙여도 폰 동작은 그대로다.** */
+  Array.prototype.forEach.call(document.querySelectorAll('.chips'), function(bar){
+    bar.addEventListener('wheel', function(ev){
+      var max = bar.scrollWidth - bar.clientWidth;
+      if(max <= 0) return;
+      var d = Math.abs(ev.deltaX) > Math.abs(ev.deltaY) ? ev.deltaX : ev.deltaY;
+      if(ev.deltaMode === 1) d *= 16;          /* 줄 단위(파이어폭스) → 픽셀 */
+      if(!d) return;
+      if((d < 0 && bar.scrollLeft <= 0) || (d > 0 && bar.scrollLeft >= max - 1)) return;
+      bar.scrollLeft += d;
+      ev.preventDefault();
+    }, {passive:false});
+    var down = false, moved = false, sx = 0, sl = 0;
+    bar.addEventListener('mousedown', function(ev){
+      if(ev.button !== 0) return;
+      down = true; moved = false; sx = ev.clientX; sl = bar.scrollLeft;
+    });
+    window.addEventListener('mousemove', function(ev){
+      if(!down) return;
+      var dx = ev.clientX - sx;
+      if(!moved && Math.abs(dx) > 5){ moved = true; bar.classList.add('dragging'); }
+      if(moved){ bar.scrollLeft = sl - dx; ev.preventDefault(); }
+    });
+    window.addEventListener('mouseup', function(){
+      if(!down) return;
+      down = false;
+      bar.classList.remove('dragging');
+    });
+    bar.addEventListener('click', function(ev){
+      if(moved){ ev.preventDefault(); ev.stopPropagation(); moved = false; }
+    }, true);
+    bar.addEventListener('dragstart', function(ev){ ev.preventDefault(); });
+  });
+})();
 (function(){
   var railEl = document.getElementById('planRail');
   if(!railEl) return;
@@ -772,6 +822,8 @@ QUIZ_CSS = """
 .qbar i{display:block; height:100%; width:0; background:var(--accent); transition:width .25s ease;}
 .qmeta{display:flex; justify-content:space-between; font-size:.8rem; color:var(--muted);
   font-variant-numeric:tabular-nums; margin-top:.35rem;}
+.qprog{margin:.3rem 0 0; font-size:.78rem; color:var(--muted); font-variant-numeric:tabular-nums;}
+.qprog b{color:var(--ink); font-weight:700;}
 .qcard{
   background:var(--surface); border:1px solid var(--line); border-radius:12px;
   padding:1.05rem 1rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.85rem;
@@ -869,6 +921,7 @@ QUIZ_PANEL = """<div class="quiz">
   <div>
     <div class="qbar"><i id="qFill"></i></div>
     <div class="qmeta"><span id="qPos">—</span><span id="qTally">—</span></div>
+    <p class="qprog" id="qProg"></p>
   </div>
   <section class="qcard" id="qCard">
     <div class="qtag" id="qTag"></div>
@@ -999,6 +1052,56 @@ QUIZ_JS = """
     return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
   }
 
+  /* 풀던 판 — 끄고 다시 열어도 이어 푼다 (2026-09-11).
+     예전에는 열 때마다 start('전체') 로 새로 섞어서, 폰에서 창을 닫으면 몇 번째였는지·
+     이번 판에 뭘 틀렸는지가 사라졌다(누적 기록은 남았지만 판은 처음부터).
+     answered = 지금 문제를 이미 골랐는가. 고른 뒤 닫았으면 다시 열 때 다음 문제로 넘긴다 —
+     이미 기록에 셌으므로 같은 문제를 또 세지 않게. */
+  var SESS = 'haengdo.craft.quiz.session.v1';
+  function saveSession(answered){
+    try{
+      localStorage.setItem(SESS, JSON.stringify({
+        subj:S.subj, ids:S.order.map(function(q){ return q.id; }), at:S.at,
+        sure:S.sure, luck:S.luck, wrong:S.wrong, answered:!!answered, t:Date.now()
+      }));
+    }catch(e){}
+  }
+  function clearSession(){ try{ localStorage.removeItem(SESS); }catch(e){} }
+  function loadSession(){
+    var s = null;
+    try{ s = JSON.parse(localStorage.getItem(SESS) || 'null'); }catch(e){ s = null; }
+    if(!s || !s.ids || !s.ids.length) return null;
+    var order = s.ids.map(function(id){ return byId[id]; }).filter(Boolean);
+    if(order.length !== s.ids.length) return null;   /* 문제은행이 바뀌었으면 새 판 */
+    var at = (s.at || 0) + (s.answered ? 1 : 0);
+    if(at >= order.length) return null;
+    return {subj:s.subj || '전체', order:order, at:at,
+            sure:s.sure || 0, luck:s.luck || 0, wrong:s.wrong || []};
+  }
+  function inRound(){
+    return (S.at > 0 || S.picked >= 0) && S.at < S.order.length;
+  }
+
+  /* 어디까지 풀었나 — 한 번이라도 푼 문항을 과목별로 센다.
+     '기록 지우기' 는 순위(stats)만 지우므로 날짜별 이력(log)도 같이 본다. */
+  function drawProg(){
+    var el = document.getElementById('qProg');
+    if(!el) return;
+    var done = {};
+    Object.keys(stats).forEach(function(id){ if((stats[id].seen || 0) > 0) done[id] = 1; });
+    log.forEach(function(x){ done[x.id] = 1; });
+    var per = {'이론':[0,0], '기기':[0,0], '설비':[0,0]}, total = 0;
+    BANK.forEach(function(q){
+      var p = per[q.s];
+      if(p){ p[1]++; if(done[q.id]) p[0]++; }
+      if(done[q.id]) total++;
+    });
+    el.innerHTML = '한 번이라도 푼 문항 <b></b> · ' + Object.keys(per).map(function(k){
+      return k + ' ' + per[k][0] + '/' + per[k][1];
+    }).join(' · ');
+    el.querySelector('b').textContent = total + ' / ' + BANK.length;
+  }
+
   var byId = {};
   BANK.forEach(function(q){ byId[q.id] = q; });
 
@@ -1035,7 +1138,12 @@ QUIZ_JS = """
     b.type='button'; b.className='qpill'; b.dataset.subj=name;
     b.setAttribute('aria-pressed', name==='전체' ? 'true':'false');
     b.textContent = name + ' ' + n;
-    b.addEventListener('click', function(){ start(name); });
+    b.addEventListener('click', function(){
+      /* 풀던 판을 실수로 날리지 않게 한 번 묻는다. */
+      if(inRound() && !window.confirm('지금 푸는 판(' + (S.at + 1) + ' / ' + S.order.length +
+          ')을 그만두고 ' + name + ' 으로 새로 섞는다. 괜찮나?')) return;
+      start(name);
+    });
     $('qPick').appendChild(b);
   });
 
@@ -1048,6 +1156,8 @@ QUIZ_JS = """
       b.setAttribute('aria-pressed', String(b.dataset.subj===subj));
     });
     $('qEnd').hidden = true; $('qCard').hidden = false;
+    S.resumed = false;
+    saveSession(false);
     render();
   }
 
@@ -1070,13 +1180,18 @@ QUIZ_JS = """
       b.addEventListener('click', function(){ pick(i); });
       box.appendChild(b);
     });
-    $('qPos').textContent = (S.at+1) + ' / ' + S.order.length + ' 문항';
+    $('qPos').textContent = (S.at+1) + ' / ' + S.order.length + ' 문항' +
+      (S.resumed ? ' · 지난번에 멈춘 자리부터' : '');
+    drawProg();
     tally();
     $('qFill').style.width = (S.at / S.order.length * 100) + '%';
   }
 
   function tally(){
-    $('qTally').textContent = '알고 ' + S.sure + ' · 찍음 ' + S.luck + ' · 틀림 ' + S.wrong.length;
+    /* S.wrong 에는 찍어서 맞힌 것(kind:'luck')도 들어 있다 — 길이를 그대로 쓰면 찍음이 틀림에
+       한 번 더 세졌다(2026-09-11 발견: "찍음 2 · 틀림 5" 인데 실제 틀림은 3). */
+    var bad = S.wrong.filter(function(w){ return w.kind === 'wrong'; }).length;
+    $('qTally').textContent = '알고 ' + S.sure + ' · 찍음 ' + S.luck + ' · 틀림 ' + bad;
   }
 
   function bump(id, key){
@@ -1204,9 +1319,15 @@ QUIZ_JS = """
     $('qNext').focus();
     tally();
     drawRank();
+    drawProg();
+    saveSession(true);    /* 골랐다 — 여기서 닫아도 다음에 이 문제를 또 세지 않는다 */
   }
 
-  $('qNext').addEventListener('click', function(){ S.at++; render(); });
+  $('qNext').addEventListener('click', function(){
+    S.at++; S.resumed = false;
+    saveSession(false);
+    render();             /* 끝이면 render → finish 가 판을 지운다 */
+  });
 
   function pasteOf(list){
     return list.map(function(w,i){
@@ -1217,6 +1338,7 @@ QUIZ_JS = """
   }
 
   function finish(){
+    clearSession();       /* 판을 끝냈다 — 다음에 열면 새로 섞는다 */
     $('qCard').hidden = true; $('qEnd').hidden = false;
     $('qFill').style.width = '100%';
     $('qPos').textContent = S.order.length + ' 문항 끝';
@@ -1315,6 +1437,16 @@ QUIZ_JS = """
 
   $('qCopy').addEventListener('click', function(){ copy(pasteOf(S.wrong), $('qCopy')); });
 
+  /* 결과 카드의 두 버튼 — 버튼만 있고 연결이 빠져 눌러도 아무 일이 없었다(2026-09-11 발견). */
+  $('qRetry').addEventListener('click', function(){
+    var ids = {};
+    S.wrong.forEach(function(w){ ids[w.id] = 1; });
+    var pool = BANK.filter(function(q){ return ids[q.id]; });
+    if(!pool.length) return;
+    start(S.subj, pool);
+  });
+  $('qReset').addEventListener('click', function(){ start(S.subj); });
+
   function copy(text, btn){
     if(!text) return;
     var was = btn.textContent;
@@ -1369,8 +1501,21 @@ QUIZ_JS = """
     }, function(){ mark('off'); });
   } else { mark('off'); }
 
-  start('전체');
+  var resume = loadSession();
+  if(resume){
+    S.subj = resume.subj; S.order = resume.order; S.at = resume.at;
+    S.sure = resume.sure; S.luck = resume.luck; S.wrong = resume.wrong; S.resumed = true;
+    Array.prototype.forEach.call($('qPick').children, function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.subj === S.subj));
+    });
+    $('qEnd').hidden = true; $('qCard').hidden = false;
+    saveSession(false);
+    render();
+  } else {
+    start('전체');
+  }
   drawRank();
+  drawProg();
 })();
 """
 
