@@ -2866,6 +2866,19 @@ html{scroll-behavior:smooth;}
   var stats = {};
   try{ stats = JSON.parse(localStorage.getItem(LS) || '{}') || {}; }catch(e){ stats = {}; }
 
+  /* log = [{id, p, r, t}] — 한 번 풀 때마다 한 줄. p: 고른 보기(0부터), r: wrong|sure|luck,
+     t: 밀리초. stats 는 '몇 번' 만 남아서 **어느 보기로·언제 틀렸는지** 가 사라진다.
+     바깥(db)에는 날짜마다 문서 하나(craftsman/log-YYYY-MM-DD)로 올린다 (2026-09-11 추가). */
+  var LOGK = 'haengdo.craft.quiz.log.v1';
+  var LOGDOC = 'craftsman/log-';
+  var log = [];
+  try{ log = JSON.parse(localStorage.getItem(LOGK) || '[]') || []; }catch(e){ log = []; }
+  var dirty = {};   /* 아직 바깥에 못 올린 날짜 */
+  function dayOf(ms){
+    var d = new Date(ms);
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+
   var byId = {};
   BANK.forEach(function(q){ byId[q.id] = q; });
 
@@ -2952,6 +2965,12 @@ html{scroll-behavior:smooth;}
     if(key) st[key] = (st[key]||0) + 1;
     stats[id] = st;
     try{ localStorage.setItem(LS, JSON.stringify(stats)); }catch(e){}
+    var now = Date.now();
+    log.push({id:id, p:S.picked, r:key || 'sure', t:now});
+    if(log.length > 5000) log = log.slice(-5000);
+    try{ localStorage.setItem(LOGK, JSON.stringify(log)); }catch(e){}
+    dirty[dayOf(now)] = 1;
+    soon();
   }
 
   function pick(i){
@@ -3167,7 +3186,8 @@ html{scroll-behavior:smooth;}
   });
 
   $('qRankClear').addEventListener('click', function(){
-    if(!window.confirm('이 기기에 쌓인 문제풀이 기록을 지운다. 되돌릴 수 없다.')) return;
+    /* 순위(stats)만 지운다. 날짜별 풀이 이력(log)은 남긴다 — 나중에 재는 데 쓴다. */
+    if(!window.confirm('자주 틀리는 것 순위를 지운다. 날짜별 풀이 이력은 남는다. 되돌릴 수 없다.')) return;
     stats = {};
     try{ localStorage.removeItem(LS); }catch(e){}
     drawRank(); push();
@@ -3185,29 +3205,47 @@ html{scroll-behavior:smooth;}
     } else { btn.textContent='화면의 글을 직접 선택'; }
   }
 
-  /* --- 브라우저 바깥에도 남긴다(아티팩트에서 열었을 때만) --- */
-  var cloud = null;
+  /* --- 브라우저 바깥에도 남긴다(아티팩트에서 열었을 때만) ---
+     예전에는 한 바퀴를 끝내야(finish) 올라가서, 중간에 닫으면 그 바퀴 것이 바깥에
+     안 남았다. 이제 한 문제 풀 때마다 올린다 — 연달아 누르면 0.8초 모아 한 번 (2026-09-11).
+     ⚠ 바깥 것을 다시 읽어오지는 않는다. 그래서 '다른 기기에서도 이어진다' 고 쓰지 않는다. */
+  var cloud = null, timer = null;
   function mark(kind){
     var n = $('qSync');
     var say = {off:'이 기기에만 저장됩니다', wait:'저장하는 중…',
-               ok:'저장했습니다 — 다른 기기에서도 이어집니다',
+               ok:'저장했습니다 — 바깥(db)에도 남았습니다',
                fail:'바깥에 못 올렸습니다 — 이 기기에는 남아 있습니다'};
     n.className = 'qsync ' + kind;
     n.textContent = say[kind] || '';
   }
+  function soon(){
+    if(!cloud) return;
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(function(){ timer = null; push(); }, 800);
+  }
   function push(){
     if(!cloud) return;
     mark('wait');
-    cloud.doc(DOC).set({
+    var stamp = new Date().toISOString();
+    var jobs = [cloud.doc(DOC).set({
       stats: stats,
       last: {subj:S.subj, sure:S.sure, luck:S.luck, wrong:S.wrong},
-      updatedAt: new Date().toISOString()
-    }).then(function(){ mark('ok'); }, function(){ mark('fail'); });
+      updatedAt: stamp
+    })];
+    Object.keys(dirty).forEach(function(day){
+      var rows = log.filter(function(x){ return dayOf(x.t) === day; });
+      jobs.push(cloud.doc(LOGDOC + day).set({day:day, rows:rows, updatedAt:stamp})
+        .then(function(){ delete dirty[day]; }));
+    });
+    Promise.all(jobs).then(function(){ mark('ok'); }, function(){ mark('fail'); });
   }
   if(window.claude && window.claude.use){
     window.claude.use('db').then(function(db){
       if(!db){ mark('off'); return; }
       cloud = db; mark('');
+      /* 이 기기에만 쌓여 있던 이력이 있으면 그 날짜들도 한 번 올린다. */
+      log.forEach(function(x){ dirty[dayOf(x.t)] = 1; });
+      if(log.length) soon();
     }, function(){ mark('off'); });
   } else { mark('off'); }
 
