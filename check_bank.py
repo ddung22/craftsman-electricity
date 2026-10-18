@@ -15,6 +15,9 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+for _s in (sys.stdout, sys.stderr):  # 한글 윈도우(cp949) 파이프·Git Bash 에서 한글·기호 찍다 죽지 않게
+    if hasattr(_s, "reconfigure"):
+        _s.reconfigure(encoding="utf-8", errors="replace")
 
 HERE = Path(__file__).resolve().parent
 BANK = HERE / "문제은행.json"
